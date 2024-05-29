@@ -507,11 +507,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 552966334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46a332b1f39214c9eba84164f96a1b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bcbedceaf41a40f788ee4c881b6adcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 174835847}
-  remainingTime: 0
+  remainingTime: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
