@@ -15,8 +15,6 @@ public class RandomDistraction : MonoBehaviour
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI spText;
 
-    public Player player = new Player("Player", 0, 0, 0);
-
     private int selectedDistractionIndex; 
 
     // a list of all the possible distractions
@@ -74,8 +72,10 @@ public class RandomDistraction : MonoBehaviour
     public void HandleYesButton()
     {
         Debug.Log("Yes button clicked");
+        Student player = Student.Instance;
         player.AddPoints(distractions[selectedDistractionIndex]);
-        Debug.Log("Player's MP: " + player.points.mentalPoints);
+        Debug.Log("Player's MP: " + player.GetMentalPoints());
+        SceneManager.LoadScene("InGameScene");
     }
 
     public void HandleNoButton()
@@ -114,49 +114,3 @@ public class DistractionEvent
         return points.socialPoints;
     }
 }
-
-public class Points
-{
-    public int mentalPoints;
-    public int physicalPoints;
-    public int socialPoints;
-    public Points(int mentalPoints, int physicalPoints, int socialPoints)
-    {
-        this.mentalPoints = mentalPoints;
-        this.physicalPoints = physicalPoints;
-        this.socialPoints = socialPoints;
-    }
-
-    public void AddMentalPoints(int points)
-    {
-        mentalPoints += points;
-    }
-    public void AddPhysicalPoints(int points)
-    {
-        physicalPoints += points;
-    }
-
-    public void AddSocialPoints(int points)
-    {
-        socialPoints += points;
-    }
-}
-
-public class Player {
-    public string name;
-    public Points points;
-
-    public Player(string name, int mentalPoints, int physicalPoints, int socialPoints)
-    {
-        this.name = name;
-        this.points = new Points(mentalPoints, physicalPoints, socialPoints);
-    }
-
-    public void AddPoints(DistractionEvent theEvent)
-    {
-        this.points.AddMentalPoints(theEvent.GetMentalPoints());
-        this.points.AddPhysicalPoints(theEvent.GetPhysicalPoints());
-        this.points.AddSocialPoints(theEvent.GetSocialPoints());
-    }
-}
-
