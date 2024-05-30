@@ -37,6 +37,7 @@ public class ProgressBar : MonoBehaviour
         else 
         {
             Debug.Log("Completed!");
+            progressText.text = "Completed!";
         }
     }
 
