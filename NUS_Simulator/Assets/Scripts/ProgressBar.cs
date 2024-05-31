@@ -9,6 +9,7 @@ public class ProgressBar : MonoBehaviour
 {
     Image progressBar;
     [SerializeField] TextMeshProUGUI progressText;
+    [SerializeField] TextMeshProUGUI moduleSideText;
     public float maxTime = 5.0f;
     private float currentTime = 0.0f;
     private float speed = 1.0f;
@@ -17,6 +18,7 @@ public class ProgressBar : MonoBehaviour
     {
         progressBar = GetComponent<Image>();
         progressBar.fillAmount = 0.0f;
+        moduleSideText.text = "Studying for CS2040...";
     }
 
     void Update()
