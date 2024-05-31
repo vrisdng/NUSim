@@ -2,20 +2,37 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class Countdown : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     public static float remainingTime = 25f;
 
-    public Countdown instance;
+    private bool isPaused = false;
+
+    private static Countdown instance;
+
+    public static Countdown Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = new Countdown();
+            }
+            return instance;
+        }
+    }
 
     void Awake() 
     {
-        if (instance == null) {
+        if (instance == null)
+        {
             instance = this;
         }
-        else {
+        else
+        {
             Destroy(gameObject);
         }
     }
@@ -27,13 +44,16 @@ public class Countdown : MonoBehaviour
 
     void Update()
     {
-        remainingTime -= Time.deltaTime;
-        UpdateTimerDisplay(); // Update the timer display every frame
-        if (remainingTime <= 0)
+        if (!isPaused)
         {
-            timerText.text = "00:00";
-            SceneManager.LoadScene("ExamScene");
-        }
+            remainingTime -= Time.deltaTime;
+            UpdateTimerDisplay(); // Update the timer display every frame
+            if (remainingTime <= 0)
+            {
+                timerText.text = "00:00";
+                SceneManager.LoadScene("ExamScene");
+            }
+        } 
     }
 
     void UpdateTimerDisplay()
@@ -46,7 +66,21 @@ public class Countdown : MonoBehaviour
     // Method to update remainingTime externally
     public void UpdateRemainingTime(float newTime)
     {
-        remainingTime = newTime;
+        remainingTime += newTime;
         UpdateTimerDisplay(); // Update the timer display when remainingTime is updated
+    }
+    public void ResetCountdown()
+    {
+        remainingTime = 25f;
+    }
+
+    public void PauseCountdown()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeCountdown()
+    {
+        isPaused = false;
     }
 }

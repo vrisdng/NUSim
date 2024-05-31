@@ -14,9 +14,9 @@ public class RandomDistraction : MonoBehaviour
     [SerializeField] TextMeshProUGUI mpText;
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI spText;
-    // [SerializeField] Countdown countdown; 
 
     float timeDeductible = 10; 
+    Countdown countdown = Countdown.Instance;
 
     private int selectedDistractionIndex; 
 
@@ -37,6 +37,7 @@ public class RandomDistraction : MonoBehaviour
     {
         InitializeDistractions();
         RandomDistractionEvent();
+        Time.timeScale = 0; 
     }
 
     
@@ -72,16 +73,18 @@ public class RandomDistraction : MonoBehaviour
         Student player = Student.Instance;
         player.AddPoints(distractions[selectedDistractionIndex]);
         Debug.Log("Player's MP: " + player.GetMentalPoints());
-
+        countdown.UpdateRemainingTime(-timeDeductible);
         SceneManager.LoadScene("InGameScene");
+        Time.timeScale = 1; 
     }
 
     public void HandleNoButton()
     {
+
         Debug.Log("Back to main screen!");
         SceneManager.LoadScene("InGameScene");
+        Time.timeScale = 1; 
     }
-
 }
 
 public class DistractionEvent
