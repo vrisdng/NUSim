@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Countdown : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Countdown : MonoBehaviour
         if (remainingTime <= 0)
         {
             timerText.text = "00:00";
+            SceneManager.LoadScene("ExamScene");
         }
     }
 }

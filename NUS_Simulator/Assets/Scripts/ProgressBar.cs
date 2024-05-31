@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ProgressBar : MonoBehaviour
@@ -52,5 +53,9 @@ public class ProgressBar : MonoBehaviour
     public void Deduct(float time)
     {
         // 
+    }
+
+    public void CloseWorkPanel() {
+        SceneManager.LoadScene("InGameScene");
     }
 }
