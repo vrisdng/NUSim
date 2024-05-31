@@ -6,6 +6,7 @@ using TMPro;
 
 public class DisplayResult : MonoBehaviour
 {
+    public GameObject button; 
     [SerializeField] TextMeshProUGUI gradesReport;
     [SerializeField] TextMeshProUGUI mentalPoints;
     [SerializeField] TextMeshProUGUI physicalPoints;
@@ -16,6 +17,7 @@ public class DisplayResult : MonoBehaviour
     public void OnClick()
     {
         DisplayResults(); 
+        button.SetActive(false);
     }
 
     string RandomGradeGenerator() {
@@ -30,13 +32,13 @@ public class DisplayResult : MonoBehaviour
         string grade = RandomGradeGenerator();
         gradesReport.text = "Your grade is: " + grade;
 
-        mentalPoints.text = "Mental Points: " + Student.Instance.GetMentalPoints();
-        physicalPoints.text = "Physical Points: " + Student.Instance.GetPhysicalPoints();
-        socialPoints.text = "Social Points: " + Student.Instance.GetSocialPoints();
+        mentalPoints.text = "Mental Points: " + Mathf.RoundToInt(Student.Instance.GetMentalPoints());
+        physicalPoints.text = "Physical Points: " + Mathf.RoundToInt(Student.Instance.GetPhysicalPoints());
+        socialPoints.text = "Social Points: " + Mathf.RoundToInt(Student.Instance.GetSocialPoints());
 
-        int totalPoints = Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints();
+        float totalPoints = Mathf.RoundToInt(Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
         int gradeToScore = grade == "A" ? 4 : grade == "B" ? 3 : grade == "C" ? 2 : 1;
-        int finalScore = gradeToScore * 10 + totalPoints; 
+        float finalScore = gradeToScore * 10 + totalPoints; 
         
         finalReport.text = "Your final score is: " + finalScore;
 

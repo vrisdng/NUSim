@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e103eaf67f63949928ad5ecc2d817445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 1689676664}
   gradesReport: {fileID: 637585499}
   mentalPoints: {fileID: 45329813}
   physicalPoints: {fileID: 1832024371}

@@ -14,6 +14,9 @@ public class RandomDistraction : MonoBehaviour
     [SerializeField] TextMeshProUGUI mpText;
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI spText;
+    // [SerializeField] Countdown countdown; 
+
+    float timeDeductible = 10; 
 
     private int selectedDistractionIndex; 
 
@@ -24,8 +27,8 @@ public class RandomDistraction : MonoBehaviour
         distractions = new DistractionEvent[4];
         distractions[0] = new DistractionEvent("You see a cat", 0.5f, new Points(1, 0, 0));
         distractions[1] = new DistractionEvent("You see a dog", 0.5f, new Points(1, 0, 0));
-        distractions[2] = new DistractionEvent("Your mom calls you", 0.5f, new Points(1, 0, 1));
-        distractions[3] = new DistractionEvent("Your friend asks you to go gym", 0.5f, new Points(1, 1, 1));
+        distractions[2] = new DistractionEvent("Your mom calls you", 0.5f, new Points(1, 0, 2));
+        distractions[3] = new DistractionEvent("Your friend asks you to go gym", 0.5f, new Points(1, 3, 2));
         // TODO: getNextEvent and map and names for each event
     }
 
@@ -59,12 +62,6 @@ public class RandomDistraction : MonoBehaviour
                 mpText.text = "MP: +" + distractions[i].GetMentalPoints();
                 ppText.text = "PP: +" + distractions[i].GetPhysicalPoints();
                 spText.text = "SP: +" + distractions[i].GetSocialPoints();
-                /* debug log
-                Debug.Log(distractions[i].distractionText);
-                Debug.Log("MP: +" + distractions[i].GetMentalPoints());
-                Debug.Log("PP: +" + distractions[i].GetPhysicalPoints());
-                Debug.Log("SP: +" + distractions[i].GetSocialPoints());
-                */ 
                 break;
             }
         } 
@@ -75,6 +72,7 @@ public class RandomDistraction : MonoBehaviour
         Student player = Student.Instance;
         player.AddPoints(distractions[selectedDistractionIndex]);
         Debug.Log("Player's MP: " + player.GetMentalPoints());
+
         SceneManager.LoadScene("InGameScene");
     }
 
@@ -99,17 +97,17 @@ public class DistractionEvent
         this.points = points;
     }
 
-    public int GetMentalPoints()
+    public float GetMentalPoints()
     {
         return points.mentalPoints;
     }
 
-    public int GetPhysicalPoints()
+    public float GetPhysicalPoints()
     {
         return points.physicalPoints;
     }
 
-    public int GetSocialPoints()
+    public float GetSocialPoints()
     {
         return points.socialPoints;
     }

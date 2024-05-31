@@ -1,26 +1,42 @@
 public class Points
 {
-    public int mentalPoints;
-    public int physicalPoints;
-    public int socialPoints;
-    public Points(int mentalPoints, int physicalPoints, int socialPoints)
+    public float mentalPoints;
+    public float physicalPoints;
+    public float socialPoints;
+    public Points(float mentalPoints, float physicalPoints, float socialPoints)
     {
         this.mentalPoints = mentalPoints;
         this.physicalPoints = physicalPoints;
         this.socialPoints = socialPoints;
     }
 
-    public void AddMentalPoints(int points)
+    public void AddMentalPoints(float points)
     {
         mentalPoints += points;
     }
-    public void AddPhysicalPoints(int points)
+    public void AddPhysicalPoints(float points)
     {
         physicalPoints += points;
     }
 
-    public void AddSocialPoints(int points)
+    public void AddSocialPoints(float points)
     {
         socialPoints += points;
     }
+
+    public void DecrementMentalPoints(float points)
+    {
+        mentalPoints -= points;
+    }
+
+    public void DecrementPhysicalPoints(float points)
+    {
+        physicalPoints -= points;
+    }
+
+    public void DecrementSocialPoints(float points)
+    {
+        socialPoints -= points;
+    }
+
 }
