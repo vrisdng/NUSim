@@ -204,7 +204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 98583062}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1801189529}
+        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &98583062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,7 +611,7 @@ GameObject:
   - component: {fileID: 758423707}
   - component: {fileID: 758423706}
   m_Layer: 5
-  m_Name: Play_button (2)
+  m_Name: Quit_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -668,7 +680,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 758423707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1801189529}
+        m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &758423707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,7 +1083,7 @@ GameObject:
   - component: {fileID: 1554482894}
   - component: {fileID: 1554482893}
   m_Layer: 5
-  m_Name: Play_button (1)
+  m_Name: Rules_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
