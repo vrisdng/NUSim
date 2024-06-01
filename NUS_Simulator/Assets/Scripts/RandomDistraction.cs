@@ -35,7 +35,6 @@ public class RandomDistraction : MonoBehaviour
     
     void Start()
     {
-        InitializeDistractions();
         RandomDistractionEvent();
         Time.timeScale = 0; 
     }
@@ -43,14 +42,12 @@ public class RandomDistraction : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            RandomDistractionEvent();
-        }
+        
     }
 
     void RandomDistractionEvent()
     {
+        InitializeDistractions();
         float random = Random.Range(0f, 4f);
         float sum = 0f;
         for (int i = 0; i < distractions.Length; i++)
