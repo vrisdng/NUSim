@@ -12,7 +12,7 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] TextMeshProUGUI moduleSideText;
     public float maxTime = 5.0f;
     private float currentTime = 0.0f;
-    private float speed = 1.0f;
+    private float speed = 0.5f;
 
     void Start()
     {
