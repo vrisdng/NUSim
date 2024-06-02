@@ -15,7 +15,7 @@ public class RandomDistraction : MonoBehaviour
     [SerializeField] TextMeshProUGUI ppText;
     [SerializeField] TextMeshProUGUI spText;
 
-    float timeDeductible = 5; 
+    float timeDeductible = 7;
     Countdown countdown = Countdown.Instance;
 
     private int selectedDistractionIndex; 
