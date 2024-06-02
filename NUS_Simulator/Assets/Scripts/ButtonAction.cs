@@ -5,14 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class ButtonAction : MonoBehaviour
 {
+    public GameObject studyPanel;
     public void clickOnComputer() {
         Debug.Log("Computer Clicked");
-        SceneManager.LoadScene("WorkingScene");
     }
 
     public void clickOnMail() {
-        Student.Instance.setShouldDecrementPoints(false);
         Debug.Log("Mail Clicked");
         SceneManager.LoadScene("DistractionScene");
+    }
+
+    public void clickOnStudyButton() {
+        Debug.Log("Study Button Clicked");
+        if (studyPanel.activeSelf == false) {
+            studyPanel.SetActive(true);
+        } else {
+            studyPanel.SetActive(false);
+        }
     }
 }

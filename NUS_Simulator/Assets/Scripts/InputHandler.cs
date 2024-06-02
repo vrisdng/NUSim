@@ -14,11 +14,7 @@ public class InputHandler : MonoBehaviour
             CheckHitObject();
             if (objSelected != null)
             {
-                if (objSelected.tag == "Work")
-                {
-                    SceneManager.LoadScene("WorkingScene");
-                }
-                else if (objSelected.tag == "Distraction")
+                if (objSelected.tag == "Distraction")
                 {
                     SceneManager.LoadScene("DistractionScene");
                 }

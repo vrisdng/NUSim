@@ -16,13 +16,15 @@ public class MainScreenDisplay : MonoBehaviour
     public GameObject mailIcon; 
 
     private Coroutine pointsDecrementCoroutine;
-    static float _MAIL_INTERVAL = 1f; 
+    static float _MAIL_INTERVAL = 2.5f; 
 
     void Start()
     {
         PLAYER = Student.Instance; 
         DisplayPlayerInfo(); 
         mailIcon.SetActive(false);
+        GameObject panel = GameObject.FindGameObjectWithTag("StudyingPanel");
+        panel.SetActive(false);
     }
 
     void StartPointsDecrement() 
