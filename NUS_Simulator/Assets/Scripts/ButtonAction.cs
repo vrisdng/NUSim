@@ -22,4 +22,8 @@ public class ButtonAction : MonoBehaviour
             studyPanel.SetActive(false);
         }
     }
+
+    public void clickOnModule() {
+        SceneManager.LoadScene("InGameScene"); 
+    }
 }
