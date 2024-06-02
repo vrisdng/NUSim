@@ -12,7 +12,6 @@ public class ButtonAction : MonoBehaviour
 
     public void clickOnMail() {
         Debug.Log("Mail Clicked");
-        SceneManager.LoadScene("DistractionScene");
     }
 
     public void clickOnStudyButton() {

@@ -10,9 +10,9 @@ public class ProgressBar : MonoBehaviour
     Image progressBar;
     [SerializeField] TextMeshProUGUI progressText;
     [SerializeField] TextMeshProUGUI moduleSideText;
-    public float maxTime = 5.0f;
-    private float currentTime = 0.0f;
-    private float speed = 0.5f;
+    public static float maxTime = 5.0f;
+    private static float currentTime = 0.0f;
+    private static float speed = 0.09f;
 
     void Start()
     {

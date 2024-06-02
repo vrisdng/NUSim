@@ -7,7 +7,9 @@ using Unity.VisualScripting;
 public class Countdown : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] static float remainingTime = 50f;
+
+    const float REMAINING_TIME = 60f;
+    public static float remainingTime = REMAINING_TIME; 
 
     private bool isPaused = false;
 
@@ -71,7 +73,7 @@ public class Countdown : MonoBehaviour
     }
     public void ResetCountdown()
     {
-        remainingTime = 25f;
+        remainingTime = REMAINING_TIME;
     }
 
     public void PauseCountdown()

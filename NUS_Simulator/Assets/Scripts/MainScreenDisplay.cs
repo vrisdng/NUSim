@@ -16,7 +16,7 @@ public class MainScreenDisplay : MonoBehaviour
     public GameObject mailIcon; 
 
     private Coroutine pointsDecrementCoroutine;
-    static float _MAIL_INTERVAL = 2.5f; 
+    static float _MAIL_INTERVAL = 2.25f; 
 
     void Start()
     {
@@ -64,9 +64,9 @@ public class MainScreenDisplay : MonoBehaviour
                 SceneManager.LoadScene("GameOverScene");
                 break;
             }
-            PLAYER.DecrementMentalPoints(1f);
-            PLAYER.DecrementPhysicalPoints(1f);
-            PLAYER.DecrementSocialPoints(1f);
+            PLAYER.DecrementMentalPoints(1.7f);
+            PLAYER.DecrementPhysicalPoints(1.9f);
+            PLAYER.DecrementSocialPoints(1.9f);
             yield return new WaitForSeconds(1f);
             DisplayPlayerInfo();
         }
