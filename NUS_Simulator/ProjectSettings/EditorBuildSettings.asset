@@ -9,9 +9,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ac61e98f53787064886e9784fa88388a
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
     path: Assets/Scenes/Select Modules.unity
     guid: 2e756c68643f747408be0616747e284e
+  - enabled: 1
+    path: Assets/Scenes/InGameScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/DistractionScene.unity
+    guid: 7a5c77c84f4e64e34a1cdf5875d3873e
+  - enabled: 1
+    path: Assets/Scenes/ExamScene.unity
+    guid: cc2e904910839425d875386c68230d06
+  - enabled: 0
+    path: Assets/Scenes/WorkingScene.unity
+    guid: 39eb262582a0d422c950dfee22aab9c4
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 2624e2f3559a64410af9f732d07c2a2f
   m_configObjects: {}
