@@ -18,6 +18,10 @@ public class InputHandler : MonoBehaviour
                 {
                     SceneManager.LoadScene("DistractionScene");
                 }
+                if (objSelected.tag == "Work")
+                {
+                    SceneManager.LoadScene("WorkingScene");
+                }
             }
         }
     }

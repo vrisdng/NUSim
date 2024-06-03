@@ -14,11 +14,22 @@ public class ProgressBar : MonoBehaviour
     private static float currentTime = 0.0f;
     private static float speed = 0.09f;
 
+    public static ProgressBar instance;
+
+    public static ProgressBar Instance {
+        get {
+            if (instance == null) {
+                instance = new ProgressBar();
+            }
+            return instance; 
+        }
+    }
+
     void Start()
     {
         progressBar = GetComponent<Image>();
         progressBar.fillAmount = 0.0f;
-        moduleSideText.text = "Studying for CS2040...";
+        moduleSideText.text = "Studying for CS1101S...";
     }
 
     void Update()
@@ -59,5 +70,10 @@ public class ProgressBar : MonoBehaviour
 
     public void CloseWorkPanel() {
         SceneManager.LoadScene("InGameScene");
+    }
+
+    public void Reset() {
+        currentTime = 0.0f;
+        speed = 0.09f;
     }
 }

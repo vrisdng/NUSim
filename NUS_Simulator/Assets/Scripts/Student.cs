@@ -19,7 +19,7 @@ public class Student {
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 25, 25, 25);
+                instance = new Student("player", 35, 35, 35);
             }
             return instance; 
         }
@@ -70,7 +70,7 @@ public class Student {
     }
 
     public void Reset() {
-        instance = new Student("player", 25, 25, 25);
+        instance = new Student("player", 35, 35, 35);
     }
 
 }
