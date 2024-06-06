@@ -56,9 +56,6 @@ public class MainScreenDisplay : MonoBehaviour
 
     IEnumerator PointsDecrement() 
     {
-        if (PLAYER.getDecrementStatus()) {
-            yield break;
-        }
         while(true) {
             if (IsAnyPointZero()) {
                 SceneManager.LoadScene("GameOverScene");

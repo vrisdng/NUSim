@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class Student {
     private string name;
     private Points points;
 
-    private bool shouldDecrementPoints;
+    private Module[] modules = new Module[5]; 
 
     public Student(string name, float mentalPoints, float physicalPoints, float socialPoints)
     {
@@ -16,23 +17,20 @@ public class Student {
         this.points = new Points(mentalPoints, physicalPoints, socialPoints);
     }
 
+    public Student(string name, float mentalPoints, float physicalPoints, float socialPoints, Module[] modules)
+    {
+        this.name = name;
+        this.points = new Points(mentalPoints, physicalPoints, socialPoints);
+        this.modules = modules;
+    }
+
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 35, 35, 35);
+                instance = new Student("player", 10, 10, 10);
             }
             return instance; 
         }
-    }
-
-    public bool getDecrementStatus()
-    {
-        return this.shouldDecrementPoints;
-    }
-
-    public void setShouldDecrementPoints(bool shouldDecrementPoints)
-    {
-        this.shouldDecrementPoints = shouldDecrementPoints;
     }
 
     public void AddPoints(DistractionEvent theEvent)
@@ -40,6 +38,18 @@ public class Student {
         this.points.AddMentalPoints(theEvent.GetMentalPoints());
         this.points.AddPhysicalPoints(theEvent.GetPhysicalPoints());
         this.points.AddSocialPoints(theEvent.GetSocialPoints());
+    }
+
+    public void AddModule(Module module)
+    {
+        for (int i = 0; i < modules.Length; i++)
+        {
+            if (modules[i] == null)
+            {
+                modules[i] = module;
+                break;
+            }
+        }
     }
 
     public void DecrementMentalPoints(float points)
@@ -70,7 +80,7 @@ public class Student {
     }
 
     public void Reset() {
-        instance = new Student("player", 35, 35, 35);
+        instance = new Student("player", 10, 10, 10);
     }
 
 }
