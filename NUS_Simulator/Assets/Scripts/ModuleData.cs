@@ -18,18 +18,6 @@ public class ModuleData : ScriptableObject {
         return null;
     }
 
-    private void OnEnable() {
-        // Ensure each module has its own ModuleProgressValue instance
-        for (int i = 0; i < modules.Length; i++) {
-            if (moduleProgressValues[i] == null) {
-                moduleProgressValues[i] = ScriptableObject.CreateInstance<ModuleProgressValue>();
-                moduleProgressValues[i].Initialize(25.0f); // Example maxTime value
-            } else {
-                moduleProgressValues[i].ResetProgress(); // Reset progress on enable
-            }
-        }
-    }
-
     public ModuleProgressValue GetModuleProgress(int index) {
         if (index >= 0 && index < modules.Length) {
             return moduleProgressValues[index];

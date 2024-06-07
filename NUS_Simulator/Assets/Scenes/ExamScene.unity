@@ -367,6 +367,7 @@ MonoBehaviour:
   socialPoints: {fileID: 805405128}
   finalReport: {fileID: 545297152}
   congrats: {fileID: 1980968885}
+  moduleData: {fileID: 11400000, guid: c6c1cc08faa7847d58f04bce09eac0d4, type: 2}
 --- !u!4 &271169785
 Transform:
   m_ObjectHideFlags: 0
@@ -752,7 +753,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10, y: 32}
+  m_AnchoredPosition: {x: 144, y: 82}
   m_SizeDelta: {x: 204.75, y: 15.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637585499
@@ -1256,7 +1257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1, y: 75}
+  m_AnchoredPosition: {x: -1.9999993, y: 158}
   m_SizeDelta: {x: 127.71, y: 31.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1689676666
@@ -1387,7 +1388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -130, y: 148}
+  m_AnchoredPosition: {x: -133, y: 231}
   m_SizeDelta: {x: 208.25, y: 18.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805117743

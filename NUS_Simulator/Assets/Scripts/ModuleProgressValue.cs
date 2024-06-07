@@ -1,37 +1,28 @@
 using System;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "ModuleProgressValue", menuName = "ScriptableObjects/ModuleProgressValue", order = 2)]
-public class ModuleProgressValue : ScriptableObject {
-    [NonSerialized] private float progress;
-    [NonSerialized] private float maxTime; 
+public class ModuleProgressValue 
+{
+    public float MaxTime { get; private set; }
+    public float Progress { get; private set; }
 
-    void OnEnable() {
-        Initialize(25.0f);
-    }
-    public void Initialize(float maxTime) {
-        this.maxTime = maxTime;
-        progress = 0.0f;
-        Debug.Log("Initialized progress: " + progress + "/" + maxTime);
+    public ModuleProgressValue(float maxTime)
+    {
+        MaxTime = maxTime;
+        Progress = 0f;
     }
 
-    public void SetProgress(float value) {
-        progress = value;
+    public void SetProgress(float progress)
+    {
+        Progress = progress; // Ensure progress does not exceed MaxTime
     }
 
-    public float GetProgress() {
-        return progress;
+    public void ResetProgress()
+    {
+        Progress = 0f;
     }
 
-    public void SetMaxTime(float value) {
-        maxTime = value;
-    }
-
-    public float GetMaxTime() {
-        return maxTime;
-    }
-
-    public void ResetProgress() {
-        progress = 0.0f;
+    public float GetProgressPercentage()
+    {
+        return Progress / MaxTime;
     }
 }
