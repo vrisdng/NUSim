@@ -17,19 +17,19 @@ public class ProgressBar : MonoBehaviour
     void Start()
     {
         progressBar = GetComponent<Image>();
-        if (progressBar != null)
-        {
-            progressBar.fillAmount = 0.0f;
-            progressText.text = "0%";
-        }
         isUpdating = false;
     }
 
     void Update()
     {
-        if (isUpdating && moduleProgressValue != null) 
-        {
-            UpdateModuleProgress();
+        if (moduleProgressValue != null) {
+            if (moduleProgressValue.Progress >= moduleProgressValue.MaxTime) {
+                StopProgress(); 
+                StudyManager.Instance.StopStudying();
+            }
+            if (isUpdating) {
+                UpdateModuleProgress();
+            }
         }
     }
 
@@ -89,6 +89,14 @@ public class ProgressBar : MonoBehaviour
             moduleProgressValue.ResetProgress();
             progressBar.fillAmount = 0;
             progressText.text = "0%";
+        }
+    }
+
+    public void SaveProgress()
+    {
+        if (moduleProgressValue != null)
+        {
+            moduleProgressValue.SaveProgress(progressBar != null ? progressBar.fillAmount * moduleProgressValue.MaxTime : 0);
         }
     }
 

@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEditor.Build.Content;
 using System.Xml;
 
 // ModuleStudyHandler.cs
@@ -22,6 +21,8 @@ public class ModuleStudyHandler : MonoBehaviour
 
     void Start()
     {
+        progressBarPanel.SetActive(false);
+        warningText.gameObject.SetActive(false);
         UpdateModuleButtons();
         InitializeModulePanelsAndProgressBars();
         StudyManager.Instance.SetProgressBars(progressBars);
@@ -59,6 +60,7 @@ public class ModuleStudyHandler : MonoBehaviour
 
     public void ClickOnModule()
     {
+        warningText.gameObject.SetActive(true);
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         if (StudyManager.Instance.IsStudying())
         {
@@ -76,21 +78,21 @@ public class ModuleStudyHandler : MonoBehaviour
                     modulePanels[i].SetActive(false);
                     progressBars[i].StopProgress();
                 }
-
-                modulePanels[buttonIndex].SetActive(true);
                 if (StudyManager.Instance.GetActiveModuleIndex() != -1)
                 {
                     progressBars[StudyManager.Instance.GetActiveModuleIndex()].StopProgress();
                 }
 
                 // progressBars[buttonIndex].StartProgress();
-
+        
                 ModuleProgressValue moduleProgress = StudyManager.Instance.GetModuleProgress(buttonIndex);
                 ProgressBar progressBar = progressBars[buttonIndex];
                 progressBar.SetModuleProgress(moduleProgress); 
 
                 Module module = moduleData.GetModule(buttonIndex);
                 progressBar.SetModuleSideText(module.GetModuleName());
+
+                modulePanels[buttonIndex].SetActive(true);
 
                 StudyManager.Instance.SwitchModule(buttonIndex);
                 
@@ -132,7 +134,6 @@ public class ModuleStudyHandler : MonoBehaviour
         {
             Debug.Log("Starting study for module: " + activeModuleIndex);
             StudyManager.Instance.StartStudying(activeModuleIndex);
-            
         }
     }
 
@@ -146,5 +147,27 @@ public class ModuleStudyHandler : MonoBehaviour
             StudyManager.Instance.StopStudying();
     
         }
+    }
+
+    public void OnBackButtonClick() 
+    {
+        // makes all the progress bars stop
+        if (progressBars != null)
+        {
+            for (int i = 0; i < progressBars.Length; i++)
+            {
+                if (progressBars[i] != null)
+                {
+                    Debug.Log($"Saving progress for progress bar {i}");
+                    progressBars[i].SaveProgress();
+                }
+                else
+                {
+                    Debug.LogWarning($"Progress bar {i} is null");
+                }
+            }
+        }
+        StudyManager.Instance.StopStudying();
+        SceneManager.LoadScene("InGameScene"); 
     }
 }

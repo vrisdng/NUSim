@@ -27,7 +27,7 @@ public class Student {
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 10, 10, 10);
+                instance = new Student("player", 30, 30, 30);
             }
             return instance; 
         }
@@ -80,7 +80,7 @@ public class Student {
     }
 
     public void Reset() {
-        instance = new Student("player", 10, 10, 10);
+        instance = new Student("player", 30, 30, 30);
     }
 
 }

@@ -29,10 +29,7 @@ public class DisplayResult : MonoBehaviour
         {
             gradeProbabilities = new Dictionary<string, float>
             {
-                { "A", 0.01f },
-                { "B", 0.09f },
-                { "C", 0.10f },
-                { "D", 0.30f },
+                { "D", 0.50f },
                 { "F", 0.50f }
             };
         }

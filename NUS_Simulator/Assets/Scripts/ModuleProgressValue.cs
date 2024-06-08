@@ -25,4 +25,9 @@ public class ModuleProgressValue
     {
         return Progress / MaxTime;
     }
+
+    public void SaveProgress(float progress)
+    {
+        Progress = progress;
+    }
 }

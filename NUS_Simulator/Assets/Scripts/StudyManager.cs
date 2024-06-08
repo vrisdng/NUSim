@@ -45,6 +45,7 @@ public class StudyManager : MonoBehaviour
             {
                 moduleProgress = new ModuleProgressValue(25.0f); // Example maxTime value
                 moduleData.moduleProgressValues[i] = moduleProgress;
+                Debug.Log("Module Progress initialized for module " + i + " with progress: " + moduleProgress.GetProgressPercentage());
             }
             moduleProgressDictionary[i] = moduleProgress;
         }
@@ -121,10 +122,5 @@ public class StudyManager : MonoBehaviour
     public bool IsStudying() 
     {
         return isStudying;
-    }
-
-    public void OnBackButtonClick() 
-    {
-        SceneManager.LoadScene("ExamScene");
     }
 }

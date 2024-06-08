@@ -25,4 +25,8 @@ public class ButtonAction : MonoBehaviour
             studyPanel.SetActive(false);
         }
     }
+
+    public void ClickOnForwardButton() {
+        SceneManager.LoadScene("InGameScene"); 
+    }
 }

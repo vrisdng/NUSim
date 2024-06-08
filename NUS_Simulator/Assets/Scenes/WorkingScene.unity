@@ -549,8 +549,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1465418243}
-        m_TargetAssemblyTypeName: StudyManager, Assembly-CSharp
+      - m_Target: {fileID: 767752367}
+        m_TargetAssemblyTypeName: ModuleStudyHandler, Assembly-CSharp
         m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:

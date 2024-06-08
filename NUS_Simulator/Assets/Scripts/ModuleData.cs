@@ -4,7 +4,7 @@ using UnityEngine;
 public class ModuleData : ScriptableObject {
     public Module[] modules = new Module[5];
     public ModuleProgressValue[] moduleProgressValues = new ModuleProgressValue[5];
-
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
     public void SetModule(int index, Module module) {
         if (index >= 0 && index < modules.Length) {
             modules[index] = module;
