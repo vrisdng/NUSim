@@ -15,6 +15,7 @@ public class ButtonAction : MonoBehaviour
 
     public void clickOnMail() {
         Debug.Log("Mail Clicked");
+        StudyManager.Instance.StopStudying(); 
     }
 
     public void clickOnStudyButton() {

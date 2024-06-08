@@ -19,8 +19,13 @@ public class ModuleStudyHandler : MonoBehaviour
     private GameObject[] modulePanels;
     private ProgressBar[] progressBars;
 
+    public PlayerInfoDisplay playerInfoDisplay;
+    public PointsController PointsController;
+
     void Start()
     {
+        playerInfoDisplay.DisplayPlayerInfo();
+        PointsController.Initialize(Student.Instance);
         progressBarPanel.SetActive(false);
         warningText.gameObject.SetActive(false);
         UpdateModuleButtons();
