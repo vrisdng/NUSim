@@ -1,0 +1,54 @@
+name: Test, Build, and Deploy with GameCI
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    branches:
+      - main
+    paths:
+      - 'Assets/**'
+      - 'Packages/**'
+      - 'ProjectSettings/**'
+  release:
+    types:
+      — published
+  workflow_dispatch:
+    inputs:
+      release_platform:
+        description: 'Release to [iOS, WebGL, testFlight]'
+        required: false
+        default: ''
+jobs:
+test:
+  name: Build and Run Tests
+  runs-on: ubuntu-latest
+  steps:
+    # Checkout with lfs
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        lfs: true
+
+    - name: Cache Library
+      uses: actions/cache@v3
+      with:
+        path: Library
+        key: Library-test
+        restore-keys: |
+          Library-test
+  
+    - name: Run Tests
+      uses: game-ci/unity-test-runner@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
