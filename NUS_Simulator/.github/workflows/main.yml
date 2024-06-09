@@ -2,7 +2,7 @@ name: Test, Build, and Deploy with GameCI
 on:
   push:
     branches:
-      - main
+      - studying-feature
     paths:
       - 'Assets/**'
       - 'Packages/**'
@@ -12,7 +12,7 @@ on:
       - opened
       - synchronize
     branches:
-      - main
+      - studying-feature
     paths:
       - 'Assets/**'
       - 'Packages/**'
@@ -89,7 +89,7 @@ test:
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: build/Build
+        folder: build/WebGL/content
         commit-message: Deploy
         single-commit: true
 
