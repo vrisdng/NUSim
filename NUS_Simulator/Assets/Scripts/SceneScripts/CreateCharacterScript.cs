@@ -2,9 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CreateCharacter : MonoBehaviour
+public class CreateCharacterScript : MonoBehaviour
 {
-
     [SerializeField] GameObject panelIntro;
     [SerializeField] GameObject panelGetName;
     [SerializeField] GameObject panelGetCourse;
@@ -60,9 +59,4 @@ public class CreateCharacter : MonoBehaviour
     {
         SceneManager.LoadScene("SelectSemester");
     }
-
-
-
-
-
 }

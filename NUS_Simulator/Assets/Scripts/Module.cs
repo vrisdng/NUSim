@@ -8,6 +8,8 @@ public class Module
     private float _moduleTime;
     private float _moduleDifficulty;
 
+    public bool isStudying = false;
+
     public Module(string name, float time, float difficulty) {
         _moduleName = name;
         _moduleTime = time;

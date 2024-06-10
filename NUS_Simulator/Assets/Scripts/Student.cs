@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
+
 using UnityEngine.SceneManagement;
 
 public class Student {
@@ -27,10 +28,15 @@ public class Student {
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 10, 10, 10);
+                instance = new Student("player", 30, 30, 30);
             }
             return instance; 
         }
+    }
+
+    public bool IsAnyPointZero()
+    {
+        return this.GetMentalPoints() <= 0 || this.GetPhysicalPoints() <= 0 || this.GetSocialPoints() <= 0;
     }
 
     public void AddPoints(DistractionEvent theEvent)
@@ -80,7 +86,7 @@ public class Student {
     }
 
     public void Reset() {
-        instance = new Student("player", 10, 10, 10);
+        instance = new Student("player", 30, 30, 30);
     }
 
 }

@@ -5,73 +5,103 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class ProgressBar : MonoBehaviour {
+
+public class ProgressBar : MonoBehaviour
+{
     private Image progressBar;
     [SerializeField] private TextMeshProUGUI progressText;
     [SerializeField] private TextMeshProUGUI moduleSideText;
     private ModuleProgressValue moduleProgressValue;
     private bool isUpdating;
 
-    void Start() {
-        // Attempt to get the Image component
+    void Start()
+    {
         progressBar = GetComponent<Image>();
-        if (progressBar != null) {
-            progressBar.fillAmount = 0.0f;
-            progressText.text = "0%"; 
-        }
         isUpdating = false;
     }
 
-    void Update() {
+    void Update()
+    {
+        if (moduleProgressValue != null) {
+            if (moduleProgressValue.Progress >= moduleProgressValue.MaxTime) {
+                StopProgress(); 
+                StudyManager.Instance.StopStudying();
+            }
+            if (isUpdating) {
+                UpdateModuleProgress();
+            }
+        }
     }
 
-    public void SetModuleSideText(string text) {
+    public void UpdateModuleProgress()
+    {
+        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        {
+            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime);
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
+            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+        }
+    }
+
+    public void SetModuleSideText(string text)
+    {
         moduleSideText.text = text;
     }
 
-    public void SetModuleProgress(ModuleProgressValue progress) {
+    public void SetModuleProgress(ModuleProgressValue progress)
+    {
         moduleProgressValue = progress;
-        if (moduleProgressValue != null) {
-            if (progressBar == null) {
+        if (moduleProgressValue != null)
+        {
+            if (progressBar == null)
+            {
                 progressBar = GetComponent<Image>();
             }
-            progressBar.fillAmount = moduleProgressValue.GetProgress() / moduleProgressValue.GetMaxTime();
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
             progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
         }
     }
 
-    public void UpdateModuleProgress(float speed) {
-        if (moduleProgressValue != null && moduleProgressValue.GetProgress() < moduleProgressValue.GetMaxTime()) {
-            moduleProgressValue.SetProgress(moduleProgressValue.GetProgress() + Time.deltaTime * speed);
-            progressBar.fillAmount = moduleProgressValue.GetProgress() / moduleProgressValue.GetMaxTime();
+    public void UpdateModuleProgress(float speed)
+    {
+        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        {
+            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime * speed);
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
             progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
-            Debug.Log("Updated progress: " + moduleProgressValue.GetProgress() + "/" + moduleProgressValue.GetMaxTime());
-        } else if (moduleProgressValue.GetProgress() >= moduleProgressValue.GetMaxTime()) {
-            Debug.Log("Updated progress: " + moduleProgressValue.GetProgress() + "/" + moduleProgressValue.GetMaxTime());
-            Debug.Log("Module completed");
         }
     }
 
-    public void StartProgress() {
-        Debug.Log("Starting progress");
+    public void StartProgress()
+    {
         isUpdating = true;
     }
 
-    public void StopProgress() {
-        Debug.Log("Stop progress");
+    public void StopProgress()
+    {
         isUpdating = false;
     }
 
-    public void ResetProgress() {
-        if (moduleProgressValue != null) {
+    public void ResetProgress()
+    {
+        if (moduleProgressValue != null)
+        {
             moduleProgressValue.ResetProgress();
             progressBar.fillAmount = 0;
             progressText.text = "0%";
         }
     }
 
-    public void CloseWorkPanel() {
+    public void SaveProgress()
+    {
+        if (moduleProgressValue != null)
+        {
+            moduleProgressValue.SaveProgress(progressBar != null ? progressBar.fillAmount * moduleProgressValue.MaxTime : 0);
+        }
+    }
+
+    public void CloseWorkPanel()
+    {
         SceneManager.LoadScene("InGameScreen");
     }
 }
-

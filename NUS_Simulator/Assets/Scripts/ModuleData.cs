@@ -4,7 +4,7 @@ using UnityEngine;
 public class ModuleData : ScriptableObject {
     public Module[] modules = new Module[5];
     public ModuleProgressValue[] moduleProgressValues = new ModuleProgressValue[5];
-
+    private void OnEnable() => hideFlags = HideFlags.DontUnloadUnusedAsset;
     public void SetModule(int index, Module module) {
         if (index >= 0 && index < modules.Length) {
             modules[index] = module;
@@ -16,18 +16,6 @@ public class ModuleData : ScriptableObject {
             return modules[index];
         }
         return null;
-    }
-
-    private void OnEnable() {
-        // Ensure each module has its own ModuleProgressValue instance
-        for (int i = 0; i < modules.Length; i++) {
-            if (moduleProgressValues[i] == null) {
-                moduleProgressValues[i] = ScriptableObject.CreateInstance<ModuleProgressValue>();
-                moduleProgressValues[i].Initialize(25.0f); // Example maxTime value
-            } else {
-                moduleProgressValues[i].ResetProgress(); // Reset progress on enable
-            }
-        }
     }
 
     public ModuleProgressValue GetModuleProgress(int index) {

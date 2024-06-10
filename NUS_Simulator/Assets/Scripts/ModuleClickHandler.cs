@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 
 public class ModuleClickHandler : MonoBehaviour {
@@ -60,7 +59,7 @@ public class ModuleClickHandler : MonoBehaviour {
         } else {
             Debug.Log("Maximum of 5 modules have already been created.");
             //TODO: Add a button to proceed to the next scene
-            SceneManager.LoadScene("WorkingScene");
+            //SceneManager.LoadScene("WorkingScene");
         }
     }
 }

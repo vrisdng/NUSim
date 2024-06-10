@@ -1,109 +1,178 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Xml;
 
-public class ModuleStudyHandler : MonoBehaviour {
-    [SerializeField] private ModuleData moduleData; // Reference to the ModuleData ScriptableObject
+// ModuleStudyHandler.cs
+public class ModuleStudyHandler : MonoBehaviour
+{
+    [SerializeField] private ModuleData moduleData;
     [SerializeField] private GameObject progressBarPanel;
     [SerializeField] private Transform panelParent;
+    [SerializeField] private Button startButton;
+    [SerializeField] private Button stopButton;
+    [SerializeField] private TextMeshProUGUI warningText;
 
     private GameObject[] modulePanels;
     private ProgressBar[] progressBars;
-    private int activeModuleIndex = -1; 
-    void Start() {
+
+    public PlayerInfoDisplay playerInfoDisplay;
+    public PointsController PointsController;
+
+    void Start()
+    {
+        playerInfoDisplay.DisplayPlayerInfo();
+        PointsController.Initialize(Student.Instance);
+        progressBarPanel.SetActive(false);
+        warningText.gameObject.SetActive(false);
         UpdateModuleButtons();
         InitializeModulePanelsAndProgressBars();
+        StudyManager.Instance.SetProgressBars(progressBars);
     }
 
-    void Update() {
-        if (activeModuleIndex != -1) {
-            Module activeModule = moduleData.GetModule(activeModuleIndex);
-            float progressSpeed = activeModule.GetModuleDifficulty(); // Assuming difficulty represents speed
-            progressBars[activeModuleIndex].UpdateModuleProgress(progressSpeed);
-        }
-    }
-
-    void UpdateModuleButtons() {
+    void UpdateModuleButtons()
+    {
         Button[] buttons = GetComponentsInChildren<Button>();
-        foreach (Button button in buttons) {
+        foreach (Button button in buttons)
+        {
             int buttonIndex;
-            if (int.TryParse(button.name, out buttonIndex)) {
+            if (int.TryParse(button.name, out buttonIndex))
+            {
                 Module assignedModule = moduleData.GetModule(buttonIndex);
-                if (assignedModule != null) {
+                if (assignedModule != null)
+                {
                     TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
-                    if (buttonText != null) {
+                    if (buttonText != null)
+                    {
                         buttonText.text = assignedModule.GetModuleName();
                         Debug.Log("Assigned module: " + assignedModule.GetModuleName() + " to button: " + buttonIndex);
-                    } else {
+                    }
+                    else
+                    {
                         Debug.LogWarning("Text component not found in button: " + button.name);
                     }
-                } else {
+                }
+                else
+                {
                     Debug.Log("No module assigned to button index: " + buttonIndex);
                 }
             }
         }
     }
 
-    public void ClickOnModule() {
+    public void ClickOnModule()
+    {
+        warningText.gameObject.SetActive(true);
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        if (StudyManager.Instance.IsStudying())
+        {
+            return;
+        }
         string clickedButtonModule = clickedButton.name;
-
-        // Parse the button name to get the index
+        progressBarPanel.SetActive(false);
         int buttonIndex;
-        if (int.TryParse(clickedButtonModule, out buttonIndex)) {
-            if (buttonIndex >= 0 && buttonIndex < modulePanels.Length) {
-                // Deactivate all panels
-                for (int i = 0; i < modulePanels.Length; i++) {
+        if (int.TryParse(clickedButtonModule, out buttonIndex))
+        {
+            if (buttonIndex >= 0 && buttonIndex < modulePanels.Length)
+            {
+                for (int i = 0; i < modulePanels.Length; i++)
+                {
                     modulePanels[i].SetActive(false);
-                    progressBars[i].StopProgress(); 
+                    progressBars[i].StopProgress();
+                }
+                if (StudyManager.Instance.GetActiveModuleIndex() != -1)
+                {
+                    progressBars[StudyManager.Instance.GetActiveModuleIndex()].StopProgress();
                 }
 
-                // Activate the selected panel
-                modulePanels[buttonIndex].SetActive(true);
-                progressBars[buttonIndex].StartProgress(); 
-
-                // Set the progress for the selected panel
-                ModuleProgressValue moduleProgress = moduleData.GetModuleProgress(buttonIndex);
+                // progressBars[buttonIndex].StartProgress();
+        
+                ModuleProgressValue moduleProgress = StudyManager.Instance.GetModuleProgress(buttonIndex);
                 ProgressBar progressBar = progressBars[buttonIndex];
-                progressBar.SetModuleProgress(moduleProgress);
+                progressBar.SetModuleProgress(moduleProgress); 
 
                 Module module = moduleData.GetModule(buttonIndex);
                 progressBar.SetModuleSideText(module.GetModuleName());
 
-                activeModuleIndex = buttonIndex;
+                modulePanels[buttonIndex].SetActive(true);
+
+                StudyManager.Instance.SwitchModule(buttonIndex);
+                
             }
         }
     }
 
-    private void InitializeModulePanelsAndProgressBars() {
+    private void InitializeModulePanelsAndProgressBars()
+    {
         int moduleCount = moduleData.GetAllModules().Length;
         modulePanels = new GameObject[moduleCount];
         progressBars = new ProgressBar[moduleCount];
 
-        for (int i = 0; i < moduleCount; i++) {
+        for (int i = 0; i < moduleCount; i++)
+        {
             GameObject panel = Instantiate(progressBarPanel, panelParent);
             panel.SetActive(false);
             modulePanels[i] = panel;
 
             ProgressBar progressBar = panel.GetComponentInChildren<ProgressBar>();
-            if (progressBar != null) {
-                ModuleProgressValue moduleProgress = moduleData.GetModuleProgress(i);
-                if (moduleProgress == null) {
-                    moduleProgress = ScriptableObject.CreateInstance<ModuleProgressValue>();
-                    moduleProgress.Initialize(25.0f); // Example maxTime value
-                    moduleData.moduleProgressValues[i] = moduleProgress;
-                }
-                Debug.Log("Max time for module " + i + ": " + moduleProgress.GetMaxTime());
+            if (progressBar != null)
+            {
+                ModuleProgressValue moduleProgress = StudyManager.Instance.GetModuleProgress(i);
                 progressBar.SetModuleProgress(moduleProgress);
                 progressBars[i] = progressBar;
-            } else {
+            }
+            else
+            {
                 Debug.LogWarning("ProgressBar component not found in panel: " + panel.name);
             }
         }
     }
 
-    public void DisablePanels() {
-        panelParent.gameObject.SetActive(false);
+    public void OnStartButtonClick()
+    {
+        Debug.Log("Start button clicked");
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        if (activeModuleIndex != -1)
+        {
+            Debug.Log("Starting study for module: " + activeModuleIndex);
+            StudyManager.Instance.StartStudying(activeModuleIndex);
+        }
+    }
+
+    public void OnStopButtonClick()
+    {
+        Debug.Log("Stop button clicked");
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        if (activeModuleIndex != -1)
+        {
+            Debug.Log("Stopping study for module: " + activeModuleIndex);
+            StudyManager.Instance.StopStudying();
+    
+        }
+    }
+
+    public void OnBackButtonClick() 
+    {
+        // makes all the progress bars stop
+        if (progressBars != null)
+        {
+            for (int i = 0; i < progressBars.Length; i++)
+            {
+                if (progressBars[i] != null)
+                {
+                    Debug.Log($"Saving progress for progress bar {i}");
+                    progressBars[i].SaveProgress();
+                }
+                else
+                {
+                    Debug.LogWarning($"Progress bar {i} is null");
+                }
+            }
+        }
+        StudyManager.Instance.StopStudying();
+        SceneManager.LoadScene("InGameScene"); 
     }
 }
