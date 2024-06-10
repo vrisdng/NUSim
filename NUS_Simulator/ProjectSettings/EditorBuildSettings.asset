@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ac61e98f53787064886e9784fa88388a
   - enabled: 1
+    path: Assets/Scenes/CreateCharacterScene.unity
+    guid: a55297139bd384885b334d45bd1df161
+  - enabled: 1
+    path: Assets/Scenes/SelectMode.unity
+    guid: e9b13e3d3bff54de3801d4388ee3b807
+  - enabled: 1
     path: Assets/Scenes/Select Modules.unity
     guid: 2e756c68643f747408be0616747e284e
+  - enabled: 1
+    path: Assets/Scenes/SelectSemester.unity
+    guid: dffe31f62bd7f42afa334a0d11947e00
   - enabled: 1
     path: Assets/Scenes/InGameScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
