@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Reflection;
 using UnityEngine;
-
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class Student {
     public static Student instance;
     private string name;
     private Points points;
+
+    private string faculty; 
 
     private Module[] modules = new Module[5]; 
 
@@ -25,6 +27,14 @@ public class Student {
         this.modules = modules;
     }
 
+    public Student(string name, string faculty, float mentalPoints, float physicalPoints, float socialPoints, Module[] modules)
+    {
+        this.name = name;
+        this.faculty = faculty; 
+        this.points = new Points(mentalPoints, physicalPoints, socialPoints);
+        this.modules = modules;
+    }
+
     public static Student Instance {
         get {
             if (instance == null) {
@@ -37,6 +47,18 @@ public class Student {
     public bool IsAnyPointZero()
     {
         return this.GetMentalPoints() <= 0 || this.GetPhysicalPoints() <= 0 || this.GetSocialPoints() <= 0;
+    }
+
+    public void SetName(string name) {
+        this.name = name;
+    }
+
+    public void SetFaculty(string faculty) {
+        this.faculty = faculty; 
+    }
+
+    public string GetFaculty() {
+        return this.faculty; 
     }
 
     public void AddPoints(DistractionEvent theEvent)

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ModuleClickHandler : MonoBehaviour {
     private int clickedCount = 0;
@@ -12,14 +13,14 @@ public class ModuleClickHandler : MonoBehaviour {
     public void ClickOnModule() {
         if (clickedCount < 5) {
             Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-            string clickedButtonModule = EventSystem.current.currentSelectedGameObject.name;
+            string clickedButtonModuleName = EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text; 
             clickedButton.interactable = false;
 
-            Debug.Log("Button Clicked: " + clickedButtonModule);
+            Debug.Log("Button Clicked: " + clickedButtonModuleName);
 
             Module newModule = null;
             // Create new module
-            switch (clickedButtonModule) {
+            switch (clickedButtonModuleName) {
                 case "CS1101S":
                     newModule = new Module("CS1101S", 5, 1f);
                     break;
@@ -38,14 +39,14 @@ public class ModuleClickHandler : MonoBehaviour {
                 case "CS1010":
                     newModule = new Module("CS1010", 5, 1f);
                     break;
-                case "CS2001":
-                    newModule = new Module("CS2001", 5, 0.8f);
+                case "MA1521":
+                    newModule = new Module("MA1521", 5, 0.8f);
                     break;
-                case "CS2002":
-                    newModule = new Module("CS2002", 5, 0.8f);
+                case "MA1522":
+                    newModule = new Module("MA1522", 5, 0.8f);
                     break;
-                case "CS2003":
-                    newModule = new Module("CS2003", 5, 0.8f);
+                case "GEA1000":
+                    newModule = new Module("GEA1000", 5, 0.8f);
                     break;
                 default:
                     Debug.Log("Invalid module button clicked.");
