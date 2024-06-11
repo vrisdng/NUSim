@@ -16,8 +16,8 @@ public class InputHandler : MonoBehaviour
             {
                 if (objSelected.tag == "Distraction")
                 {
-                    StudyManager.Instance.StopStudying(); 
                     SceneManager.LoadScene("DistractionScene");
+                    StudyManager.Instance.StopStudying(); 
                 }
                 if (objSelected.tag == "Work")
                 {

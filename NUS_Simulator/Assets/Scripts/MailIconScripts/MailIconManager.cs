@@ -6,7 +6,7 @@ public class MailIconManager : MonoBehaviour
     public static MailIconManager Instance { get; private set; }
 
     [SerializeField] private GameObject mailIcon;
-    private float _MAIL_INTERVAL = 5f; // Example interval
+    private float _MAIL_INTERVAL = 2f; // Example interval
 
     private void Awake()
     {

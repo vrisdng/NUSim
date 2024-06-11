@@ -13,7 +13,6 @@ public class MainScreenDisplay : MonoBehaviour
     public GameObject mailIcon; 
 
     private Coroutine pointsDecrementCoroutine;
-    static float _MAIL_INTERVAL = 2.25f;
 
     public PlayerInfoDisplay PlayerInfoDisplay;
     public PointsController PointsController;
@@ -29,14 +28,7 @@ public class MainScreenDisplay : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(DisplayMailIcon());
+
     }
     
-    IEnumerator DisplayMailIcon() 
-    {
-        while(true) {
-            yield return new WaitForSeconds(_MAIL_INTERVAL);
-            mailIcon.SetActive(true);
-        }
-    }
 }
