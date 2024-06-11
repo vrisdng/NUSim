@@ -15,9 +15,9 @@ public class PlayerInfoDisplay : MonoBehaviour
     {
         if (Student.Instance != null)
         {
-            pointsInfo.text = "MP: " + Mathf.RoundToInt(Student.Instance.GetMentalPoints()) + "\n" +
-                              "PP: " + Mathf.RoundToInt(Student.Instance.GetPhysicalPoints()) + "\n" +
-                              "SP: " + Mathf.RoundToInt(Student.Instance.GetSocialPoints());
+            pointsInfo.text = "Mental Health: " + Mathf.RoundToInt(Student.Instance.GetMentalPoints()) + "\n" +
+                              "Physical Health: " + Mathf.RoundToInt(Student.Instance.GetPhysicalPoints()) + "\n" +
+                              "Social Life: " + Mathf.RoundToInt(Student.Instance.GetSocialPoints());
         } else {
             Debug.LogError("Student instance is null");
         }
