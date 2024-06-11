@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuScript : MonoBehaviour
 {
     public void Play() {
-        SceneManager.LoadScene("SelectMode");
+        SceneManager.LoadScene("TutorialScene");
     }
 
     public void Rules() {

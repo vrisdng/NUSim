@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ac61e98f53787064886e9784fa88388a
   - enabled: 1
-    path: Assets/Scenes/CreateCharacterScene.unity
-    guid: a55297139bd384885b334d45bd1df161
+    path: Assets/Scenes/TutorialScene.unity
+    guid: e3c623ecaf47a409885b3954f0e00083
   - enabled: 1
     path: Assets/Scenes/SelectMode.unity
     guid: e9b13e3d3bff54de3801d4388ee3b807
+  - enabled: 1
+    path: Assets/Scenes/CreateCharacterScene.unity
+    guid: a55297139bd384885b334d45bd1df161
   - enabled: 1
     path: Assets/Scenes/Select Modules.unity
     guid: 2e756c68643f747408be0616747e284e

@@ -551,7 +551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -450.32, y: -295.46}
+  m_AnchoredPosition: {x: -450.32, y: -324}
   m_SizeDelta: {x: 204.75, y: 15.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &545297152
@@ -601,8 +601,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -685,7 +685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 303, y: -9.8051}
+  m_AnchoredPosition: {x: 598, y: 0}
   m_SizeDelta: {x: 204.75, y: 15.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637585499
@@ -710,8 +710,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'GRADES:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a839ad12e475c4608b00e39e77c203f1, type: 2}
-  m_sharedMaterial: {fileID: -3745163659484217542, guid: a839ad12e475c4608b00e39e77c203f1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 121bfe0613c054e99aee6dafd683731f, type: 2}
+  m_sharedMaterial: {fileID: -1174897929014077514, guid: 121bfe0613c054e99aee6dafd683731f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -735,8 +735,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 50
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1703,7 +1703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.854, y: -414}
+  m_AnchoredPosition: {x: -456, y: -414}
   m_SizeDelta: {x: 204.75, y: 15.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980968885
@@ -1753,8 +1753,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10
-  m_fontSizeBase: 10
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
