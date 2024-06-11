@@ -80,8 +80,12 @@ public class ModuleStudyHandler : MonoBehaviour
             {
                 for (int i = 0; i < modulePanels.Length; i++)
                 {
-                    modulePanels[i].SetActive(false);
-                    progressBars[i].StopProgress();
+                    if (modulePanels[i] != null) {
+                        modulePanels[i].SetActive(false);
+                    }
+                    if (progressBars[i] != null) {
+                        progressBars[i].StopProgress();
+                    }
                 }
                 if (StudyManager.Instance.GetActiveModuleIndex() != -1)
                 {
@@ -114,6 +118,7 @@ public class ModuleStudyHandler : MonoBehaviour
         for (int i = 0; i < moduleCount; i++)
         {
             GameObject panel = Instantiate(progressBarPanel, panelParent);
+            Debug.Log("Instantiated"); 
             panel.SetActive(false);
             modulePanels[i] = panel;
 
@@ -121,6 +126,7 @@ public class ModuleStudyHandler : MonoBehaviour
             if (progressBar != null)
             {
                 ModuleProgressValue moduleProgress = StudyManager.Instance.GetModuleProgress(i);
+                Debug.Log("Progress:" + moduleProgress.Progress); 
                 progressBar.SetModuleProgress(moduleProgress);
                 progressBars[i] = progressBar;
             }
@@ -156,22 +162,6 @@ public class ModuleStudyHandler : MonoBehaviour
 
     public void OnBackButtonClick() 
     {
-        // makes all the progress bars stop
-        if (progressBars != null)
-        {
-            for (int i = 0; i < progressBars.Length; i++)
-            {
-                if (progressBars[i] != null)
-                {
-                    Debug.Log($"Saving progress for progress bar {i}");
-                    progressBars[i].SaveProgress();
-                }
-                else
-                {
-                    Debug.LogWarning($"Progress bar {i} is null");
-                }
-            }
-        }
         StudyManager.Instance.StopStudying();
         SceneManager.LoadScene("InGameScene"); 
     }

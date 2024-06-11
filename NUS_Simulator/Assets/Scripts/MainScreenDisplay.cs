@@ -25,9 +25,6 @@ public class MainScreenDisplay : MonoBehaviour
         PointsController.Initialize(PLAYER);
 
         mailIcon.SetActive(false);
-
-        GameObject panel = GameObject.FindGameObjectWithTag("StudyingPanel");
-        panel.SetActive(false);
     }
 
     void Update()
