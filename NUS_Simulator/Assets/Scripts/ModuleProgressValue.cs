@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-public class ModuleProgressValue : MonoBehaviour
+public class ModuleProgressValue 
 {
     public float MaxTime { get; private set; }
     public float Progress { get; private set; }
