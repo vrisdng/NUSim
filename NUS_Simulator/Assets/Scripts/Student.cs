@@ -53,6 +53,10 @@ public class Student {
         this.name = name;
     }
 
+    public string GetName() {
+        return this.name;
+    }
+
     public void SetFaculty(string faculty) {
         this.faculty = faculty; 
     }

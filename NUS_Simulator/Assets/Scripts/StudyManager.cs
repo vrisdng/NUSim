@@ -119,4 +119,24 @@ public class StudyManager : MonoBehaviour
     {
         return isStudying;
     }
+
+    public void ResetAllProgress()
+    {
+        for (int i = 0; i < moduleData.GetAllModules().Length; i++)
+        {
+            ModuleProgressValue moduleProgress = moduleData.GetModuleProgress(i);
+            moduleProgress.SetProgress(0.0f);
+        }
+    }
+
+    public float GetAllProgress()
+    {
+        float totalProgress = 0.0f;
+        for (int i = 0; i < moduleData.GetAllModules().Length; i++)
+        {
+            ModuleProgressValue moduleProgress = moduleData.GetModuleProgress(i);
+            totalProgress += moduleProgress.GetProgressPercentage();
+        }
+        return totalProgress;
+    }
 }

@@ -20,6 +20,7 @@ public class MainScreenDisplay : MonoBehaviour
     void Start()
     {
         PLAYER = Student.Instance; 
+        Debug.Log(PLAYER.GetName()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
         PointsController.Initialize(PLAYER);
 

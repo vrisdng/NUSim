@@ -15,8 +15,14 @@ public class DisplayResult : MonoBehaviour
     [SerializeField] TextMeshProUGUI finalReport;
     [SerializeField] TextMeshProUGUI congrats;
     [SerializeField] ModuleData moduleData; 
+
+    public void Start()
+    {
+        Debug.Log("?"); 
+    }
     public void OnClick()
     {
+        Debug.Log("Displaying results...");
         DisplayResults(); 
         button.SetActive(false);
     }
