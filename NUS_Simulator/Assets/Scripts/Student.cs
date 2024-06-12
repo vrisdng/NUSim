@@ -118,6 +118,18 @@ public class Student {
         return points.socialPoints; 
     }
 
+    public void SetMentalPoints(float number) {
+        this.points.mentalPoints = number;
+    }
+
+    public void SetPhysicalPoints(float number) {
+        this.points.physicalPoints = number;
+    }
+
+    public void SetSocialPoints(float number) {
+        this.points.socialPoints = number; 
+    }
+
     public void Reset() {
         instance = new Student("player", 30, 30, 30);
     }
