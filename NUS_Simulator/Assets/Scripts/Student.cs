@@ -72,6 +72,13 @@ public class Student {
         this.points.AddSocialPoints(theEvent.GetSocialPoints());
     }
 
+    public void AddPointsFromSleeping(float mpoints, float ppoints, float spoints)
+    {
+        this.points.AddMentalPoints(mpoints);
+        this.points.AddPhysicalPoints(ppoints);
+        this.points.AddSocialPoints(spoints);
+    }
+
     public void AddModule(Module module)
     {
         for (int i = 0; i < modules.Length; i++)

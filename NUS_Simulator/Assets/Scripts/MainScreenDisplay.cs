@@ -12,6 +12,8 @@ public class MainScreenDisplay : MonoBehaviour
 
     public GameObject mailIcon; 
 
+    [SerializeField] private GameObject sleepPanel; 
+
     private Coroutine pointsDecrementCoroutine;
 
     public PlayerInfoDisplay PlayerInfoDisplay;
@@ -25,6 +27,7 @@ public class MainScreenDisplay : MonoBehaviour
         PointsController.Initialize(PLAYER);
 
         mailIcon.SetActive(false);
+        sleepPanel.SetActive(false); 
     }
 
     void Update()
