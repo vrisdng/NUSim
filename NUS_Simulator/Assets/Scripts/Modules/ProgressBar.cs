@@ -39,6 +39,7 @@ public class ProgressBar : MonoBehaviour
         {
             moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime);
             progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
+            Debug.Log("MPV's progress in UpdateModuleProgress: " + moduleProgressValue.Progress); 
             progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
         }
     }
@@ -59,6 +60,11 @@ public class ProgressBar : MonoBehaviour
             }
             progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
             progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+            Debug.Log(progress);
+            Debug.Log("Succesfully for setModuleProgress"); 
+        }
+        else {
+            Debug.Log("No mPV initialized"); 
         }
     }
 
@@ -75,6 +81,7 @@ public class ProgressBar : MonoBehaviour
     public void StartProgress()
     {
         isUpdating = true;
+        Debug.Log("Succesfully start progress");
     }
 
     public void StopProgress()
@@ -98,6 +105,7 @@ public class ProgressBar : MonoBehaviour
         {
             moduleProgressValue.SaveProgress(progressBar != null ? progressBar.fillAmount * moduleProgressValue.MaxTime : 0);
         }
+        Debug.Log("Saving progress here"); 
     }
 
     public void CloseWorkPanel()
