@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 public class InputHandler : MonoBehaviour
 {
     GameObject objSelected = null;
-    [SerializeField] private GameObject sleepPanel; 
+    [SerializeField] private GameObject sleepPanel;
+    private bool isSleepPanelActive = false;
 
     void Update()
     {
@@ -20,13 +21,14 @@ public class InputHandler : MonoBehaviour
                     SceneManager.LoadScene("DistractionScene");
                     StudyManager.Instance.StopStudying(); 
                 }
-                if (objSelected.tag == "Work")
+                if (objSelected.tag == "Work" && !isSleepPanelActive)
                 {
                     SceneManager.LoadScene("WorkingScene");
                 }
                 if (objSelected.tag == "SleepIcon")
                 {
                     sleepPanel.SetActive(true); 
+                    isSleepPanelActive = true;
                 }
             }
         }

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class ButtonAction : MonoBehaviour
 {
-    public GameObject studyPanel;
     public void clickOnComputer() {
         Debug.Log("Computer Clicked");
     }
@@ -16,15 +15,6 @@ public class ButtonAction : MonoBehaviour
     public void clickOnMail() {
         Debug.Log("Mail Clicked");
         StudyManager.Instance.StopStudying(); 
-    }
-
-    public void clickOnStudyButton() {
-        Debug.Log("Study Button Clicked");
-        if (studyPanel.activeSelf == false) {
-            studyPanel.SetActive(true);
-        } else {
-            studyPanel.SetActive(false);
-        }
     }
 
     public void ClickOnForwardButton() {

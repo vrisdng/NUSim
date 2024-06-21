@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+// For ModuleSelectScene
 public class ModuleClickHandler : MonoBehaviour {
     private int clickedCount = 0;
     //[SerializeField] private GameObject progressBarPrefab; // Reference to the ProgressBar prefab

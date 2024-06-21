@@ -42,6 +42,7 @@ public class StudyManager : MonoBehaviour
                 moduleProgress = new ModuleProgressValue(25.0f); // Example maxTime value
                 moduleData.moduleProgressValues[i] = moduleProgress;
                 Debug.Log("Module Progress initialized for module " + i + " with progress: " + moduleProgress.GetProgressPercentage());
+                Debug.Log("Name of the module is: " + moduleData.GetModule(i).GetModuleName());
             }
             moduleProgressDictionary[i] = moduleProgress;
         }
