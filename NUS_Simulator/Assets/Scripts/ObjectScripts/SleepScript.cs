@@ -23,6 +23,7 @@ public class SleepScript : MonoBehaviour
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         Countdown COUNTDOWN = Countdown.Instance; 
         Student PLAYER = Student.Instance;
+        
         if (clickedButton == firstButton) {
             PLAYER.AddPointsFromSleeping(10, 10, 0);
             COUNTDOWN.UpdateRemainingTime(-15f);

@@ -11,8 +11,11 @@ public class Student {
     private Points points;
 
     private string faculty; 
+    private float GPA = 0.0f; 
 
-    private Module[] modules = new Module[5]; 
+    private float productivity = 1.0f;
+
+    private Module[] modules = new Module[45]; 
 
     public Student(string name, float mentalPoints, float physicalPoints, float socialPoints)
     {
@@ -63,6 +66,21 @@ public class Student {
 
     public string GetFaculty() {
         return this.faculty; 
+    }
+
+    public void SetGPA(float gpa) {
+        this.GPA = gpa; 
+    }
+
+    public float GetGPA() {
+        return this.GPA;
+    }
+
+    public void AddPoints(float mpoints, float ppoints, float spoints)
+    {
+        this.points.AddMentalPoints(mpoints);
+        this.points.AddPhysicalPoints(ppoints);
+        this.points.AddSocialPoints(spoints);
     }
 
     public void AddPoints(DistractionEvent theEvent)
@@ -128,6 +146,15 @@ public class Student {
 
     public void SetSocialPoints(float number) {
         this.points.socialPoints = number; 
+    }
+
+    public void AddProductivity(float percentage)
+    {
+        this.productivity += this.productivity * percentage;
+    }
+    public float GetProductivity()
+    {
+        return this.productivity;
     }
 
     public void Reset() {

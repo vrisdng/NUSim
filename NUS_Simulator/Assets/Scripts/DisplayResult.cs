@@ -16,6 +16,8 @@ public class DisplayResult : MonoBehaviour
     [SerializeField] TextMeshProUGUI congrats;
     [SerializeField] ModuleData moduleData; 
 
+    private Student PLAYER = Student.Instance; 
+
     public void Start()
     {
         Debug.Log("?"); 
@@ -126,6 +128,7 @@ public class DisplayResult : MonoBehaviour
         }
 
         float averageGrade = CalculateAverageGrade(grades);
+        PLAYER.SetGPA(averageGrade); 
         gradesText += $"Average Grade: {averageGrade:F2}\n";
 
         gradesReport.text = gradesText;

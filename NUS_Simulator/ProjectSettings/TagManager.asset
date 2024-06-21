@@ -10,6 +10,9 @@ TagManager:
   - SOC_SelectModulesPanel
   - SleepIcon
   - SleepPanel
+  - Plant
+  - Chessboard
+  - Coffee-machine
   layers:
   - Default
   - TransparentFX
