@@ -242,7 +242,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -642,7 +642,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -1541,7 +1541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beae02e21c60e4aa08fcf5d04b9235d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  studyPanel: {fileID: 0}
 --- !u!4 &987828491
 Transform:
   m_ObjectHideFlags: 0
@@ -1640,7 +1639,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -2337,7 +2336,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1388927000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c913b87c44214ece897a25fe8e30a02, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a6a06d76083e4755b1f3efb2b3bc744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moduleData: {fileID: 11400000, guid: c6c1cc08faa7847d58f04bce09eac0d4, type: 2}
@@ -3186,7 +3185,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
@@ -3767,7 +3766,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1388927005}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ModuleClickHandler, Assembly-CSharp
         m_MethodName: ClickOnModule
         m_Mode: 1
