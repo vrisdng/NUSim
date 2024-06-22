@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-
+/*
 public class ExamScript : MonoBehaviour
 {
 
@@ -28,4 +28,4 @@ public class ExamScript : MonoBehaviour
     {
         gameOver.OnClick(); 
     }
-}
+}*/

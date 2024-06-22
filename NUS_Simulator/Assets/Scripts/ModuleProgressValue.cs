@@ -1,5 +1,5 @@
 using System;
-
+/*
 public class ModuleProgressValue 
 {
     public float MaxTime { get; private set; }
@@ -30,4 +30,4 @@ public class ModuleProgressValue
     {
         Progress = progress;
     }
-}
+}*/

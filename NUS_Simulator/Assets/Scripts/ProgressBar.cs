@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 
 
 public class ProgressBar : MonoBehaviour
@@ -11,7 +12,7 @@ public class ProgressBar : MonoBehaviour
     private Image progressBar;
     [SerializeField] private TextMeshProUGUI progressText;
     [SerializeField] private TextMeshProUGUI moduleSideText;
-    private ModuleProgressValue moduleProgressValue;
+    private Module module; 
     private bool isUpdating;
 
     void Start()
@@ -22,53 +23,35 @@ public class ProgressBar : MonoBehaviour
 
     void Update()
     {
-        if (moduleProgressValue != null) {
-            if (moduleProgressValue.Progress >= moduleProgressValue.MaxTime) {
-                StopProgress(); 
-                StudyManager.Instance.StopStudying();
-            }
-            if (isUpdating) {
-                UpdateModuleProgress();
-            }
+        if (isUpdating)
+        {
+            UpdateModuleProgress();
         }
     }
 
-    public void UpdateModuleProgress()
+    public void SetModule(Module module)
     {
-        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        this.module = module;
+
+        if (progressBar == null)
         {
-            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime);
-            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
-            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+            progressBar = GetComponent<Image>();
         }
-    }
-
-    public void SetModuleSideText(string text)
-    {
-        moduleSideText.text = text;
-    }
-
-    public void SetModuleProgress(ModuleProgressValue progress)
-    {
-        moduleProgressValue = progress;
-        if (moduleProgressValue != null)
-        {
-            if (progressBar == null)
-            {
-                progressBar = GetComponent<Image>();
-            }
-            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
-            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+        else {
+            Debug.Log("Progress bar is not null");
         }
+            progressBar.fillAmount = module.GetProgress() / 100f;
+            progressText.text = $"{progressBar.fillAmount * 100:F0}%";
+            moduleSideText.text = module.moduleName; 
     }
 
-    public void UpdateModuleProgress(float speed)
+    private void UpdateModuleProgress()
     {
-        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        if (module != null && !module.IsCompleted())
         {
-            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime * speed);
-            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
-            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+            module.AddToProgress(Time.deltaTime * module.moduleDifficulty);
+            progressBar.fillAmount = module.GetProgress() / 100f;
+            progressText.text = $"{progressBar.fillAmount * 100:F0}%";
         }
     }
 
@@ -84,24 +67,20 @@ public class ProgressBar : MonoBehaviour
 
     public void ResetProgress()
     {
-        if (moduleProgressValue != null)
+        if (progressBar == null || progressText == null || moduleSideText == null)
         {
-            moduleProgressValue.ResetProgress();
-            progressBar.fillAmount = 0;
-            progressText.text = "0%";
+            Debug.LogWarning("One or more components are null. Cannot reset progress.");
+            return;
         }
+        progressBar.fillAmount = 0;
+        progressText.text = "0%";
+        module.ResetProgress();
     }
-
     public void SaveProgress()
     {
-        if (moduleProgressValue != null)
+        if (module != null)
         {
-            moduleProgressValue.SaveProgress(progressBar != null ? progressBar.fillAmount * moduleProgressValue.MaxTime : 0);
+            module.AddToProgress(progressBar.fillAmount * 100 - module.GetProgress());
         }
-    }
-
-    public void CloseWorkPanel()
-    {
-        SceneManager.LoadScene("InGameScreen");
     }
 }

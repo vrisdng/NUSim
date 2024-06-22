@@ -1,5 +1,5 @@
 using UnityEngine;
-
+/*
 [CreateAssetMenu(fileName = "ModuleData", menuName = "ScriptableObjects/ModuleData", order = 1)]
 public class ModuleData : ScriptableObject {
     public Module[] modules = new Module[5];
@@ -100,3 +100,4 @@ public class ModuleData : ScriptableObject {
         return modules;
     }
 }
+*/

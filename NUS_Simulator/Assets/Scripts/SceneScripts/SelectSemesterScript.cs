@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
-public class SelectSemesterScript : MonoBehaviour {
+/*public class SelectSemesterScript : MonoBehaviour {
     // Assuming you have references to your semester buttons in the inspector
     public Button year1Semester1Button;
     public Button year1Semester2Button;
@@ -44,3 +43,4 @@ public class SelectSemesterScript : MonoBehaviour {
         SceneManager.LoadScene("SelectModulesScene");
     }
 }
+*/

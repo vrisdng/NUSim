@@ -7,10 +7,8 @@ using TMPro;
 using System.Xml;
 
 // ModuleStudyHandler.cs
-/* 
-public class ModuleStudyHandler : MonoBehaviour
+public class StudySceneScript : MonoBehaviour
 {
-    [SerializeField] private ModuleData moduleData;
     [SerializeField] private GameObject progressBarPanel;
     [SerializeField] private Transform panelParent;
     [SerializeField] private Button startButton;
@@ -34,69 +32,82 @@ public class ModuleStudyHandler : MonoBehaviour
         StudyManager.Instance.SetProgressBars(progressBars);
     }
 
-void UpdateModuleButtons()
-{
-    Button[] buttons = GetComponentsInChildren<Button>();
-    Module[] selectedModules = SelectedModulesManager.Instance.SelectedModules;
-    
-    for (int i = 0; i < buttons.Length; i++)
+    void UpdateModuleButtons()
     {
-        if (i < selectedModules.Length)
+        Button[] buttons = GetComponentsInChildren<Button>();
+        Module[] selectedModules = SelectedModulesManager.Instance.SelectedModules;
+        
+        for (int i = 0; i < buttons.Length; i++)
         {
-            Module assignedModule = selectedModules[i];
-            TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-            if (buttonText != null)
+            if (buttons[i].name == "BackButton") {
+                continue;
+            }
+            
+            if (i < selectedModules.Length)
             {
-                buttonText.text = assignedModule.GetModuleName();
-                Debug.Log("Assigned module: " + assignedModule.GetModuleName() + " to button: " + i);
+                Module assignedModule = selectedModules[i];
+                TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null)
+                {
+                    if (assignedModule != null){
+                        buttonText.text = assignedModule.GetModuleName();
+                        Debug.Log("Assigned module: " + assignedModule.GetModuleName() + " to button: " + i);
+                    }
+                    else {
+                        Debug.LogWarning("Assigned module is null");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Text component not found in button: " + buttons[i].name);
+                }
             }
             else
             {
-                Debug.LogWarning("Text component not found in button: " + buttons[i].name);
+                buttons[i].gameObject.SetActive(false);
             }
         }
-        else
-        {
-            buttons[i].gameObject.SetActive(false);
-        }
     }
-}
 
-public void ClickOnModule()
-{
-    warningText.gameObject.SetActive(true);
-    Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-    if (StudyManager.Instance.IsStudying())
+    public void ClickOnModule()
     {
-        return;
-    }
-    string clickedButtonName = clickedButton.name;
-    progressBarPanel.SetActive(false);
-    int buttonIndex;
-    if (int.TryParse(clickedButtonName, out buttonIndex))
-    {
-        if (buttonIndex >= 0 && buttonIndex < modulePanels.Length)
+        warningText.gameObject.SetActive(true);
+        Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+        if (StudyManager.Instance.IsStudying())
         {
-            for (int i = 0; i < modulePanels.Length; i++)
+            return;
+        }
+        string clickedButtonName = clickedButton.name;
+        progressBarPanel.SetActive(false);
+        int buttonIndex;
+        if (int.TryParse(clickedButtonName, out buttonIndex))
+        {
+            if (buttonIndex >= 0 && buttonIndex < modulePanels.Length)
             {
-                modulePanels[i].SetActive(false);
-                progressBars[i].StopProgress();
+                for (int i = 0; i < modulePanels.Length; i++)
+                {
+                    modulePanels[i].SetActive(false);
+                    if (i == buttonIndex) {
+                        modulePanels[i].SetActive(true);
+                    } 
+                    progressBars[i].StopProgress();
+                }
+                if (StudyManager.Instance.GetActiveModuleIndex() != -1)
+                {
+                    progressBars[StudyManager.Instance.GetActiveModuleIndex()].StopProgress();
+                }
+
+                Module selectedModule = SelectedModulesManager.Instance.SelectedModules[buttonIndex];
+                ProgressBar progressBar = progressBars[buttonIndex];
+                progressBar.SetModule(selectedModule);
+
+                modulePanels[buttonIndex].SetActive(true);
+                Debug.Log("Turned on module panel for module: " + buttonIndex);
+
+                StudyManager.Instance.SwitchModule(buttonIndex);
             }
-            if (StudyManager.Instance.GetActiveModuleIndex() != -1)
-            {
-                progressBars[StudyManager.Instance.GetActiveModuleIndex()].StopProgress();
-            }
-
-            Module selectedModule = SelectedModulesManager.Instance.SelectedModules[buttonIndex];
-            ProgressBar progressBar = progressBars[buttonIndex];
-            progressBar.SetModule(selectedModule);
-
-            modulePanels[buttonIndex].SetActive(true);
-
-            StudyManager.Instance.SwitchModule(buttonIndex);
         }
     }
-}
 
 
     private void InitializeModulePanelsAndProgressBars()
@@ -111,10 +122,12 @@ public void ClickOnModule()
             GameObject panel = Instantiate(progressBarPanel, panelParent);
             panel.SetActive(false);
             modulePanels[i] = panel;
+            modulePanels[i].SetActive(false); 
 
             ProgressBar progressBar = panel.GetComponentInChildren<ProgressBar>();
             progressBar.SetModule(selectedModules[i]);
             progressBars[i] = progressBar;
+            Debug.Log("Progress bar set for module: " + i);
         }
     }
 
@@ -168,4 +181,3 @@ public void ClickOnModule()
         SceneManager.LoadScene("InGameScreen");
     }
 }
-*/
