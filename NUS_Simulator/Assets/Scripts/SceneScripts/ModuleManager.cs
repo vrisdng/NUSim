@@ -6,6 +6,7 @@ using TMPro;
 public class ModuleManager : MonoBehaviour
 {
     public Button moduleButton;
+    public GameObject nextButton; 
     public List<Module> availableModules = new List<Module>();
     public Transform[] moduleSlots;
 
@@ -15,6 +16,7 @@ public class ModuleManager : MonoBehaviour
     void Awake()
     {
         CreateModuleButtons();
+        nextButton.SetActive(false);
     }
 
     List<Module> FilterUncompletedModules(List<Module> availableModules)
@@ -57,11 +59,13 @@ public class ModuleManager : MonoBehaviour
             selectedModules[clickedCount] = module;
             clickedCount++;
             Debug.Log($"Module selected: {module.moduleName}");
+            nextButton.SetActive(false);
 
             if (clickedCount == 5)
             {
                 SelectedModulesManager.Instance.SetSelectedModules(selectedModules);
                 Debug.Log("Selected modules have been set in the singleton.");
+                nextButton.SetActive(true);
             }
         }
         else
@@ -87,4 +91,6 @@ public class ModuleManager : MonoBehaviour
             }
         }
     }
+
+    
 }

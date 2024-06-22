@@ -357,15 +357,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271169783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.309578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -9969.433}
+  m_LocalScale: {x: 107.999985, y: 107.999985, z: 107.999985}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 782640310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 303.70703, y: 188.49805}
+  m_AnchoredPosition: {x: 32800.355, y: 20357.787}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &271169787
@@ -403,14 +403,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e103eaf67f63949928ad5ecc2d817445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1689676664}
+  displayButton: {fileID: 1689676664}
+  startOverButton: {fileID: 1487945463}
+  getRewardsButton: {fileID: 518065723}
   gradesReport: {fileID: 637585499}
   mentalPoints: {fileID: 45329813}
   physicalPoints: {fileID: 1832024371}
   socialPoints: {fileID: 805405128}
   finalReport: {fileID: 545297152}
   congrats: {fileID: 1980968885}
-  moduleData: {fileID: 11400000, guid: c6c1cc08faa7847d58f04bce09eac0d4, type: 2}
 --- !u!1 &447967982
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,7 +847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 598, y: 92.99999}
+  m_AnchoredPosition: {x: 598, y: -80}
   m_SizeDelta: {x: 204.75, y: 15.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &637585499
@@ -959,6 +960,7 @@ GameObject:
   - component: {fileID: 782640308}
   - component: {fileID: 782640307}
   - component: {fileID: 782640312}
+  - component: {fileID: 782640313}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1041,6 +1043,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 271169785}
   - {fileID: 257360379}
   - {fileID: 1805117742}
   - {fileID: 1689676665}
@@ -1071,7 +1074,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2338db626b74fc897cc07c06561a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moduleData: {fileID: 11400000, guid: c6c1cc08faa7847d58f04bce09eac0d4, type: 2}
+--- !u!114 &782640313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782640306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed9bbbcf51fb49fea68cd8712e3a201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &805405126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,9 +1437,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 782640312}
-        m_TargetAssemblyTypeName: ExamScript, Assembly-CSharp
-        m_MethodName: OnClickStartOver
+      - m_Target: {fileID: 782640313}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2353,5 +2367,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1627198614}
   - {fileID: 782640310}
-  - {fileID: 271169785}
   - {fileID: 1946699647}

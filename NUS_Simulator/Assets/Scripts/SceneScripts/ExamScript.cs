@@ -2,17 +2,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-/*
+
 public class ExamScript : MonoBehaviour
 {
 
-    [SerializeField] ModuleData moduleData; 
+    private SelectedModulesManager selectedModulesManager = SelectedModulesManager.Instance;
     private Student PLAYER = Student.Instance;
-    private GameOver gameOver; 
     public void OnClickGetReward() 
     {
 
-        Module[] modules = moduleData.GetAllModules();
+        Module[] modules = selectedModulesManager.GetSelectedModules();
 
         for (int i = 0; i < modules.Length; i++)
         {
@@ -23,9 +22,4 @@ public class ExamScript : MonoBehaviour
         Student.Instance.Reset();
         SceneManager.LoadScene("RewardScene"); 
     }
-
-    public void OnClickStartOver()
-    {
-        gameOver.OnClick(); 
-    }
-}*/
+}

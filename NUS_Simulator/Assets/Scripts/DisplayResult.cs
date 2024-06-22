@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-/*
+using UnityEngine.UI;
+
 public class DisplayResult : MonoBehaviour
 {
-    public GameObject button; 
+    public GameObject displayButton; 
+    public GameObject startOverButton;
+    public GameObject getRewardsButton; 
     [SerializeField] TextMeshProUGUI gradesReport;
     [SerializeField] TextMeshProUGUI mentalPoints;
     [SerializeField] TextMeshProUGUI physicalPoints;
@@ -14,19 +17,20 @@ public class DisplayResult : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI finalReport;
     [SerializeField] TextMeshProUGUI congrats;
-    [SerializeField] ModuleData moduleData; 
 
     private Student PLAYER = Student.Instance; 
 
     public void Start()
     {
         Debug.Log("?"); 
+        startOverButton.SetActive(false);
+        getRewardsButton.SetActive(false);
     }
     public void OnClick()
     {
         Debug.Log("Displaying results...");
         DisplayResults(); 
-        button.SetActive(false);
+        displayButton.SetActive(false);
     }
 
     string RandomGradeGenerator(float progress)
@@ -37,8 +41,8 @@ public class DisplayResult : MonoBehaviour
         {
             gradeProbabilities = new Dictionary<string, float>
             {
-                { "D", 0.50f },
-                { "F", 0.50f }
+                { "D", 0.20f },
+                { "F", 0.80f }
             };
         }
         else if (progress >= 20 && progress < 45)
@@ -113,15 +117,14 @@ public class DisplayResult : MonoBehaviour
 
     void DisplayResults()
     {
-        Module[] modules = moduleData.GetAllModules();
-        ModuleProgressValue[] progressValues = moduleData.GetAllModulesProgress();
+        Module[] modules = SelectedModulesManager.Instance.GetSelectedModules();
 
         string gradesText = "Grades:\n";
         List<string> grades = new List<string>();
 
         for (int i = 0; i < modules.Length; i++)
         {
-            float progress = progressValues[i].GetProgressPercentage() * 100;
+            float progress = modules[i].GetProgress(); 
             string grade = RandomGradeGenerator(progress);
             grades.Add(grade);
             gradesText += $"{modules[i].GetModuleName()}: {grade}\n";
@@ -138,26 +141,30 @@ public class DisplayResult : MonoBehaviour
         socialPoints.text = "Social Points: " + Mathf.RoundToInt(Student.Instance.GetSocialPoints());
 
         float totalPoints = Mathf.RoundToInt(Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
-        float finalScore = averageGrade * 10 + totalPoints;
 
-        finalReport.text = "Your final score is: " + finalScore;
-
-        if (finalScore > 90)
+        if (averageGrade >= 3.0f && totalPoints >= 300)
         {
-            congrats.text = " Congratulations! You are the academic weapon!";
+            finalReport.text = "Congratulations! Your grades have passed the semester!";
+            congrats.text = "You have unlocked the next semester and earn rewards!";
+            getRewardsButton.SetActive(true);
         }
-        else if (finalScore > 70)
+        else if (averageGrade >= 3.0f && totalPoints < 300)
         {
-            congrats.text = " Not bad! Keep it up!";
+            finalReport.text = "Congratulations! Your grades have passed the semester!";
+            congrats.text = "However, due to low total life points. You have not unlocked the next semester.";
+            startOverButton.SetActive(true);
         }
-        else if (finalScore > 50)
+        else if (averageGrade < 3.0f && totalPoints >= 300)
         {
-            congrats.text = " You passed. Yay! Survived NUS!";
+            finalReport.text = "You have ok total life points. But you have failed the semester.";
+            congrats.text = "You have not unlocked the next semester.";
+            startOverButton.SetActive(true);
         }
-        else
-        {
-            congrats.text = " You need to work harder!";
+        else if (averageGrade < 3.0f && totalPoints < 300)
+        { 
+            startOverButton.SetActive(true);
+            finalReport.text = "You have failed the semester.";
+            congrats.text = "Better luck next time!";
         }
     }
 }
-*/

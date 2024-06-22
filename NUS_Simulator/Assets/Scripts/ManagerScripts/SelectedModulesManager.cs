@@ -25,6 +25,11 @@ public class SelectedModulesManager : MonoBehaviour
         SelectedModules = modules;
     }
 
+    public Module[] GetSelectedModules()
+    {
+        return SelectedModules;
+    }
+
     public void ResetSelectedModules()
     {
         SelectedModules = new Module[5];
