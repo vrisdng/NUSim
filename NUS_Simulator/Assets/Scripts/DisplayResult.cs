@@ -19,6 +19,7 @@ public class DisplayResult : MonoBehaviour
     [SerializeField] TextMeshProUGUI congrats;
 
     private Student PLAYER = Student.Instance; 
+    private GameModeManager GAMEMODE = GameModeManager.Instance;
 
     public void Start()
     {
@@ -142,29 +143,53 @@ public class DisplayResult : MonoBehaviour
 
         float totalPoints = Mathf.RoundToInt(Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
 
-        if (averageGrade >= 3.0f && totalPoints >= 300)
+        if (GAMEMODE.CurrentGameMode == GameMode.Kiasu)
         {
-            finalReport.text = "Congratulations! Your grades have passed the semester!";
-            congrats.text = "You have unlocked the next semester and earn rewards!";
-            getRewardsButton.SetActive(true);
-        }
-        else if (averageGrade >= 3.0f && totalPoints < 300)
+            if (averageGrade >= 5.0f)
+            {
+                finalReport.text = "Congratulations! You have become the Ultimate Kiasu!";
+                startOverButton.SetActive(true);
+            }
+            else {
+                if (Student.Instance.GetMentalPoints() == 50 || Student.Instance.GetPhysicalPoints() == 50 || Student.Instance.GetSocialPoints() == 50)
+                {
+                    finalReport.text = "You have failed to become Kiasu!";
+                    congrats.text = "However, thanks to social merits, you have unlocked an item to aid you in the next round!";
+                    getRewardsButton.SetActive(true);
+                }
+                else
+                {
+                    finalReport.text = "You have totally failed to become anything, let alone Kiasu!";
+                    congrats.text = "Better luck next time!";
+                    startOverButton.SetActive(true);
+                }
+            }
+        } else if (GAMEMODE.CurrentGameMode == GameMode.Linear)
         {
-            finalReport.text = "Congratulations! Your grades have passed the semester!";
-            congrats.text = "However, due to low total life points. You have not unlocked the next semester.";
-            startOverButton.SetActive(true);
-        }
-        else if (averageGrade < 3.0f && totalPoints >= 300)
-        {
-            finalReport.text = "You have ok total life points. But you have failed the semester.";
-            congrats.text = "You have not unlocked the next semester.";
-            startOverButton.SetActive(true);
-        }
-        else if (averageGrade < 3.0f && totalPoints < 300)
-        { 
-            startOverButton.SetActive(true);
-            finalReport.text = "You have failed the semester.";
-            congrats.text = "Better luck next time!";
+            if (averageGrade >= 3.0f && totalPoints >= 300)
+            {
+                finalReport.text = "Congratulations! Your grades have passed the semester!";
+                congrats.text = "You have unlocked the next semester and earn rewards!";
+                getRewardsButton.SetActive(true);
+            }
+            else if (averageGrade >= 3.0f && totalPoints < 300)
+            {
+                finalReport.text = "Congratulations! Your grades have passed the semester!";
+                congrats.text = "However, due to low total life points. You have not unlocked the next semester.";
+                startOverButton.SetActive(true);
+            }
+            else if (averageGrade < 3.0f && totalPoints >= 300)
+            {
+                finalReport.text = "You have ok total life points. But you have failed the semester.";
+                congrats.text = "You have not unlocked the next semester.";
+                startOverButton.SetActive(true);
+            }
+            else if (averageGrade < 3.0f && totalPoints < 300)
+            { 
+                startOverButton.SetActive(true);
+                finalReport.text = "You have failed the semester.";
+                congrats.text = "Better luck next time!";
+            }
         }
     }
 }

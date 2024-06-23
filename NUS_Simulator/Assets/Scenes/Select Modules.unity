@@ -1521,6 +1521,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d6fb589ec0154582bb72a9ca806356b, type: 2}
   - {fileID: 11400000, guid: 945b2cdd44dd8487ba7d521274678c7c, type: 2}
   - {fileID: 11400000, guid: eb016aff914f14c029e1ed31f5e191a0, type: 2}
+  - {fileID: 11400000, guid: 012d6af67a766470abfab5f5cb1b09de, type: 2}
+  - {fileID: 11400000, guid: 61169b59b535f4f0bb09fce1830f60d4, type: 2}
+  - {fileID: 11400000, guid: 57d174630c0524f5686c717afc9a9e7a, type: 2}
+  - {fileID: 11400000, guid: f663ed202f10349fa98647282367eebb, type: 2}
   moduleSlots:
   - {fileID: 1362788040}
   - {fileID: 2121618792}

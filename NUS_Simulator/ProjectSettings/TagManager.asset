@@ -13,6 +13,9 @@ TagManager:
   - Plant
   - Chessboard
   - Coffee-machine
+  - Bible
+  - Milk
+  - MP3
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,7 @@
 
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -7,13 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class Student {
     public static Student instance;
-    private string name;
+    private static string name;
     private Points points;
 
     private string faculty; 
     private float GPA = 0.0f; 
 
-    private float productivity = 1.0f;
+    private Dictionary<string, float> productivity;
 
     private Module[] modules = new Module[45]; 
 
@@ -41,7 +43,7 @@ public class Student {
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 30, 30, 30);
+                instance = new Student("player", 50, 50, 50);
             }
             return instance; 
         }
@@ -97,6 +99,17 @@ public class Student {
         this.points.AddSocialPoints(spoints);
     }
 
+    private void InitializeProductivity()
+    {
+        productivity = new Dictionary<string, float>
+        {
+            { "default", 1.0f },
+            { "CS", 1.0f },
+            { "MA", 1.0f },
+            { "UE", 1.0f },
+        };
+    }
+
     public void AddModule(Module module)
     {
         for (int i = 0; i < modules.Length; i++)
@@ -147,18 +160,34 @@ public class Student {
     public void SetSocialPoints(float number) {
         this.points.socialPoints = number; 
     }
-
-    public void AddProductivity(float percentage)
+    
+    public float GetProductivityOfModule(string moduleType)
     {
-        this.productivity += this.productivity * percentage;
+        return 1.0f;
     }
-    public float GetProductivity()
+
+    public void AdjustProductivity(string moduleType, float adjustment)
     {
-        return this.productivity;
+        if (productivity.ContainsKey(moduleType))
+        {
+            productivity[moduleType] += adjustment;
+        }
+        else
+        {
+            productivity[moduleType] = adjustment;
+        }
+    }
+
+    public void AdjustAllModulesProductivity(float adjustment)
+    {
+        foreach (var key in productivity.Keys.ToList())
+        {
+            productivity[key] += adjustment;
+        }
     }
 
     public void Reset() {
-        instance = new Student("player", 30, 30, 30);
+        instance = new Student("player", 50, 50, 50);
     }
 
 }

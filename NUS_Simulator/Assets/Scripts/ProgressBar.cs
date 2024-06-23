@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 
 
 public class ProgressBar : MonoBehaviour
@@ -49,7 +48,8 @@ public class ProgressBar : MonoBehaviour
     {
         if (module != null && !module.IsCompleted())
         {
-            module.AddToProgress(Time.deltaTime * module.moduleDifficulty);
+            float productivity = Student.Instance.GetProductivityOfModule(module.moduleType);
+            module.AddToProgress(Time.deltaTime / (module.moduleDifficulty - 0.4f) * productivity);
             progressBar.fillAmount = module.GetProgress() / 100f;
             progressText.text = $"{progressBar.fillAmount * 100:F0}%";
         }

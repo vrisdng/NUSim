@@ -3064,7 +3064,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '*As the game is still in demo, choices are limited to 5.'
+  m_text: '*As the game is still in demo, only SoC mods are available.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 954e2bda81476423394f25edc4a5f41d, type: 2}
   m_sharedMaterial: {fileID: 544795627140528016, guid: 954e2bda81476423394f25edc4a5f41d, type: 2}

@@ -8,15 +8,19 @@ public class RewardScript : MonoBehaviour
 {
     [SerializeField] private GameObject snaPanel;
     
-    [SerializeField] private GameObject itemsPanel;
+    [SerializeField] private GameObject[] itemsPanels;
 
     [SerializeField] private TextMeshProUGUI achievementText;
     
     private Student PLAYER = Student.Instance;
+    public GameModeManager GAMEMODE = GameModeManager.Instance;
     void Start()
     {
         snaPanel.SetActive(true);
-        itemsPanel.SetActive(false);
+        for (int i = 0; i < itemsPanels.Length; i++)
+        {
+            itemsPanels[i].SetActive(false);
+        }
     }
 
     public void DisplayAchievements() 
@@ -44,38 +48,42 @@ public class RewardScript : MonoBehaviour
     public void OnClickDisplayRewards() 
     {
         snaPanel.SetActive(false);
-        itemsPanel.SetActive(true);
+        // randomly select an item panel to display
+        int randomIndex = Random.Range(0, itemsPanels.Length);
+        itemsPanels[randomIndex].SetActive(true);
     }
 
     public void OnClickAReward() 
     {
         GameObject objSelected = EventSystem.current.currentSelectedGameObject;
         if (objSelected != null) {
-            switch (objSelected.tag)
+            switch (objSelected.name)
             {
                 case "Plant":
                     PLAYER.AddPoints(15, 0, 0);
                     Debug.Log("Plant");
-                    itemsPanel.SetActive(false); 
                     break;
                 case "Chessboard":
                     PLAYER.AddPoints(0, 0, 15);
                     Debug.Log("CM");
-                    SceneManager.LoadScene("SelectSemester");
-                    itemsPanel.SetActive(false); 
                     break;
-                case "Coffee-machine":
-                    PLAYER.AddProductivity(0.1f);
+                case "CoffeeMachine":
+                    PLAYER.AdjustAllModulesProductivity(1.0f);
                     Debug.Log("CB");
-                    SceneManager.LoadScene("SelectSemester");
-                    itemsPanel.SetActive(false); 
                     break;
                 default: 
                     Debug.Log("No action");
                     break;
             }
         }
-        SceneManager.LoadScene("SelectSemester");
+        if (GAMEMODE.CurrentGameMode == GameMode.Kiasu)
+        {
+            SceneManager.LoadScene("Select Modules");
+        }
+        else
+        {
+            SceneManager.LoadScene("SelectSemester");
+        }
     }
 
 

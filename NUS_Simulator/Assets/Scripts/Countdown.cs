@@ -8,7 +8,7 @@ public class Countdown : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
 
-    const float REMAINING_TIME = 50f;
+    const float REMAINING_TIME = 300f;
     public static float remainingTime = REMAINING_TIME; 
 
     private bool isPaused = false;

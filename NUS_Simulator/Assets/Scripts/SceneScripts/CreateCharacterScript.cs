@@ -66,6 +66,13 @@ public class CreateCharacterScript : MonoBehaviour
 
     public void OnCourseNextButton()
     {
-        SceneManager.LoadScene("SelectSemester");
+        if (GameModeManager.Instance.CurrentGameMode == GameMode.Linear)
+        {
+            SceneManager.LoadScene("SelectSemester");
+        }
+        else if (GameModeManager.Instance.CurrentGameMode == GameMode.Kiasu)
+        {
+            SceneManager.LoadScene("Select Modules");
+        }
     }
 }
