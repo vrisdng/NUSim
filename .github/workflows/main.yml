@@ -89,7 +89,7 @@ jobs:
           git reset --hard
 
       - name: Restore Library cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: Library
           key: Library-build-WebGL
@@ -146,4 +146,3 @@ jobs:
         uses: geekyeggo/delete-artifact@v2
         with:
           name: build-WebGL
-  
