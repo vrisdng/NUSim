@@ -24,7 +24,7 @@ on:
       - 'ProjectSettings/**'
   release:
     types:
-      — published
+      - published
   workflow_dispatch:
     inputs:
       release_platform:
@@ -125,7 +125,7 @@ jobs:
           lfs: true
 
       - name: Download WebGL artifacts 
-      - uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3
         with:
           name: build-WebGL
           path: build/WebGL 
