@@ -22,33 +22,34 @@ jobs:
     runs-on: ubuntu-latest  
     outputs:  
       buildVersion: ${{ steps.build.outputs.buildVersion }}  
-      steps:  
-        - name: Checkout Repository  
-          uses: actions/checkout@v3  
-          with:  
-            fetch-depth: 0  
-            lfs: true  
-    
-        - name: Cache Library  
-          uses: actions/cache@v3  
-          with:  
-            path: Library  
-            key: Library-build-${{ inputs.platform }}  
-            restore-keys: |  
-              Library-build- ${{ inputs.platform }}
-              Library-    
-        - name: Build Unity Project  
-          id: build  
-          uses: game-ci/unity-builder@v3  
-          env:  
-            UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}  
-            UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}  
-            UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}  
-          with:  
-            targetPlatform: ${{ inputs.platform }}  
-    
-        - name: Upload Build  
-          uses: actions/upload-artifact@v3  
-          with:  
-            name: build-${{ inputs.platform }}  
-            path: build/${{ inputs.platform }}
+    steps:
+      - name: Checkout Repository  
+        uses: actions/checkout@v3  
+        with:  
+          fetch-depth: 0  
+          lfs: true
+        
+      - name: Cache Library  
+        uses: actions/cache@v3  
+        with:  
+          path: Library  
+          key: Library-build-${{ inputs.platform }}  
+          restore-keys: |  
+            Library-build- ${{ inputs.platform }}
+            Library-    
+
+      - name: Build Unity Project  
+        id: build  
+        uses: game-ci/unity-builder@v3  
+        env:  
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}  
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}  
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}  
+        with:  
+          targetPlatform: ${{ inputs.platform }}  
+  
+      - name: Upload Build  
+        uses: actions/upload-artifact@v3  
+        with:  
+          name: build-${{ inputs.platform }}  
+          path: build/${{ inputs.platform }}
