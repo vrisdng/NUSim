@@ -11,7 +11,7 @@ public class GameModeManager : MonoBehaviour
 {
     public static GameModeManager Instance { get; private set; }
 
-    public GameMode CurrentGameMode { get; private set; }
+    private GameMode CurrentGameMode; 
 
     private void Awake()
     {
@@ -29,6 +29,11 @@ public class GameModeManager : MonoBehaviour
     public void SetGameMode(GameMode mode)
     {
         CurrentGameMode = mode;
+    }
+
+    public GameMode GetGameMode()
+    {
+        return CurrentGameMode;
     }
 }
 

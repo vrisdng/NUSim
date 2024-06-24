@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class Student {
     public static Student instance;
-    private static string name;
+    private string name;
     private Points points;
 
     private string faculty; 
@@ -43,7 +43,7 @@ public class Student {
     public static Student Instance {
         get {
             if (instance == null) {
-                instance = new Student("player", 50, 50, 50);
+                instance = new Student("player", 100, 100, 100);
             }
             return instance; 
         }
@@ -187,7 +187,7 @@ public class Student {
     }
 
     public void Reset() {
-        instance = new Student("player", 50, 50, 50);
+        instance = new Student(this.name, 100, 100, 100);
     }
 
 }

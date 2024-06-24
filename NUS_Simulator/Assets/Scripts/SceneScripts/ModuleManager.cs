@@ -34,11 +34,13 @@ public class ModuleManager : MonoBehaviour
 
     void CreateModuleButtons()
     {
+        availableModules = FilterUncompletedModules(availableModules);
         int limit = Mathf.Min(availableModules.Count, 10);
 
         for (int i = 0; i < limit; i++)
         {
             Module module = availableModules[i];
+            Debug.Log("Progress of these modules: " + availableModules[i].GetProgress());
             Transform slot = moduleSlots[i];
 
             Button buttonInstance = Instantiate(moduleButton, slot);

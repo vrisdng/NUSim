@@ -46,4 +46,15 @@ public class SelectedModulesManager : MonoBehaviour
             }
         }
     }
+
+    public void CompleteModulesOfCurrentSemester()
+    {
+        foreach (Module module in SelectedModules)
+        {
+            if (module != null && module.GetProgress() >= 20f)
+            {
+                module.SetCompleted(true);
+            }
+        }
+    }
 }

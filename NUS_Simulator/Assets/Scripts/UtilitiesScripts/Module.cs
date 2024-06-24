@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,6 +43,10 @@ public class Module : ScriptableObject
 
     public bool IsCompleted() {
         return this.isCompleted;
+    }
+
+    public void SetCompleted(Boolean boolian) {
+        this.isCompleted = boolian;
     }
 
     public void AddToProgress(float progress) {

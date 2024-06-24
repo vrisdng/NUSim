@@ -20,6 +20,8 @@ public class DisplayResult : MonoBehaviour
 
     private Student PLAYER = Student.Instance; 
     private GameModeManager GAMEMODE = GameModeManager.Instance;
+    private SemesterManager SEMESTER = SemesterManager.Instance;
+    private SelectedModulesManager SELECTED_MODULES = SelectedModulesManager.Instance;
 
     public void Start()
     {
@@ -126,12 +128,14 @@ public class DisplayResult : MonoBehaviour
         for (int i = 0; i < modules.Length; i++)
         {
             float progress = modules[i].GetProgress(); 
+            Debug.Log("The progress of this module " + modules[i] + "is " + progress);
             string grade = RandomGradeGenerator(progress);
             grades.Add(grade);
             gradesText += $"{modules[i].GetModuleName()}: {grade}\n";
         }
 
-        float averageGrade = CalculateAverageGrade(grades);
+        //float averageGrade = CalculateAverageGrade(grades);
+        float averageGrade = 5.0f;
         PLAYER.SetGPA(averageGrade); 
         gradesText += $"Average Grade: {averageGrade:F2}\n";
 
@@ -143,7 +147,7 @@ public class DisplayResult : MonoBehaviour
 
         float totalPoints = Mathf.RoundToInt(Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
 
-        if (GAMEMODE.CurrentGameMode == GameMode.Kiasu)
+        if (GAMEMODE.GetGameMode() == GameMode.Kiasu)
         {
             if (averageGrade >= 5.0f)
             {
@@ -164,13 +168,17 @@ public class DisplayResult : MonoBehaviour
                     startOverButton.SetActive(true);
                 }
             }
-        } else if (GAMEMODE.CurrentGameMode == GameMode.Linear)
+        } else if (GAMEMODE.GetGameMode() == GameMode.Linear)
         {
             if (averageGrade >= 3.0f && totalPoints >= 300)
             {
                 finalReport.text = "Congratulations! Your grades have passed the semester!";
                 congrats.text = "You have unlocked the next semester and earn rewards!";
                 getRewardsButton.SetActive(true);
+                SEMESTER.CompleteCurrentSemester();
+                SELECTED_MODULES.CompleteModulesOfCurrentSemester(); 
+                
+                
             }
             else if (averageGrade >= 3.0f && totalPoints < 300)
             {

@@ -40,37 +40,37 @@ public class CreateCharacterScript : MonoBehaviour
         switch(facultyChosen) {
             case "SOC":
                 PLAYER.SetFaculty("SOC");
-                Debug.Log("Faculty 1 chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
             case "FOS":
                 PLAYER.SetFaculty("FOS");
-                Debug.Log("Faculty 2 chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
             case "FASS":
                 PLAYER.SetFaculty("FASS");
-                Debug.Log("Faculty 3 chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
             case "CDE":
                 PLAYER.SetFaculty("CDE");
-                Debug.Log("Faculty 4 chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
             case "BIZ":
                 PLAYER.SetFaculty("BIZ");
-                Debug.Log("Faculty 5 chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
             default: 
-                Debug.Log("No faculty chosen");
+                Debug.Log(PLAYER.GetFaculty());
                 break;
         }
     }
 
     public void OnCourseNextButton()
     {
-        if (GameModeManager.Instance.CurrentGameMode == GameMode.Linear)
+        if (GameModeManager.Instance.GetGameMode() == GameMode.Linear)
         {
             SceneManager.LoadScene("SelectSemester");
         }
-        else if (GameModeManager.Instance.CurrentGameMode == GameMode.Kiasu)
+        else if (GameModeManager.Instance.GetGameMode() == GameMode.Kiasu)
         {
             SceneManager.LoadScene("Select Modules");
         }

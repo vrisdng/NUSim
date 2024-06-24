@@ -24,7 +24,7 @@ public class RandomDistraction : MonoBehaviour
 
     void InitializeDistractions()
     {
-        distractions = new DistractionEvent[20];
+        distractions = new DistractionEvent[30];
         distractions[0] = new DistractionEvent("You see a cute cat reel. You have a sudden urge to binge-watch on cat reels.", 0.5f, new Points(5, 0, 0));
         distractions[1] = new DistractionEvent("Your crush sends you a text message. You want to reply to it.", 0.5f, new Points(3, 0, 3));
         distractions[2] = new DistractionEvent("Your mom is calling you for a life update.", 0.5f, new Points(3, 0, 2));
@@ -45,7 +45,16 @@ public class RandomDistraction : MonoBehaviour
         distractions[17] = new DistractionEvent("You realize you haven't checked social media in the last 10 minutes. Social obligations must be met.", 0.7f, new Points(5, 2, 0));
         distractions[18] = new DistractionEvent("You hear an ice cream truck outside. Ice cream is essential for studying, obviously.", 0.5f, new Points(3, 0, 4));
         distractions[19] = new DistractionEvent("You feel a sudden need to rearrange your furniture. Feng shui for better focus!", 0.8f, new Points(5, 3, 1));
-        // TODO: getNextEvent and map and names for each event
+        distractions[20] = new DistractionEvent("Your best friend invites you to a surprise party they are throwing.", 0.6f, new Points(2, 0, 10));
+        distractions[21] = new DistractionEvent("You receive an invitation to join a group chat with some old friends.", 0.5f, new Points(1, 0, 8));
+        distractions[22] = new DistractionEvent("Your neighbor invites you over for a coffee and a chat.", 0.5f, new Points(2, 0, 9));
+        distractions[23] = new DistractionEvent("A classmate calls to discuss a project but ends up chatting about life.", 0.4f, new Points(2, 0, 7));
+        distractions[24] = new DistractionEvent("You get an invite to a virtual game night with your friends.", 0.7f, new Points(3, 0, 10));
+        distractions[25] = new DistractionEvent("You join a video call with your family for a spontaneous catch-up.", 0.6f, new Points(3, 0, 8));
+        distractions[26] = new DistractionEvent("You decide to attend a local community meetup.", 0.7f, new Points(4, 0, 9));
+        distractions[27] = new DistractionEvent("An old friend messages you out of the blue to catch up.", 0.4f, new Points(1, 0, 7));
+        distractions[28] = new DistractionEvent("Your friend invites you to join them for a fun outdoor activity.", 0.8f, new Points(4, 5, 10));
+        distractions[29] = new DistractionEvent("You receive a phone call from a relative you haven't spoken to in a while.", 0.5f, new Points(2, 0, 6));
     }
 
     

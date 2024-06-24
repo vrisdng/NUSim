@@ -782,7 +782,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -857,7 +857,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -1660,24 +1660,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 946968250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa6938d60c9054e23bb8c854952c1cdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c83d739084324f129a91b3b99d8cae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  y1s1: {fileID: 2074785490}
-  y1s2: {fileID: 1707037106}
-  y2s1: {fileID: 232585728}
-  y2s2: {fileID: 1532667889}
-  y3s1: {fileID: 1817028010}
-  y3s2: {fileID: 1382504150}
-  y4s1: {fileID: 1233398633}
-  y4s2: {fileID: 411659969}
-  availableModules:
-  - {fileID: 11400000, guid: fcfeb1eae80744f2a8c16965e0eebbe5, type: 2}
-  - {fileID: 11400000, guid: 8aed9e285fd1c4cad9190bbf057e3e55, type: 2}
-  - {fileID: 11400000, guid: d6405e386b773474ab2f345fd4e3de65, type: 2}
-  - {fileID: 11400000, guid: 8d6fb589ec0154582bb72a9ca806356b, type: 2}
-  - {fileID: 11400000, guid: 945b2cdd44dd8487ba7d521274678c7c, type: 2}
-  - {fileID: 11400000, guid: eb016aff914f14c029e1ed31f5e191a0, type: 2}
+  semesterButtons:
+  - {fileID: 2074785490}
+  - {fileID: 1707037106}
+  - {fileID: 232585728}
+  - {fileID: 1532667889}
+  - {fileID: 1817028010}
+  - {fileID: 1382504150}
+  - {fileID: 1233398633}
+  - {fileID: 411659969}
 --- !u!1 &1232932902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1937,7 +1931,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -1948,6 +1942,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1257528576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257528578}
+  - component: {fileID: 1257528577}
+  m_Layer: 0
+  m_Name: SemesterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1257528577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257528576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f11001404b640f0953dc1bb7d766da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1257528578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257528576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6650674, y: 0.06157434, z: 1081.6826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290650149
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,7 +2283,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -2515,7 +2553,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -2610,7 +2648,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -2781,7 +2819,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -3113,7 +3151,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 946968255}
-        m_TargetAssemblyTypeName: SemesterManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: SelectSemesterScript, Assembly-CSharp
         m_MethodName: OnClickSemester
         m_Mode: 1
         m_Arguments:
@@ -3303,3 +3341,4 @@ SceneRoots:
   - {fileID: 1475593846}
   - {fileID: 946968254}
   - {fileID: 2074596770}
+  - {fileID: 1257528578}

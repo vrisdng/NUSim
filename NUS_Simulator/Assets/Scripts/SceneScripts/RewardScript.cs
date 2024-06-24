@@ -50,6 +50,7 @@ public class RewardScript : MonoBehaviour
         snaPanel.SetActive(false);
         // randomly select an item panel to display
         int randomIndex = Random.Range(0, itemsPanels.Length);
+        print(randomIndex);
         itemsPanels[randomIndex].SetActive(true);
     }
 
@@ -75,8 +76,11 @@ public class RewardScript : MonoBehaviour
                     Debug.Log("No action");
                     break;
             }
+        } else {
+            Debug.Log("Null object");
+        
         }
-        if (GAMEMODE.CurrentGameMode == GameMode.Kiasu)
+        if (GAMEMODE.GetGameMode() == GameMode.Kiasu)
         {
             SceneManager.LoadScene("Select Modules");
         }
