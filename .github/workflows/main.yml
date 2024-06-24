@@ -28,72 +28,70 @@ on:
         default: ''
 jobs:
   test:
-  name: Build and Run Tests
-  runs-on: ubuntu-latest
-  steps:
-    # Checkout with lfs
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        lfs: true
+    name: Build and Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout with lfs
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
 
-    - name: Cache Library
-      uses: actions/cache@v3
-      with:
-        path: Library
-        key: Library-test
-        restore-keys: |
-          Library-test
-  
-    - name: Run Tests
-      uses: game-ci/unity-test-runner@v4
-      env:
-        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-      with:
-        githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cache Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-test
+          restore-keys: |
+            Library-test
+    
+      - name: Run Tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
 
   buildForWebGL:
-  name: Build for WebGL
-  needs: test
-  if: github.ref == 'refs/heads/main' || github.event.action == 'published' || (contains(github.event.inputs.release_platform, 'release') && contains(github.event.inputs.release_platform, 'WebGL'))
-  uses: ./.github/workflows/buildWithLinux.yml
-  with:
-    platform: WebGL
-    secrets:
-      UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+    name: Build for WebGL
+    needs: test
+    uses: ./.github/workflows/buildWithLinux.yml
+    with:
+      platform: WebGL
+      secrets:
+        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
   deployToGitHubPages:
-  name: Deploy to GitHub Pages
-  runs-on: ubuntu-latest
-  needs: buildForWebGL
-  if: github.ref == 'refs/heads/main' || github.event.action == 'published' || (contains(github.event.inputs.release_platform, 'release') && contains(github.event.inputs.release_platform, 'WebGL'))
-  steps:
-    - name: Echo Build Version
-      run: echo ${{ needs.buildForWebGL.outputs.buildVersion }}
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: buildForWebGL
+    steps:
+      - name: Echo Build Version
+        run: echo ${{ needs.buildForWebGL.outputs.buildVersion }}
 
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        lfs: false
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: false
 
-    - name: Download WebGL Artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: build-WebGL
-        path: build/WebGL
+      - name: Download WebGL Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-WebGL
+          path: build/WebGL
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build/WebGL/WebGL
-        commit-message: Deploy
-        single-commit: true
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+          commit-message: Deploy
+          single-commit: true
 
-    - name: Cleanup to avoid storage limit
-      uses: geekyeggo/delete-artifact@v2
-      with:
-        name: build-WebGL
+      - name: Cleanup to avoid storage limit
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: build-WebGL
