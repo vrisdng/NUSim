@@ -1,36 +1,3 @@
-<<<<<<< Updated upstream
-name: Test, Build, and Deploy with GameCI
-on:
-  push:
-    branches:
-      - development-mai-v2
-    paths:
-      - 'Assets/**'
-      - 'Packages/**'
-      - 'ProjectSettings/**'
-  pull_request:
-    types:
-      - opened
-      - synchronize
-    branches:
-      - development-mai-v2
-    paths:
-      - 'Assets/**'
-      - 'Packages/**'
-      - 'ProjectSettings/**'
-  release:
-    types:
-      - published
-  workflow_dispatch:
-    inputs:
-      release_platform:
-        description: 'Release to [iOS, WebGL, testFlight]'
-        required: false
-        default: ''
-jobs:
-  test:
-    name: Build and Run Tests
-=======
 name: Test, Build and Deploy 
 
 on: [push]
@@ -38,7 +5,6 @@ on: [push]
 jobs:
   build:
     name: Build 
->>>>>>> Stashed changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -76,7 +42,7 @@ jobs:
   deployToGitHubPages:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: buildForWebGL
+    needs: build
     steps:
       - name: Echo Build Version
         run: echo ${{ needs.buildForWebGL.outputs.buildVersion }}
