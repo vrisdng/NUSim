@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 public class Semester {
-    public string name;                 
-    public List<Module> selectedModules;
+    private string name;                 
+    private List<Module> selectedModules;
     private Boolean isCompleted;
 
     public Semester(string semesterName) {
@@ -19,6 +19,14 @@ public class Semester {
 
     public void SetCompleted(Boolean boolian) {
         this.isCompleted = boolian;
+    }
+
+    public string GetName() {
+        return this.name;
+    }
+
+    public List<Module> GetSelectedModules() {
+        return this.selectedModules;
     }
 
 }

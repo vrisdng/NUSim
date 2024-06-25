@@ -110,7 +110,7 @@ public class StudySceneScript : MonoBehaviour
     }
 
 
-    private void InitializeModulePanelsAndProgressBars()
+    public void InitializeModulePanelsAndProgressBars()
     {
         Module[] selectedModules = SelectedModulesManager.Instance.SelectedModules;
         int moduleCount = selectedModules.Length;

@@ -16,7 +16,7 @@ public class Module : ScriptableObject
     public float moduleProgress = 0.0f;
 
     public bool isStudying = false;
-    public bool isCompleted = false;
+    public bool isCompleted;
 
     public Module(string name, string type, float difficulty) {
         this.moduleName = name;

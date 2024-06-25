@@ -15,6 +15,7 @@ MonoBehaviour:
   moduleName: CS1231S
   moduleDifficulty: 1
   moduleType: CS
-  moduleProgress: 0
-  isStudying: 0
-  isCompleted: 0
+  moduleButton: {fileID: 0}
+  moduleProgress: 21.88691
+  isStudying: 1
+  isCompleted: 1

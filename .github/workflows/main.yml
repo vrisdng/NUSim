@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 name: Test, Build, and Deploy with GameCI
 on:
   push:
@@ -29,6 +30,15 @@ on:
 jobs:
   test:
     name: Build and Run Tests
+=======
+name: Test, Build and Deploy 
+
+on: [push]
+
+jobs:
+  build:
+    name: Build 
+>>>>>>> Stashed changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository

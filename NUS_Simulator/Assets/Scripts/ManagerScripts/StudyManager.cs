@@ -69,6 +69,11 @@ public class StudyManager : MonoBehaviour
         return null;
     }
 
+    public ProgressBar[] GetProgressBars()
+    {
+        return progressBars;
+    }
+
     public void StopStudying()
     {
         if (activeModuleIndex == -1) return;

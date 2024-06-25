@@ -25,6 +25,13 @@ public class Student {
         this.points = new Points(mentalPoints, physicalPoints, socialPoints);
     }
 
+    public Student(string name, float mentalPoints, float physicalPoints, float socialPoints, Dictionary<string, float> productivity)
+    {
+        this.name = name;
+        this.points = new Points(mentalPoints, physicalPoints, socialPoints);
+        this.productivity = productivity;
+    }
+
     public Student(string name, float mentalPoints, float physicalPoints, float socialPoints, Module[] modules)
     {
         this.name = name;
@@ -99,7 +106,7 @@ public class Student {
         this.points.AddSocialPoints(spoints);
     }
 
-    private void InitializeProductivity()
+    public void InitializeProductivity()
     {
         productivity = new Dictionary<string, float>
         {
@@ -168,21 +175,17 @@ public class Student {
 
     public void AdjustProductivity(string moduleType, float adjustment)
     {
-        if (productivity.ContainsKey(moduleType))
-        {
-            productivity[moduleType] += adjustment;
-        }
-        else
-        {
-            productivity[moduleType] = adjustment;
-        }
+        productivity[moduleType] += adjustment;
     }
 
     public void AdjustAllModulesProductivity(float adjustment)
     {
-        foreach (var key in productivity.Keys.ToList())
+        foreach (Module module in modules)
         {
-            productivity[key] += adjustment;
+            if (module != null)
+            {
+                AdjustProductivity(module.moduleType, adjustment);
+            }
         }
     }
 

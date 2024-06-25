@@ -32,7 +32,7 @@ public class ModuleManager : MonoBehaviour
         return uncompletedModules;
     }
 
-    void CreateModuleButtons()
+    public void CreateModuleButtons()
     {
         availableModules = FilterUncompletedModules(availableModules);
         int limit = Mathf.Min(availableModules.Count, 10);
@@ -53,7 +53,7 @@ public class ModuleManager : MonoBehaviour
         }
     }
 
-    void OnModuleButtonClick(Module module, Button button)
+    public void OnModuleButtonClick(Module module, Button button)
     {
         if (clickedCount < 5)
         {
@@ -83,7 +83,7 @@ public class ModuleManager : MonoBehaviour
         ResetModuleButtons();
     }
 
-    void ResetModuleButtons()
+    public void ResetModuleButtons()
     {
         foreach (Transform slot in moduleSlots)
         {

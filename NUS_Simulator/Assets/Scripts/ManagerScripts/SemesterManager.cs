@@ -33,7 +33,7 @@ public class SemesterManager : MonoBehaviour
             new Semester("Year 2 Semester 2"),
             new Semester("Year 3 Semester 1"),
             new Semester("Year 3 Semester 2"),
-            new Semester("Year 4 Semester 1"), // example special event
+            new Semester("Year 4 Semester 1"), 
             new Semester("Year 4 Semester 2")
         };
         currentSemesterIndex = 0;

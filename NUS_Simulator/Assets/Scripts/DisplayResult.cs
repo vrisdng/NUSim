@@ -175,7 +175,7 @@ public class DisplayResult : MonoBehaviour
                 finalReport.text = "Congratulations! Your grades have passed the semester!";
                 congrats.text = "You have unlocked the next semester and earn rewards!";
                 getRewardsButton.SetActive(true);
-                SEMESTER.CompleteCurrentSemester();
+                //SEMESTER.CompleteCurrentSemester();
                 SELECTED_MODULES.CompleteModulesOfCurrentSemester(); 
                 
                 

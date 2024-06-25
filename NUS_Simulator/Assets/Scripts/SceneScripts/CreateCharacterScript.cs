@@ -30,6 +30,7 @@ public class CreateCharacterScript : MonoBehaviour
     {
         playerName = inputField.text;
         PLAYER.SetName(playerName); 
+        PLAYER.InitializeProductivity(); 
         panelGetName.SetActive(false);
         panelGetCourse.SetActive(true);
     }

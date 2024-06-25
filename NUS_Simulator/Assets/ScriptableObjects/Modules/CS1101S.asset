@@ -16,6 +16,6 @@ MonoBehaviour:
   moduleDifficulty: 1
   moduleType: CS
   moduleButton: {fileID: 0}
-  moduleProgress: 2.323993
+  moduleProgress: 24.35976
   isStudying: 1
-  isCompleted: 0
+  isCompleted: 1

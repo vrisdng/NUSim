@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 
 public class ProgressBar : MonoBehaviour
@@ -82,5 +83,15 @@ public class ProgressBar : MonoBehaviour
         {
             module.AddToProgress(progressBar.fillAmount * 100 - module.GetProgress());
         }
+    }
+
+    public Boolean IsUpdating()
+    {
+        return isUpdating;
+    }
+
+    public float GetProgressFillAmount()
+    {
+        return progressBar.fillAmount;
     }
 }

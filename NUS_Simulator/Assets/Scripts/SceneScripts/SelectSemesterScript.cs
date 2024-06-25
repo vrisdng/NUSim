@@ -11,6 +11,7 @@ public class SelectSemesterScript : MonoBehaviour
     void Start()
     {
         UpdateSemesterButtons();
+        ShowStatusOfAllSemesters(); 
     }
 
     private void UpdateSemesterButtons()
@@ -23,11 +24,10 @@ public class SelectSemesterScript : MonoBehaviour
             {
                 semesterButtons[i].interactable = true;
             }
-            else
+            else 
             {
                 semesterButtons[i].interactable = false;
             }
-
         }
     }
 
@@ -41,8 +41,18 @@ public class SelectSemesterScript : MonoBehaviour
         if (semesterIndex != -1)
         {
             SemesterManager.Instance.CompleteCurrentSemester();
-            UpdateSemesterButtons();
-            SceneManager.LoadSceneAsync("Select Modules");
+            SceneManager.LoadScene("Select Modules");
         }
+    }
+
+    public void ShowStatusOfAllSemesters()
+    {
+        Semester[] semesters = SemesterManager.Instance.GetAvailableSemesters();
+        string text = "";
+        for (int i = 0; i < semesters.Length; i++)
+        {
+            text += semesters[i].GetName() + ": " + (semesters[i].IsCompleted() ? "Completed" : "Not Completed") + "\n";
+        }
+        Debug.Log(text);
     }
 }
