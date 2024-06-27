@@ -21,25 +21,27 @@ public class SleepScript : MonoBehaviour
     public void OnClick()
     {
         Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
-        Countdown COUNTDOWN = Countdown.Instance; 
-        Student PLAYER = Student.Instance;
-        
+        Countdown countdown = Countdown.Instance;
+        Student player = Student.Instance;
+
         if (clickedButton == firstButton) {
-            PLAYER.AddPointsFromSleeping(10, 10, 0);
-            COUNTDOWN.UpdateRemainingTime(-15f);
-            thisPanel.SetActive(false); 
+            HandleButtonClick(player, countdown, 10, 10, 0, -15f);
         } else if (clickedButton == secondButton) {
-            PLAYER.AddPointsFromSleeping(30, 30, 0);
-            COUNTDOWN.UpdateRemainingTime(-30f);
-            thisPanel.SetActive(false); 
-        } else if (clickedButton == thirdButton){
-            PLAYER.AddPointsFromSleeping(60, 60, 0);
-            COUNTDOWN.UpdateRemainingTime(-60f);
-            thisPanel.SetActive(false); 
+            HandleButtonClick(player, countdown, 30, 30, 0, -30f);
+        } else if (clickedButton == thirdButton) {
+            HandleButtonClick(player, countdown, 60, 60, 0, -60f);
         } else if (clickedButton == cancelButton) {
-            Debug.Log("cancel"); 
-            COUNTDOWN.UpdateRemainingTime(-0f);
-            thisPanel.SetActive(false); 
+            Debug.Log("cancel");
+            countdown.UpdateRemainingTime(0f);
+            thisPanel.SetActive(false);
         }
     }
+
+    private void HandleButtonClick(Student player, Countdown countdown, int sleepPoints, int healthPoints, int stressPoints, float timeChange)
+    {
+        player.AddPointsFromSleeping(sleepPoints, healthPoints, stressPoints);
+        countdown.UpdateRemainingTime(timeChange);
+        thisPanel.SetActive(false);
+    }
 }
+

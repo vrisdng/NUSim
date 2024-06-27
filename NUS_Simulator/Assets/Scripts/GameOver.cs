@@ -6,6 +6,7 @@ public class GameOver : MonoBehaviour
     public void OnClick() {
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
+        Student.Instance.InitializeProductivity(); 
         if (StudyManager.Instance != null) {
             StudyManager.Instance.StopAllStudying(); 
         } else {

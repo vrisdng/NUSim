@@ -17,5 +17,5 @@ MonoBehaviour:
   moduleType: UE
   moduleButton: {fileID: 0}
   moduleProgress: 0
-  isStudying: 1
+  isStudying: 0
   isCompleted: 0

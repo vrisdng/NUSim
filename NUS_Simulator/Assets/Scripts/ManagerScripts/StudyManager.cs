@@ -32,31 +32,28 @@ public class StudyManager : MonoBehaviour
         return activeModuleIndex;
     }
 
-    public void StartStudying()
-    {
-        if (activeModuleIndex == -1) return;
-
-        isStudying = true;
-        progressBars[activeModuleIndex].StartProgress();
-    }
-
     public void StartStudying(int moduleIndex)
     {
-        if (activeModuleIndex != -1)
+        if (moduleIndex == -1) return;
+
+        if (activeModuleIndex != -1 && activeModuleIndex != moduleIndex)
         {
             StopStudying();
         }
 
         activeModuleIndex = moduleIndex;
-        isStudying = true; 
+        isStudying = true;
 
-        Module activeModule = SelectedModulesManager.Instance.SelectedModules[activeModuleIndex];
-        activeModule.isStudying = true;
-
-        ProgressBar progressBar = GetProgressBarForModule(activeModuleIndex);
-        if (progressBar != null)
+        if (activeModuleIndex != -1)
         {
-            progressBar.StartProgress();
+            Module activeModule = SelectedModulesManager.Instance.SelectedModules[activeModuleIndex];
+            activeModule.isStudying = true;
+
+            ProgressBar progressBar = GetProgressBarForModule(activeModuleIndex);
+            if (progressBar != null)
+            {
+                progressBar.StartProgress();
+            }
         }
     }
 

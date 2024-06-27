@@ -170,7 +170,7 @@ public class DisplayResult : MonoBehaviour
             }
         } else if (GAMEMODE.GetGameMode() == GameMode.Linear)
         {
-            if (averageGrade >= 3.0f && totalPoints >= 300)
+            if (averageGrade >= 3.0f && (Student.Instance.GetMentalPoints() > 0 || Student.Instance.GetPhysicalPoints() > 0 || Student.Instance.GetSocialPoints() > 0))
             {
                 finalReport.text = "Congratulations! Your grades have passed the semester!";
                 congrats.text = "You have unlocked the next semester and earn rewards!";
@@ -180,23 +180,18 @@ public class DisplayResult : MonoBehaviour
                 
                 
             }
-            else if (averageGrade >= 3.0f && totalPoints < 300)
+            else if (averageGrade < 3.0f)
             {
-                finalReport.text = "Congratulations! Your grades have passed the semester!";
-                congrats.text = "However, due to low total life points. You have not unlocked the next semester.";
-                startOverButton.SetActive(true);
-            }
-            else if (averageGrade < 3.0f && totalPoints >= 300)
-            {
-                finalReport.text = "You have ok total life points. But you have failed the semester.";
+                finalReport.text = "You have failed the semester.";
                 congrats.text = "You have not unlocked the next semester.";
                 startOverButton.SetActive(true);
             }
-            else if (averageGrade < 3.0f && totalPoints < 300)
+            else 
             { 
                 startOverButton.SetActive(true);
                 finalReport.text = "You have failed the semester.";
                 congrats.text = "Better luck next time!";
+                startOverButton.SetActive(true);
             }
         }
     }
