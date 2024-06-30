@@ -9,6 +9,7 @@ TagManager:
   - StudyingPanel
   - SOC_SelectModulesPanel
   - SleepIcon
+  - FlappyBirdLogic
   layers:
   - Default
   - TransparentFX
