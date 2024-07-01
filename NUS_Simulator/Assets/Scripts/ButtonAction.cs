@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
 public class ButtonAction : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class ButtonAction : MonoBehaviour
 
     public void clickOnMail() {
         Debug.Log("Mail Clicked");
+        StudyManager.Instance.StopStudying(); 
     }
 
     public void clickOnStudyButton() {
@@ -23,7 +27,7 @@ public class ButtonAction : MonoBehaviour
         }
     }
 
-    public void clickOnModule() {
+    public void ClickOnForwardButton() {
         SceneManager.LoadScene("InGameScene"); 
     }
 }

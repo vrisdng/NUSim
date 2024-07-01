@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class InputHandler : MonoBehaviour
 {
     GameObject objSelected = null;
+    [SerializeField] private GameObject sleepPanel; 
 
     void Update()
     {
@@ -17,10 +18,15 @@ public class InputHandler : MonoBehaviour
                 if (objSelected.tag == "Distraction")
                 {
                     SceneManager.LoadScene("DistractionScene");
+                    StudyManager.Instance.StopStudying(); 
                 }
                 if (objSelected.tag == "Work")
                 {
                     SceneManager.LoadScene("WorkingScene");
+                }
+                if (objSelected.tag == "SleepIcon")
+                {
+                    sleepPanel.SetActive(true); 
                 }
             }
         }

@@ -6,7 +6,7 @@ public class GameOver : MonoBehaviour
     public void OnClick() {
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
-        ProgressBar.Instance.Reset();
+        StudyManager.Instance.ResetAllProgress(); 
         SceneManager.LoadScene("InGameScene");
     }
 }

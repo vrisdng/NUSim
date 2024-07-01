@@ -5,75 +5,111 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+
 public class ProgressBar : MonoBehaviour
 {
-    Image progressBar;
-    [SerializeField] TextMeshProUGUI progressText;
-    [SerializeField] TextMeshProUGUI moduleSideText;
-    public static float maxTime = 5.0f;
-    private static float currentTime = 0.0f;
-    private static float speed = 0.09f;
-
-    public static ProgressBar instance;
-
-    public static ProgressBar Instance {
-        get {
-            if (instance == null) {
-                instance = new ProgressBar();
-            }
-            return instance; 
-        }
-    }
+    private Image progressBar;
+    [SerializeField] private TextMeshProUGUI progressText;
+    [SerializeField] private TextMeshProUGUI moduleSideText;
+    private ModuleProgressValue moduleProgressValue;
+    private bool isUpdating;
 
     void Start()
     {
         progressBar = GetComponent<Image>();
-        progressBar.fillAmount = 0.0f;
-        moduleSideText.text = "Studying for CS1101S...";
+        isUpdating = false;
     }
 
     void Update()
     {
-        // update progress bar increment by time
-        progressBar.fillAmount = currentTime / maxTime;
-        progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
-
-        // if DistractionEvent happens: call StopProgressBar()
-        // if player chooses to do the distraction, call Deduct()
-        // if player chooses not to do the distraction, continue as usual
-        // if player chooses to switch to another module, call StopProgressBar() for this module and start the new module
-        // should be able to keep track of the progress for each module separately
-
-        if (currentTime < maxTime)
-        {
-            currentTime += Time.deltaTime * speed;
-        }
-        else 
-        {
-            Debug.Log("Completed!");
-            progressText.text = "Completed!";
+        if (moduleProgressValue != null) {
+            if (moduleProgressValue.Progress >= moduleProgressValue.MaxTime) {
+                StopProgress(); 
+                StudyManager.Instance.StopStudying();
+            }
+            if (isUpdating) {
+                UpdateModuleProgress();
+            }
         }
     }
 
-    // if an event happens, the progress bar halts
-    public void StopProgressBar()
+    public void UpdateModuleProgress()
     {
-        speed = 0.0f;
+        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        {
+            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime);
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
+            Debug.Log("MPV's progress in UpdateModuleProgress: " + moduleProgressValue.Progress); 
+            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+        }
     }
 
-    // if player chooses to do the distraction, deduct time from Countdown.cs
-
-    public void Deduct(float time)
+    public void SetModuleSideText(string text)
     {
-        // 
+        moduleSideText.text = text;
     }
 
-    public void CloseWorkPanel() {
-        SceneManager.LoadScene("InGameScene");
+    public void SetModuleProgress(ModuleProgressValue progress)
+    {
+        moduleProgressValue = progress;
+        if (moduleProgressValue != null)
+        {
+            if (progressBar == null)
+            {
+                progressBar = GetComponent<Image>();
+            }
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
+            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+            Debug.Log(progress);
+            Debug.Log("Succesfully for setModuleProgress"); 
+        }
+        else {
+            Debug.Log("No mPV initialized"); 
+        }
     }
 
-    public void Reset() {
-        currentTime = 0.0f;
-        speed = 0.09f;
+    public void UpdateModuleProgress(float speed)
+    {
+        if (moduleProgressValue != null && moduleProgressValue.Progress < moduleProgressValue.MaxTime)
+        {
+            moduleProgressValue.SetProgress(moduleProgressValue.Progress + Time.deltaTime * speed);
+            progressBar.fillAmount = moduleProgressValue.GetProgressPercentage();
+            progressText.text = (progressBar.fillAmount * 100).ToString("F0") + "%";
+        }
+    }
+
+    public void StartProgress()
+    {
+        isUpdating = true;
+        Debug.Log("Succesfully start progress");
+    }
+
+    public void StopProgress()
+    {
+        isUpdating = false;
+    }
+
+    public void ResetProgress()
+    {
+        if (moduleProgressValue != null)
+        {
+            moduleProgressValue.ResetProgress();
+            progressBar.fillAmount = 0;
+            progressText.text = "0%";
+        }
+    }
+
+    public void SaveProgress()
+    {
+        if (moduleProgressValue != null)
+        {
+            moduleProgressValue.SaveProgress(progressBar != null ? progressBar.fillAmount * moduleProgressValue.MaxTime : 0);
+        }
+        Debug.Log("Saving progress here"); 
+    }
+
+    public void CloseWorkPanel()
+    {
+        SceneManager.LoadScene("InGameScreen");
     }
 }
