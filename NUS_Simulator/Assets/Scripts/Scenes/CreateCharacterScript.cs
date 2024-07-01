@@ -42,7 +42,13 @@ public class CreateCharacterScript : MonoBehaviour
             case "SOC":
                 PLAYER.SetFaculty("SOC");
                 Debug.Log(PLAYER.GetFaculty());
-                SceneManager.LoadScene("SelectSemester");
+                 if (GameModeManager.Instance.GetGameMode() == GameMode.Linear)
+                 {
+                    SceneManager.LoadScene("SelectSemester");
+                 } else
+                 {
+                    SceneManager.LoadScene("Select Modules");
+                 }
                 break;
             case "FOS":
                 PLAYER.SetFaculty("FOS");

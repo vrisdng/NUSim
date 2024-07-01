@@ -14,7 +14,7 @@ public class MainMenuTest
     public void TestQuitButton()
     {
         // Arrange
-        MainMenuScript mainMenuScript = new GameObject().AddComponent<MainMenuScript>();
+        MainMenu mainMenuScript = new GameObject().AddComponent<MainMenu>();
 
         // Act
         mainMenuScript.Quit();

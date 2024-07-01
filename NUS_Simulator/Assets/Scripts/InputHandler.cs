@@ -25,7 +25,7 @@ public class InputHandler : MonoBehaviour
         if (objSelected.tag == "Distraction")
         {
             SceneManager.LoadScene("DistractionScene");
-            StudyManager.Instance.StopStudying(); 
+            StudyManager.Instance.StopAllStudying(); 
         }
         if (objSelected.tag == "Work" && !isSleepPanelActive)
         {

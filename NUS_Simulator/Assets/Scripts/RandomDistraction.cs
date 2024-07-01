@@ -104,18 +104,21 @@ public class RandomDistraction : MonoBehaviour
     void SetDistractionText(DistractionEvent distraction)
     {
         distractionText.text = distraction.distractionText;
-        mpText.text = $"MP: +{distraction.GetMentalPoints()}";
+        /* mpText.text = "The points you get will be based on your performance in the mini-game!";
         ppText.text = $"PP: +{distraction.GetPhysicalPoints()}";
-        spText.text = $"SP: +{distraction.GetSocialPoints()}";
+        spText.text = $"SP: +{distraction.GetSocialPoints()}"; */
     }
+
     public void HandleYesButton()
     {
+        /*
         Debug.Log("Yes button clicked");
         Student player = Student.Instance;
         player.AddPoints(distractions[selectedDistractionIndex]);
-        Debug.Log("Player's MP: " + player.GetMentalPoints());
+        Debug.Log("Player's MP: " + player.GetMentalPoints()); 
+        SceneManager.LoadSceneAsync("InGameScene"); */
         countdown.UpdateRemainingTime(-timeDeductible);
-        SceneManager.LoadSceneAsync("InGameScene");
+        SceneManager.LoadSceneAsync("flappy bird"); 
         Time.timeScale = 1; 
     }
 
