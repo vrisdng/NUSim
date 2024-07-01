@@ -8,7 +8,7 @@ public class Countdown : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
 
-    const float REMAINING_TIME = 50f;
+    const float REMAINING_TIME = 180f;
     public static float remainingTime = REMAINING_TIME; 
 
     private bool isPaused = false;
@@ -65,11 +65,10 @@ public class Countdown : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    // Method to update remainingTime externally
     public void UpdateRemainingTime(float newTime)
     {
         remainingTime += newTime;
-        UpdateTimerDisplay(); // Update the timer display when remainingTime is updated
+        UpdateTimerDisplay(); 
     }
     public void ResetCountdown()
     {

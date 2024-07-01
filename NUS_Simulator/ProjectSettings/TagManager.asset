@@ -9,7 +9,13 @@ TagManager:
   - StudyingPanel
   - SOC_SelectModulesPanel
   - SleepIcon
-  - FlappyBirdLogic
+  - SleepPanel
+  - Plant
+  - Chessboard
+  - Coffee-machine
+  - Bible
+  - Milk
+  - MP3
   layers:
   - Default
   - TransparentFX

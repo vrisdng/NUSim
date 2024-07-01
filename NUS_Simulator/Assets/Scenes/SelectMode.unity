@@ -334,6 +334,50 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1028596897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028596899}
+  - component: {fileID: 1028596898}
+  m_Layer: 0
+  m_Name: GameModeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1028596898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028596897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e009def4552436db60928ea35d9d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1028596899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028596897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9871778, y: 3.2914255, z: 1661.0039}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297734514
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,8 +663,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669186536}
-        m_TargetAssemblyTypeName: SelectMode, Assembly-CSharp
-        m_MethodName: PlayLinear
+        m_TargetAssemblyTypeName: SelectModeScript, Assembly-CSharp
+        m_MethodName: PlayKiasu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1054,6 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc03952c4e16a436e9fc622617d67ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameModeManager: {fileID: 1028596898}
 --- !u!1 &1773106290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,3 +1240,4 @@ SceneRoots:
   - {fileID: 399411557}
   - {fileID: 1669186535}
   - {fileID: 1297734517}
+  - {fileID: 1028596899}

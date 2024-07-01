@@ -15,9 +15,8 @@ public class PointsController : MonoBehaviour
     private IEnumerator DecrementPoints() 
     {
         while(true) {
-            if (player.IsAnyPointZero()) {
-                SceneManager.LoadScene("GameOverScene");
-                break;
+            if (player.GetMentalPoints() < 0 || player.GetPhysicalPoints() < 0 || player.GetSocialPoints() < 0) {
+                SceneManager.LoadSceneAsync("GameOverScene"); 
             }
             player.DecrementMentalPoints(1.7f);
             player.DecrementPhysicalPoints(1.9f);

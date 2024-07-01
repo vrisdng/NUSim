@@ -6,30 +6,38 @@ using UnityEngine.EventSystems;
 public class InputHandler : MonoBehaviour
 {
     GameObject objSelected = null;
-    [SerializeField] private GameObject sleepPanel; 
+    [SerializeField] private GameObject sleepPanel;
+    private bool isSleepPanelActive = false;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0))
         {
-            CheckHitObject();
-            if (objSelected != null)
-            {
-                if (objSelected.tag == "Distraction")
-                {
-                    SceneManager.LoadScene("DistractionScene");
-                    StudyManager.Instance.StopStudying(); 
-                }
-                if (objSelected.tag == "Work")
-                {
-                    SceneManager.LoadScene("WorkingScene");
-                }
-                if (objSelected.tag == "SleepIcon")
-                {
-                    sleepPanel.SetActive(true); 
-                }
-            }
+            return;
         }
+        
+        CheckHitObject();
+        if (objSelected == null)
+        {
+            return;
+        }
+        
+        if (objSelected.tag == "Distraction")
+        {
+            SceneManager.LoadScene("DistractionScene");
+            StudyManager.Instance.StopStudying(); 
+        }
+        if (objSelected.tag == "Work" && !isSleepPanelActive)
+        {
+            SceneManager.LoadScene("WorkingScene");
+        }
+        if (objSelected.tag == "SleepIcon")
+        {
+            sleepPanel.SetActive(true); 
+            isSleepPanelActive = true;
+        }
+            
+        
     }
 
     void CheckHitObject() 

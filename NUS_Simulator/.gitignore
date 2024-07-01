@@ -73,3 +73,6 @@ crashlytics-build.properties
 # macOS Finder file that stores custom folder attributes
 /[Aa]rtifacts/
 /[Cc]odeCoverage/
+
+# Jamf .DS_Store files
+.DS_Store
