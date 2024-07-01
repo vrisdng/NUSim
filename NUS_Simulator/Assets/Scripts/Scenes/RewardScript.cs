@@ -23,10 +23,11 @@ public class RewardScript : MonoBehaviour
         }
     }
 
+
     public void DisplayAchievements() 
     {
         string text = ""; 
-        if (PLAYER.GetGPA() >= 4.8f)
+        if (PLAYER.GetGPA() >= 5.0f)
         {
             text += "Dean's List \n";
         }
@@ -42,6 +43,9 @@ public class RewardScript : MonoBehaviour
         {
             text += "Social Butterfly \n"; 
         }
+        else {
+            text += "No Achievements Unlocked \n";
+        }
         achievementText.text = text; 
     }
 
@@ -54,6 +58,7 @@ public class RewardScript : MonoBehaviour
         itemsPanels[randomIndex].SetActive(true);
     }
 
+    //TODO: Add Rewards class 
     public void OnClickAReward() 
     {
         GameObject objSelected = EventSystem.current.currentSelectedGameObject;

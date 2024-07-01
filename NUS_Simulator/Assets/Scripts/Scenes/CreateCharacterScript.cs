@@ -42,6 +42,7 @@ public class CreateCharacterScript : MonoBehaviour
             case "SOC":
                 PLAYER.SetFaculty("SOC");
                 Debug.Log(PLAYER.GetFaculty());
+                SceneManager.LoadScene("SelectSemester");
                 break;
             case "FOS":
                 PLAYER.SetFaculty("FOS");

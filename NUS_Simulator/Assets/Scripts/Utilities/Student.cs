@@ -199,6 +199,5 @@ public class Student {
     public void Reset() {
         instance = new Student(this.name, 100, 100, 100);
     }
-
 }
 

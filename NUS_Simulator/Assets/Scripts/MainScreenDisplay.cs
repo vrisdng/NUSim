@@ -27,7 +27,9 @@ public class MainScreenDisplay : MonoBehaviour
 
     void Update()
     {
-
+        if (PLAYER.IsAnyPointZero()) {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
     
 }

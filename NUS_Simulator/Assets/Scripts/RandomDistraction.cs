@@ -74,7 +74,9 @@ public class RandomDistraction : MonoBehaviour
     
     void Update()
     {
-        
+        if (Student.Instance.IsAnyPointZero()) {
+            SceneManager.LoadScene("GameOverScene");
+        }
     }
 
     void RandomDistractionEvent()

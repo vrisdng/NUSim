@@ -32,6 +32,13 @@ public class StudySceneScript : MonoBehaviour
         StudyManager.Instance.SetProgressBars(progressBars);
     }
 
+    void Update()
+    {
+        if (Student.Instance.IsAnyPointZero()) {
+            SceneManager.LoadScene("GameOverScene");
+        }
+    }
+
     void UpdateModuleButtons()
     {
         Button[] buttons = GetComponentsInChildren<Button>();

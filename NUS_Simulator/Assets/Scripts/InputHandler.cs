@@ -11,27 +11,33 @@ public class InputHandler : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0))
         {
-            CheckHitObject();
-            if (objSelected != null)
-            {
-                if (objSelected.tag == "Distraction")
-                {
-                    SceneManager.LoadScene("DistractionScene");
-                    StudyManager.Instance.StopStudying(); 
-                }
-                if (objSelected.tag == "Work" && !isSleepPanelActive)
-                {
-                    SceneManager.LoadScene("WorkingScene");
-                }
-                if (objSelected.tag == "SleepIcon")
-                {
-                    sleepPanel.SetActive(true); 
-                    isSleepPanelActive = true;
-                }
-            }
+            return;
         }
+        
+        CheckHitObject();
+        if (objSelected == null)
+        {
+            return;
+        }
+        
+        if (objSelected.tag == "Distraction")
+        {
+            SceneManager.LoadScene("DistractionScene");
+            StudyManager.Instance.StopStudying(); 
+        }
+        if (objSelected.tag == "Work" && !isSleepPanelActive)
+        {
+            SceneManager.LoadScene("WorkingScene");
+        }
+        if (objSelected.tag == "SleepIcon")
+        {
+            sleepPanel.SetActive(true); 
+            isSleepPanelActive = true;
+        }
+            
+        
     }
 
     void CheckHitObject() 

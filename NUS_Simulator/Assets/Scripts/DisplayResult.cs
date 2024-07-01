@@ -86,7 +86,7 @@ public class DisplayResult : MonoBehaviour
             }
         }
 
-        return "F"; // Default to "F" if no grade is selected
+        return "F"; 
     }
 
     float GradeToScore(string grade)

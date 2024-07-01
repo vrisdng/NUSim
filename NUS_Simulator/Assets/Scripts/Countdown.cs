@@ -65,11 +65,10 @@ public class Countdown : MonoBehaviour
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    // Method to update remainingTime externally
     public void UpdateRemainingTime(float newTime)
     {
         remainingTime += newTime;
-        UpdateTimerDisplay(); // Update the timer display when remainingTime is updated
+        UpdateTimerDisplay(); 
     }
     public void ResetCountdown()
     {
