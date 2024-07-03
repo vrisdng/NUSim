@@ -134,8 +134,8 @@ public class DisplayResult : MonoBehaviour
             gradesText += $"{modules[i].GetModuleName()}: {grade}\n";
         }
 
-        //float averageGrade = CalculateAverageGrade(grades);
-        float averageGrade = 5.0f;
+        float averageGrade = CalculateAverageGrade(grades);
+        //float averageGrade = 5.0f;
         PLAYER.SetGPA(averageGrade); 
         gradesText += $"Average Grade: {averageGrade:F2}\n";
 
