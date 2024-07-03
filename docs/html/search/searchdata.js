@@ -1,18 +1,14 @@
-var indexSectionsWithContent =
-{
+var indexSectionsWithContent = {
   0: "bcdegilmprst",
-  1: "bcdegilmprst"
+  1: "bcdegilmprst",
 };
 
-var indexSectionNames =
-{
+var indexSectionNames = {
   0: "all",
-  1: "classes"
+  1: "classes",
 };
 
-var indexSectionLabels =
-{
+var indexSectionLabels = {
   0: "All",
-  1: "Classes"
+  1: "Classes",
 };
-

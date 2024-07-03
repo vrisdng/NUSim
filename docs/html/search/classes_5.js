@@ -1,4 +1,3 @@
-var searchData=
-[
-  ['inputhandler_0',['InputHandler',['../class_input_handler.html',1,'']]]
+var searchData = [
+  ["inputhandler_0", ["InputHandler", ["../class_input_handler.html", 1, ""]]],
 ];
