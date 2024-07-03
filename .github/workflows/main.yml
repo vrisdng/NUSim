@@ -42,9 +42,9 @@ jobs:
           lfs: true
 
       # Cache
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
-          path: Library
+          path: './NUS_Simulator/Library'
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -58,6 +58,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectPath: './NUS_Simulator'
 
   build:
     name: Build 
