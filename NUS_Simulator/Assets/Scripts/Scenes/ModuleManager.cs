@@ -55,26 +55,25 @@ public class ModuleManager : MonoBehaviour
 
     public void OnModuleButtonClick(Module module, Button button)
     {
-        if (clickedCount < 5)
-        {
-            button.interactable = false;
-            selectedModules[clickedCount] = module;
-            clickedCount++;
-            Debug.Log($"Module selected: {module.moduleName}");
-            nextButton.SetActive(false);
-
-            if (clickedCount == 5)
-            {
-                SelectedModulesManager.Instance.SetSelectedModules(selectedModules);
-                Debug.Log("Selected modules have been set in the singleton.");
-                nextButton.SetActive(true);
-            }
-        }
-        else
+        if (clickedCount > 5)
         {
             Debug.Log("Maximum of 5 modules have already been selected.");
         }
+        
+        button.interactable = false;
+        selectedModules[clickedCount] = module;
+        clickedCount++;
+        Debug.Log($"Module selected: {module.moduleName}");
+        nextButton.SetActive(false);
+
+        if (clickedCount == 5)
+        {
+            SelectedModulesManager.Instance.SetSelectedModules(selectedModules);
+            Debug.Log("Selected modules have been set in the singleton.");
+            nextButton.SetActive(true);
+        }
     }
+
 
     public void StartNewSemester()
     {

@@ -50,72 +50,78 @@ public class StudySceneScript : MonoBehaviour
                 continue;
             }
             
-            if (i < selectedModules.Length)
-            {
-                Module assignedModule = selectedModules[i];
-                TextMeshProUGUI buttonText = buttons[i].GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null)
-                {
-                    if (assignedModule != null){
-                        buttonText.text = assignedModule.GetModuleName();
-                        Debug.Log("Assigned module: " + assignedModule.GetModuleName() + " to button: " + i);
-                    }
-                    else {
-                        Debug.LogWarning("Assigned module is null");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("Text component not found in button: " + buttons[i].name);
-                }
-            }
-            else
-            {
-                buttons[i].gameObject.SetActive(false);
-            }
+            UpdateButton(buttons[i], i, selectedModules);
         }
     }
 
+    void UpdateButton(Button button, int index, Module[] selectedModules)
+    {
+        if (index >= selectedModules.Length)
+        {
+            Utils.SetVisibility(button, false);
+            return;
+        }
+        
+        Module assignedModule = selectedModules[index];
+        TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
+        
+        if (buttonText == null)
+        {
+            Debug.Log("Text component not found in button: " + button.name);
+            return;
+        }
+        
+        if (assignedModule == null)
+        {
+            Debug.Log("Assigned module is null");
+            return;
+        }
+        
+        Utils.SetText(buttonText, assignedModule.GetModuleName());
+        Debug.Log(assignedModule.GetModuleName() + index);
+    }
     public void ClickOnModule()
     {
         warningText.gameObject.SetActive(true);
-        Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
+
         if (StudyManager.Instance.IsStudying())
         {
             return;
         }
+
+        Button clickedButton = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
         string clickedButtonName = clickedButton.name;
-        progressBarPanel.SetActive(false);
-        int buttonIndex;
-        if (int.TryParse(clickedButtonName, out buttonIndex))
+        if (!int.TryParse(clickedButtonName, out int buttonIndex))
         {
-            if (buttonIndex >= 0 && buttonIndex < modulePanels.Length)
-            {
-                for (int i = 0; i < modulePanels.Length; i++)
-                {
-                    modulePanels[i].SetActive(false);
-                    if (i == buttonIndex) {
-                        modulePanels[i].SetActive(true);
-                    } 
-                    progressBars[i].StopProgress();
-                }
-                if (StudyManager.Instance.GetActiveModuleIndex() != -1)
-                {
-                    progressBars[StudyManager.Instance.GetActiveModuleIndex()].StopProgress();
-                }
-
-                Module selectedModule = SelectedModulesManager.Instance.SelectedModules[buttonIndex];
-                ProgressBar progressBar = progressBars[buttonIndex];
-                progressBar.SetModule(selectedModule);
-
-                modulePanels[buttonIndex].SetActive(true);
-                Debug.Log("Turned on module panel for module: " + buttonIndex);
-
-                StudyManager.Instance.SwitchModule(buttonIndex);
-            }
+            return;
         }
-    }
 
+        if (buttonIndex < 0 || buttonIndex >= modulePanels.Length)
+        {
+            return;
+        }
+
+        progressBarPanel.SetActive(false);
+
+        for (int i = 0; i < modulePanels.Length; i++)
+        {
+            modulePanels[i].SetActive(i == buttonIndex);
+            progressBars[i].StopProgress();
+        }
+
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        if (activeModuleIndex != -1)
+        {
+            progressBars[activeModuleIndex].StopProgress();
+        }
+
+        Module selectedModule = SelectedModulesManager.Instance.SelectedModules[buttonIndex];
+        progressBars[buttonIndex].SetModule(selectedModule);
+
+        modulePanels[buttonIndex].SetActive(true);
+        Debug.Log("Turned on module panel for module: " + buttonIndex);
+        StudyManager.Instance.SwitchModule(buttonIndex);
+    }
 
     public void InitializeModulePanelsAndProgressBars()
     {
@@ -161,26 +167,28 @@ public class StudySceneScript : MonoBehaviour
         }
     }
 
-    public void OnBackButtonClick() 
+    public void OnBackButtonClick()
     {
-        // makes all the progress bars stop
-        if (progressBars != null)
+        if (progressBars == null)
         {
-            for (int i = 0; i < progressBars.Length; i++)
-            {
-                if (progressBars[i] != null)
-                {
-                    Debug.Log($"Saving progress for progress bar {i}");
-                    progressBars[i].SaveProgress();
-                }
-                else
-                {
-                    Debug.LogWarning($"Progress bar {i} is null");
-                }
-            }
+            Debug.LogWarning("Progress bars are null");
+            return;
         }
+
+        for (int i = 0; i < progressBars.Length; i++)
+        {
+            if (progressBars[i] == null)
+            {
+                Debug.LogWarning($"Progress bar {i} is null");
+                continue;
+            }
+
+            Debug.Log($"Saving progress for progress bar {i}");
+            progressBars[i].SaveProgress();
+        }
+
         StudyManager.Instance.StopStudying();
-        SceneManager.LoadScene("InGameScene"); 
+        SceneManager.LoadScene("InGameScene");
     }
 
     public void CloseWorkPanel()

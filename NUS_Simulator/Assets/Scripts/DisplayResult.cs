@@ -7,192 +7,140 @@ using UnityEngine.UI;
 
 public class DisplayResult : MonoBehaviour
 {
-    public GameObject displayButton; 
+    public GameObject displayButton;
     public GameObject startOverButton;
-    public GameObject getRewardsButton; 
+    public GameObject getRewardsButton;
     [SerializeField] TextMeshProUGUI gradesReport;
     [SerializeField] TextMeshProUGUI mentalPoints;
     [SerializeField] TextMeshProUGUI physicalPoints;
     [SerializeField] TextMeshProUGUI socialPoints;
-
     [SerializeField] TextMeshProUGUI finalReport;
     [SerializeField] TextMeshProUGUI congrats;
 
-    private Student PLAYER = Student.Instance; 
+    private Student PLAYER = Student.Instance;
     private GameModeManager GAMEMODE = GameModeManager.Instance;
     private SemesterManager SEMESTER = SemesterManager.Instance;
     private SelectedModulesManager SELECTED_MODULES = SelectedModulesManager.Instance;
 
     public void Start()
     {
-        Debug.Log("?"); 
+        Debug.Log("?");
         startOverButton.SetActive(false);
         getRewardsButton.SetActive(false);
     }
+
     public void OnClick()
     {
         Debug.Log("Displaying results...");
-        DisplayResults(); 
+        DisplayResults();
         displayButton.SetActive(false);
     }
 
-    string RandomGradeGenerator(float progress)
+    private void DisplayResults()
     {
-        Dictionary<string, float> gradeProbabilities = new Dictionary<string, float>();
+        var modules = SelectedModulesManager.Instance.GetSelectedModules();
+        var grades = GenerateGrades(modules);
+        var averageGrade = Grade.CalculateAverageGrade(grades);
+        PLAYER.SetGPA(averageGrade);
 
-        if (progress >= 0 && progress <= 20)
-        {
-            gradeProbabilities = new Dictionary<string, float>
-            {
-                { "D", 0.20f },
-                { "F", 0.80f }
-            };
-        }
-        else if (progress >= 20 && progress < 45)
-        {
-            gradeProbabilities = new Dictionary<string, float>
-            {
-                { "C", 0.50f },
-                { "D", 0.50f }
-            };
-        }
-        else if (progress >= 45 && progress < 75)
-        {
-            gradeProbabilities = new Dictionary<string, float>
-            {
-                { "A", 0.10f },
-                { "B", 0.70f },
-                { "C", 0.20f }
-            };
-        }
-        else if (progress >= 75)
-        {
-            gradeProbabilities = new Dictionary<string, float>
-            {
-                { "A", 0.80f },
-                { "B", 0.20f }
-            };
-        }
-
-        float randomValue = UnityEngine.Random.value;
-        float cumulativeProbability = 0f;
-
-        foreach (var gradeProbability in gradeProbabilities)
-        {
-            cumulativeProbability += gradeProbability.Value;
-            if (randomValue <= cumulativeProbability)
-            {
-                return gradeProbability.Key;
-            }
-        }
-
-        return "F"; 
+        DisplayGrades(grades, averageGrade);
+        DisplayPoints();
+        DisplayFinalReport(averageGrade);
     }
 
-    float GradeToScore(string grade)
+    private void SetPlayerGPA(float averageGrade)
     {
-        switch (grade)
-        {
-            case "A":
-                return 5.0f;
-            case "B":
-                return 3.5f;
-            case "C":
-                return 2.0f;
-            case "D":
-                return 1.0f;
-            case "F":
-                return 0.0f;
-            default:
-                return 0.0f;
-        }
-    }
+        PLAYER.SetGPA(averageGrade);
+    }   
 
-    float CalculateAverageGrade(List<string> grades)
+    private List<string> GenerateGrades(Module[] modules)
     {
-        float totalScore = 0f;
-        foreach (string grade in grades)
-        {
-            totalScore += GradeToScore(grade);
-        }
-        return totalScore / grades.Count;
-    }
-
-    void DisplayResults()
-    {
-        Module[] modules = SelectedModulesManager.Instance.GetSelectedModules();
-
-        string gradesText = "Grades:\n";
         List<string> grades = new List<string>();
-
-        for (int i = 0; i < modules.Length; i++)
+        foreach (var module in modules)
         {
-            float progress = modules[i].GetProgress(); 
-            Debug.Log("The progress of this module " + modules[i] + "is " + progress);
-            string grade = RandomGradeGenerator(progress);
+            float progress = module.GetProgress();
+            Debug.Log("The progress of this module " + module + " is " + progress);
+            string grade = Grade.RandomGradeGenerator(progress);
             grades.Add(grade);
-            gradesText += $"{modules[i].GetModuleName()}: {grade}\n";
         }
+        return grades;
+    }
 
-        float averageGrade = CalculateAverageGrade(grades);
-        //float averageGrade = 5.0f;
-        PLAYER.SetGPA(averageGrade); 
+    private void DisplayGrades(List<string> grades, float averageGrade)
+    {
+        string gradesText = "Grades:\n";
+        for (int i = 0; i < grades.Count; i++)
+        {
+            gradesText += $"{SelectedModulesManager.Instance.GetSelectedModules()[i].GetModuleName()}: {grades[i]}\n";
+        }
         gradesText += $"Average Grade: {averageGrade:F2}\n";
-
         gradesReport.text = gradesText;
+    }
 
+    private void DisplayPoints()
+    {
         mentalPoints.text = "Mental Points: " + Mathf.RoundToInt(Student.Instance.GetMentalPoints());
         physicalPoints.text = "Physical Points: " + Mathf.RoundToInt(Student.Instance.GetPhysicalPoints());
         socialPoints.text = "Social Points: " + Mathf.RoundToInt(Student.Instance.GetSocialPoints());
+    }
 
-        float totalPoints = Mathf.RoundToInt(Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
-
+    private void DisplayFinalReport(float averageGrade)
+    {
         if (GAMEMODE.GetGameMode() == GameMode.Kiasu)
         {
-            if (averageGrade >= 5.0f)
-            {
-                finalReport.text = "Congratulations! You have become the Ultimate Kiasu!";
-                startOverButton.SetActive(true);
-            }
-            else {
-                if (Student.Instance.GetMentalPoints() == 50 || Student.Instance.GetPhysicalPoints() == 50 || Student.Instance.GetSocialPoints() == 50)
-                {
-                    finalReport.text = "You have failed to become Kiasu!";
-                    congrats.text = "However, thanks to social merits, you have unlocked an item to aid you in the next round!";
-                    getRewardsButton.SetActive(true);
-                }
-                else
-                {
-                    finalReport.text = "You have totally failed to become anything, let alone Kiasu!";
-                    congrats.text = "Better luck next time!";
-                    startOverButton.SetActive(true);
-                }
-            }
-        } else if (GAMEMODE.GetGameMode() == GameMode.Linear)
-        {
-            if (averageGrade >= 3.0f && (Student.Instance.GetMentalPoints() > 0 || Student.Instance.GetPhysicalPoints() > 0 || Student.Instance.GetSocialPoints() > 0))
-            {
-                finalReport.text = "Congratulations! Your grades have passed the semester!";
-                congrats.text = "You have unlocked the next semester and earn rewards!";
-                getRewardsButton.SetActive(true);
-                //SEMESTER.CompleteCurrentSemester();
-                SELECTED_MODULES.CompleteModulesOfCurrentSemester(); 
-                
-                
-            }
-            else if (averageGrade < 3.0f)
-            {
-                finalReport.text = "You have failed the semester.";
-                congrats.text = "You have not unlocked the next semester.";
-                startOverButton.SetActive(true);
-            }
-            else 
-            { 
-                startOverButton.SetActive(true);
-                finalReport.text = "You have failed the semester.";
-                congrats.text = "Better luck next time!";
-                startOverButton.SetActive(true);
-            }
+            DisplayKiasuModeReport(averageGrade);
+            return;
         }
+
+        if (GAMEMODE.GetGameMode() == GameMode.Linear)
+        {
+            DisplayLinearModeReport(averageGrade);
+        }
+    }
+
+    private void DisplayKiasuModeReport(float averageGrade)
+    {
+        if (averageGrade >= 5.0f)
+        {
+            SetFinalReport("Congratulations! You have become the Ultimate Kiasu!", true, false);
+            return;
+        }
+
+        if (HasAnyPoints(50))
+        {
+            SetFinalReport("You have failed to become Kiasu!", false, true, "However, thanks to social merits, you have unlocked an item to aid you in the next round!");
+            return;
+        }
+
+        SetFinalReport("You have totally failed to become anything, let alone Kiasu!", true, false, "Better luck next time!");
+    }
+
+    private void DisplayLinearModeReport(float averageGrade)
+    {
+        if (averageGrade >= 3.0f && HasAnyPoints(0))
+        {
+            SetFinalReport("Congratulations! Your grades have passed the semester!", false, true, "You have unlocked the next semester and earn rewards!");
+            SELECTED_MODULES.CompleteModulesOfCurrentSemester();
+            return;
+        }
+
+        SetFinalReport("You have failed the semester.", true, false, "You have not unlocked the next semester. Better luck next time!");
+    }
+
+    private void SetFinalReport(string finalText, bool showStartOver, bool showRewards, string congratsText = "")
+    {
+        Utils.SetText(finalReport, finalText);
+        startOverButton.SetActive(showStartOver);
+        getRewardsButton.SetActive(showRewards);
+        if (!string.IsNullOrEmpty(congratsText))
+        {
+            Utils.SetText(congrats, congratsText);
+        }
+    }
+
+    private bool HasAnyPoints(int points)
+    {
+        var student = Student.Instance;
+        return student.GetMentalPoints() == points || student.GetPhysicalPoints() == points || student.GetSocialPoints() == points;
     }
 }
