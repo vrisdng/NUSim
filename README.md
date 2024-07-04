@@ -2,7 +2,9 @@
 
 Orbital's project from YouAreSoBee
 Level of achievement: Apollo 11
-[Milestone2.pdf](https://github.com/user-attachments/files/16093107/Milestone2.pdf)
+
+Poster: ![Milestone2.pdf](https://github.com/user-attachments/files/16093144/Milestone2.pdf)
+
 
 # Playable Demo
 
