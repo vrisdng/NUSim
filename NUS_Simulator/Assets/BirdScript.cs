@@ -20,7 +20,10 @@ public class BirdScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isAlive) {
             myRigidBody.velocity = Vector2.up * flapStrength;
-        } 
+        } else if (transform.position.y <= -50) {
+            logic.gameOver();
+            isAlive = false;
+        }
 
         
     }
