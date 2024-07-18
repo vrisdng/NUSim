@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class Module : ScriptableObject
 {
     public string moduleName;
+    public string moduleTitle; 
     public float moduleDifficulty;
     public string moduleType;
+    public string moduleDepartment; 
+    public int moduleCredit;
 
     public Button moduleButton;
 
