@@ -16,6 +16,9 @@ TagManager:
   - Bible
   - Milk
   - MP3
+  - Snake
+  - Food
+  - Obstacle
   layers:
   - Default
   - TransparentFX
