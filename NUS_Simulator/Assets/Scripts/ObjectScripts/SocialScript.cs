@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SleepScript : MonoBehaviour
+public class SocialScript : MonoBehaviour
 {
 
     [SerializeField] private Button firstButton;
@@ -15,6 +15,7 @@ public class SleepScript : MonoBehaviour
 
     private int clickCount = 0;
     private const int MaxClicks = 3;
+
     void Awake() 
     {
         thisPanel.SetActive(false); 
@@ -32,11 +33,11 @@ public class SleepScript : MonoBehaviour
         Student player = Student.Instance;
 
         if (clickedButton == firstButton) {
-            HandleButtonClick(player, countdown, 10, 10, 0, -15f);
+            HandleButtonClick(player, countdown, 0, 0, 30, -15f);
         } else if (clickedButton == secondButton) {
-            HandleButtonClick(player, countdown, 30, 30, 0, -30f);
+            HandleButtonClick(player, countdown, 0, 0, 50, -30f);
         } else if (clickedButton == thirdButton) {
-            HandleButtonClick(player, countdown, 60, 60, 0, -60f);
+            HandleButtonClick(player, countdown, 0, 0, 80, -60f);
         } else if (clickedButton == cancelButton) {
             Debug.Log("cancel");
             countdown.UpdateRemainingTime(0f);
@@ -50,9 +51,9 @@ public class SleepScript : MonoBehaviour
         }
     }
 
-    private void HandleButtonClick(Student player, Countdown countdown, int sleepPoints, int healthPoints, int stressPoints, float timeChange)
+    private void HandleButtonClick(Student player, Countdown countdown, int mPoints, int hPoints, int sPoints, float timeChange)
     {
-        player.AddPointsFromSleeping(sleepPoints, healthPoints, stressPoints);
+        player.AddPointsFromSleeping(mPoints, hPoints, sPoints);
         countdown.UpdateRemainingTime(timeChange);
         thisPanel.SetActive(false);
     }

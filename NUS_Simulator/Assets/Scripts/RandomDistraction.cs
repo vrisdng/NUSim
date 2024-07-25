@@ -68,7 +68,6 @@ public class RandomDistraction : MonoBehaviour
     {
         InitializeDistractions();
         RandomDistractionEvent();
-        Time.timeScale = 0; 
     }
 
     
@@ -119,7 +118,6 @@ public class RandomDistraction : MonoBehaviour
         SceneManager.LoadSceneAsync("InGameScene"); */
         countdown.UpdateRemainingTime(-timeDeductible);
         SceneManager.LoadSceneAsync("flappy bird"); 
-        Time.timeScale = 1; 
     }
 
     public void HandleNoButton()
@@ -127,7 +125,6 @@ public class RandomDistraction : MonoBehaviour
 
         Debug.Log("Back to main screen!");
         SceneManager.LoadSceneAsync("InGameScene");
-        Time.timeScale = 1; 
     }
 }
 

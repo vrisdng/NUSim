@@ -9,18 +9,23 @@ public class PointsController : MonoBehaviour
     public void Initialize(Student student)
     {
         player = student;
+    }
+
+    public void StartDecrementPoints() 
+    {
         StartCoroutine(DecrementPoints());
     }
 
-    private IEnumerator DecrementPoints() 
+    public IEnumerator DecrementPoints() 
     {
         while(true) {
-            if (player.GetMentalPoints() < 0 || player.GetPhysicalPoints() < 0 || player.GetSocialPoints() < 0) {
-                SceneManager.LoadSceneAsync("GameOverScene"); 
+            Debug.Log("Points: " + player.GetMentalPoints() + " " + player.GetPhysicalPoints() + " " + player.GetSocialPoints());
+            if (player.GetMentalPoints() <= 0 || player.GetPhysicalPoints() <= 0 || player.GetSocialPoints() <= 0) {
+                SceneManager.LoadScene("GameOverScene"); 
             }
-            player.DecrementMentalPoints(1.7f);
-            player.DecrementPhysicalPoints(1.9f);
-            player.DecrementSocialPoints(1.9f);
+            player.DecrementMentalPoints(2f);
+            player.DecrementPhysicalPoints(2f);
+            player.DecrementSocialPoints(2f);
             yield return new WaitForSeconds(1f);
             FindObjectOfType<PlayerInfoDisplay>().DisplayPlayerInfo();
         }

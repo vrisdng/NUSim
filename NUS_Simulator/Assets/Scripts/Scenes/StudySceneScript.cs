@@ -25,6 +25,7 @@ public class StudySceneScript : MonoBehaviour
     {
         playerInfoDisplay.DisplayPlayerInfo();
         PointsController.Initialize(Student.Instance);
+        PointsController.StartDecrementPoints();
         progressBarPanel.SetActive(false);
         warningText.gameObject.SetActive(false);
         UpdateModuleButtons();
