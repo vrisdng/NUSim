@@ -7,17 +7,17 @@ using UnityEditor;
 public class ModuleManager : MonoBehaviour
 {
     public Button moduleButton;
-    public GameObject nextButton; 
+    public Button nextButton; 
     public List<Module> availableModules = new List<Module>();
     public Transform[] moduleSlots;
 
-    private Module[] selectedModules = new Module[5];
+    public Module[] selectedModules = new Module[5];
     public NUSModsAPI nusModsAPI;
 
-    [SerializeField] private TextMeshProUGUI moduleName;
-    [SerializeField] private TextMeshProUGUI moduleTitle;
-    [SerializeField] private TextMeshProUGUI moduleType;
-    [SerializeField] private TextMeshProUGUI moduleDifficulty;
+    [SerializeField] public TextMeshProUGUI moduleName;
+    [SerializeField] public TextMeshProUGUI moduleTitle;
+    [SerializeField] public TextMeshProUGUI moduleType;
+    [SerializeField] public TextMeshProUGUI moduleDifficulty;
     public GameObject moduleInfoPanel; 
     public Button takeModuleButton;
     public Button goBackButton; 
@@ -28,7 +28,7 @@ public class ModuleManager : MonoBehaviour
     {
         LoadAvailableModules(PLAYER.GetFaculty()); 
         CreateModuleButtons();
-        nextButton.SetActive(false);
+        nextButton.interactable = false;
         moduleInfoPanel.SetActive(false);
     }
 
@@ -112,7 +112,7 @@ public class ModuleManager : MonoBehaviour
         {
             SelectedModulesManager.Instance.SetSelectedModules(selectedModules);
             Debug.Log("Selected modules have been set in the singleton.");
-            nextButton.SetActive(true); 
+            nextButton.interactable = true;
         }
     }
 

@@ -581,9 +581,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "studying: click on 'latop' to study for your modules.\nthe more time you
-    spend on a module, \nthe more likely you will get a certain grade for that module.\n(however,
-    the final result may depends on your luck). "
+  m_text: "studying: click on 'laptop' to study for your modules.\nthe more time
+    you spend on a module, \nthe more likely you will get a certain grade for that
+    module.\n(however, the final result may depends on your luck). "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e8c9d8eea979142b4b1368ebb21dea3b, type: 2}
   m_sharedMaterial: {fileID: 8053106600393682750, guid: e8c9d8eea979142b4b1368ebb21dea3b, type: 2}

@@ -32,7 +32,7 @@ public class NUSModsAPI : MonoBehaviour
             ProcessModuleData(json);
         }
     }
-    void ProcessModuleData(string json)
+    public void ProcessModuleData(string json)
     {
         ModuleInfoArray moduleArray = DeserializeJson(json);
         if (moduleArray == null || moduleArray.items == null)
@@ -51,14 +51,14 @@ public class NUSModsAPI : MonoBehaviour
         ProcessModules(moduleArray.items, allowedFaculties, facultyCourseCount);
     }
 
-    ModuleInfoArray DeserializeJson(string json)
+    public ModuleInfoArray DeserializeJson(string json)
     {
         string wrappedJson = "{\"items\":" + json + "}";
         Debug.Log("Wrapped JSON: " + wrappedJson);
         return JsonUtility.FromJson<ModuleInfoArray>(wrappedJson);
     }
 
-    List<string> GetAllowedFaculties()
+    public List<string> GetAllowedFaculties()
     {
         return new List<string>
         {
@@ -70,7 +70,7 @@ public class NUSModsAPI : MonoBehaviour
         };
     }
 
-    void ProcessModules(ModuleInfo[] modules, List<string> allowedFaculties, Dictionary<string, int> facultyCourseCount)
+    public void ProcessModules(ModuleInfo[] modules, List<string> allowedFaculties, Dictionary<string, int> facultyCourseCount)
     {
         int count = 0; 
         foreach (ModuleInfo module in modules)
@@ -79,7 +79,10 @@ public class NUSModsAPI : MonoBehaviour
             {
                 break; 
             }
-            if (IsAllowedModule(module, allowedFaculties, facultyCourseCount))
+
+            var (isAllowed, failedCondition) = IsAllowedModule(module, allowedFaculties, facultyCourseCount);
+
+            if (isAllowed)
             {
                 CreateModuleScriptableObject(module);
                 facultyCourseCount[module.faculty]++;
@@ -88,24 +91,36 @@ public class NUSModsAPI : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Module {module.moduleCode} is not allowed faculty or passed the 80 limit.");
+                Debug.LogWarning($"Module {module.moduleCode} not allowed: {failedCondition}");
                 continue; 
             }
         }
     }
 
-    bool IsAllowedModule(ModuleInfo module, List<string> allowedFaculties, Dictionary<string, int> facultyCourseCount)
+    public (bool isAllowed, string failedCondition) IsAllowedModule(ModuleInfo module, List<string> allowedFaculties, Dictionary<string, int> facultyCourseCount)
     {
-        return allowedFaculties.Contains(module.faculty) &&
-               facultyCourseCount[module.faculty] < LIMIT &&
-               module.workload != null &&
-               module.workload.Count > 0 && 
-               CalculateDifficulty(module) >= 10.0f &&
-               int.Parse(module.moduleCredit) >= 4 && 
-               module.description != "Not Available";
+        var conditions = new Dictionary<Func<bool>, string>
+        {
+            { () => allowedFaculties.Contains(module.faculty), "Faculty not allowed" },
+            { () => facultyCourseCount[module.faculty] < LIMIT, "Faculty course limit exceeded" },
+            { () => module.workload != null && module.workload.Count > 0, "Invalid workload" },
+            { () => CalculateDifficulty(module) >= 10.0f, "Difficulty too low" },
+            { () => int.Parse(module.moduleCredit) >= 4, "Module credit too low" },
+            { () => module.description != "Not Available", "Description not available" }
+        };
+
+        foreach (var condition in conditions)
+        {
+            if (!condition.Key())
+            {
+                return (false, condition.Value);
+            }
+        }
+
+        return (true, "Passed all conditions");
     }
 
-    void CreateModuleScriptableObject(ModuleInfo moduleInfo)
+    public void CreateModuleScriptableObject(ModuleInfo moduleInfo)
     {
         string path = $"{Application.dataPath}/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
         string relativePath = $"Assets/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
@@ -136,7 +151,7 @@ public class NUSModsAPI : MonoBehaviour
         }
     }
 
-    float CalculateDifficulty(ModuleInfo moduleInfo)
+    public float CalculateDifficulty(ModuleInfo moduleInfo)
     {
         if (moduleInfo.workload != null && moduleInfo.workload.Count > 0)
         {
