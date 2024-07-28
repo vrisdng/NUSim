@@ -13,7 +13,6 @@ public class StudySceneScript : MonoBehaviour
     [SerializeField] private Transform panelParent;
     [SerializeField] private Button startButton;
     [SerializeField] private Button stopButton;
-    [SerializeField] private GameObject minigameIcon; 
     [SerializeField] private TextMeshProUGUI warningText;
 
     private GameObject[] modulePanels;
@@ -240,8 +239,6 @@ public class StudySceneScript : MonoBehaviour
             progressBar.SetModule(selectedModules[i]);
             progressBars[i] = progressBar;
             Debug.Log("Progress bar set for module: " + i);
-
-            minigameIcon.SetActive(true); 
         }
     }
 
