@@ -7,7 +7,9 @@ public class InputHandler : MonoBehaviour
 {
     GameObject objSelected = null;
     [SerializeField] private GameObject sleepPanel;
+    [SerializeField] private GameObject socialPanel;
     private bool isSleepPanelActive = false;
+    private bool isSocialPanelActive = false;
 
     void Update()
     {
@@ -25,24 +27,22 @@ public class InputHandler : MonoBehaviour
         if (objSelected.tag == "Distraction")
         {
             SceneManager.LoadScene("DistractionScene");
-            if (StudyManager.Instance != null) {
-                StudyManager.Instance.StopAllStudying(); 
-            }
-            else {
-                Debug.Log("StudyManager is null");
-            }
+            //StudyManager.Instance.StopAllStudying(); 
         }
-        if (objSelected.tag == "Work" && !isSleepPanelActive)
+        if (objSelected.tag == "Work" && !isSleepPanelActive && !isSocialPanelActive)
         {
             SceneManager.LoadScene("WorkingScene");
         }
         if (objSelected.tag == "SleepIcon")
         {
             sleepPanel.SetActive(true); 
-            isSleepPanelActive = true;
+            isSleepPanelActive = sleepPanel.activeSelf;
         }
-            
-        
+        if (objSelected.tag == "Social")
+        {
+            socialPanel.SetActive(true);
+            isSocialPanelActive = socialPanel.activeSelf;
+        }  
     }
 
     void CheckHitObject() 
