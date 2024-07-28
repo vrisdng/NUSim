@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - development
+      - tester
   pull_request:
     branches:
       - main
       - development 
+      - tester
 
 jobs:
   free-disk-space:
