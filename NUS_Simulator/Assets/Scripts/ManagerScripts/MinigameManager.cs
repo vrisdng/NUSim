@@ -43,6 +43,7 @@ public class MinigameManager : MonoBehaviour
             Debug.LogError("Player is null");
             return;
         }
+        Debug.Log(playerScore);
         if (this.playerScore >= 6) 
         {
             StudySceneScript.Instance.HandleMiniGameResultIfPassed(); 

@@ -63,7 +63,8 @@ public class snake : MonoBehaviour
 
     public void gameOver(){
         MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
-        minigameManager.AttachScore(segments.Count - 1);
+        minigameManager.AttachScore(segments.Count);
+        Debug.Log(segments.Count); 
         Destroy(this);
         Destroy(food);
         gameOverScene.SetActive(true);

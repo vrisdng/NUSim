@@ -208,7 +208,7 @@ public class StudySceneScript : MonoBehaviour
         }
        
         float progress = progressBars[activeModuleIndex].GetModuleProgress();
-        progressBars[activeModuleIndex].SetModuleProgress(Mathf.Max(progress - 5f, 0));
+        progressBars[activeModuleIndex].SetModuleProgress(Mathf.Max(progress + 5f, 0));
         StudyManager.Instance.StopStudying();
     }
 
