@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LogicScript : MonoBehaviour
 {
     private Student PLAYER = Student.Instance;
-    public static int playerScore;
+    public int playerScore;
     public Text scoreText;
     public GameObject gameOverScene;
 

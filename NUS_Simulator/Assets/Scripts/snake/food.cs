@@ -7,7 +7,7 @@ public class food : MonoBehaviour
 {
     public Text scoreText;
     public BoxCollider2D gameArea;
-    private int playerScore = 0;
+    private int playerScore;
     // Start is called before the first frame update
     void Start()
     {

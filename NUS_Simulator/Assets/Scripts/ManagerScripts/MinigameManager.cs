@@ -34,6 +34,7 @@ public class MinigameManager : MonoBehaviour
             return;
         }
         PLAYER.AddPoints(distractionEvent.GetMentalPoints(), distractionEvent.GetPhysicalPoints(), distractionEvent.GetSocialPoints());
+        SceneManager.LoadScene("DistractionScene");
     }
 
     public void ProcessRewardsFromStudying()
@@ -46,13 +47,17 @@ public class MinigameManager : MonoBehaviour
         Debug.Log(playerScore);
         if (this.playerScore >= 6) 
         {
-            StudySceneScript.Instance.HandleMiniGameResultIfPassed(); 
+            Debug.Log("Yes, player score is greater than 6");
+            SceneManager.LoadScene("WorkingScene");
+            //StudySceneScript.Instance.HandleMiniGameResultIfPassed(); 
         }
         else
         {
-            StudySceneScript.Instance.HandleMiniGameResultIfNotPassed();
             Debug.Log("Player score is less than 6");
+            SceneManager.LoadScene("WorkingScene");
+            //StudySceneScript.Instance.HandleMiniGameResultIfNotPassed();
         }
+        
     }
 
     public string GetRandomGame()
@@ -64,14 +69,18 @@ public class MinigameManager : MonoBehaviour
     public void OnClickReturn()
     {
         Debug.Log("Clicked return?");
-        if (SceneHistoryManager.Instance.GetPreviousScene() == "WorkingScene")
+        string previousScene = SceneHistoryManager.Instance.GetPreviousScene();
+        if (previousScene == "WorkingScene")
         {
             ProcessRewardsFromStudying();
-            SceneManager.LoadScene("WorkingScene");
         }
-        else {
+        else if (previousScene == "DistractionScene")
+        {
             ProcessRewards();
-            SceneManager.LoadScene("InGameScene"); 
+        }
+        else
+        {
+            SceneManager.LoadScene("WorkingScene");
         }
     }
 }
