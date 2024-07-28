@@ -155,6 +155,21 @@ public class Student {
         }
     }
 
+    public void SetMentalPoints(float points)
+    {
+        this.mentalPoints.Value = points;
+    }
+
+    public void SetPhysicalPoints(float points)
+    {
+        this.physicalPoints.Value = points;
+    }
+
+    public void SetSocialPoints(float points)
+    {
+        this.socialPoints.Value = points;
+    }
+
     public float GetMentalPoints() {
         return mentalPoints.Value;
     }
