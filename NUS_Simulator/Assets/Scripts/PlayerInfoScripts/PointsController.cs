@@ -23,9 +23,9 @@ public class PointsController : MonoBehaviour
             if (player.GetMentalPoints() <= 0 || player.GetPhysicalPoints() <= 0 || player.GetSocialPoints() <= 0) {
                 SceneManager.LoadScene("GameOverScene"); 
             }
-            player.DecrementMentalPoints(2f);
-            player.DecrementPhysicalPoints(2f);
-            player.DecrementSocialPoints(2f);
+            player.DecrementMentalPoints(1f);
+            player.DecrementPhysicalPoints(1f);
+            player.DecrementSocialPoints(1f);
             yield return new WaitForSeconds(1f);
             FindObjectOfType<PlayerInfoDisplay>().DisplayPlayerInfo();
         }
