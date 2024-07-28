@@ -69,18 +69,6 @@ public class MinigameManager : MonoBehaviour
     public void OnClickReturn()
     {
         Debug.Log("Clicked return?");
-        string previousScene = SceneHistoryManager.Instance.GetPreviousScene();
-        if (previousScene == "WorkingScene")
-        {
-            ProcessRewardsFromStudying();
-        }
-        else if (previousScene == "DistractionScene")
-        {
-            ProcessRewards();
-        }
-        else
-        {
-            SceneManager.LoadScene("WorkingScene");
-        }
+        SceneManager.LoadScene("InGameScene");
     }
 }
