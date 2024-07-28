@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class InputHandler : MonoBehaviour
 {
     GameObject objSelected = null;
     [SerializeField] private GameObject sleepPanel;
     [SerializeField] private GameObject socialPanel;
+    [SerializeField] private GameObject laptop;
     private bool isSleepPanelActive = false;
     private bool isSocialPanelActive = false;
 
@@ -23,25 +22,27 @@ public class InputHandler : MonoBehaviour
         {
             return;
         }
-        
+
         if (objSelected.tag == "Distraction")
         {
             SceneManager.LoadScene("DistractionScene");
             //StudyManager.Instance.StopAllStudying(); 
         }
-        if (objSelected.tag == "Work" && !isSleepPanelActive && !isSocialPanelActive)
+        else if (objSelected.tag == "Work" && !isSleepPanelActive && !isSocialPanelActive)
         {
             SceneManager.LoadScene("WorkingScene");
         }
-        if (objSelected.tag == "SleepIcon")
+        else if (objSelected.tag == "SleepIcon")
         {
+            laptop.SetActive(false);
             sleepPanel.SetActive(true); 
-            isSleepPanelActive = sleepPanel.activeSelf;
+            isSleepPanelActive = true; 
         }
-        if (objSelected.tag == "Social")
+        else if (objSelected.tag == "Social")
         {
+            laptop.SetActive(false);
             socialPanel.SetActive(true);
-            isSocialPanelActive = socialPanel.activeSelf;
+            isSocialPanelActive = true; 
         }  
     }
 
@@ -54,11 +55,15 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    public void CloseWorkPanel() {
-        SceneManager.LoadScene("InGameScene");
+    public void CloseSocialPanel() 
+    {
+        isSleepPanelActive = false;
+        isSocialPanelActive = false;
     }
 
-    public void CloseDistractionPanel() {
-        SceneManager.LoadScene("InGameScene");
+    public void CloseSleepPanel() 
+    {
+        isSleepPanelActive = false;
+        isSocialPanelActive = false;
     }
 }

@@ -12,6 +12,7 @@ public class SocialScript : MonoBehaviour
     [SerializeField] private Button cancelButton; 
 
     [SerializeField] private GameObject thisPanel; 
+    [SerializeField] private GameObject laptop;
 
     private int clickCount = 0;
     private const int MaxClicks = 3;
@@ -34,14 +35,18 @@ public class SocialScript : MonoBehaviour
 
         if (clickedButton == firstButton) {
             HandleButtonClick(player, countdown, 0, 0, 30, -15f);
+            laptop.SetActive(true);
         } else if (clickedButton == secondButton) {
             HandleButtonClick(player, countdown, 0, 0, 50, -30f);
+            laptop.SetActive(true);
         } else if (clickedButton == thirdButton) {
             HandleButtonClick(player, countdown, 0, 0, 80, -60f);
+            laptop.SetActive(true);
         } else if (clickedButton == cancelButton) {
             Debug.Log("cancel");
             countdown.UpdateRemainingTime(0f);
             thisPanel.SetActive(false);
+            laptop.SetActive(true);
         }
 
         clickCount++;

@@ -25,7 +25,7 @@ public class MinigameManager : MonoBehaviour
         if (distractionEvent == null)
         {
             Debug.LogError("Distraction event is null");
-            PLAYER.AddPoints(0, 0, 0); 
+            PLAYER.AddPoints(10, 10, 10); 
             return;
         }
         if (PLAYER == null)
@@ -69,6 +69,14 @@ public class MinigameManager : MonoBehaviour
     public void OnClickReturn()
     {
         Debug.Log("Clicked return?");
+        if (distractionEvent == null)
+        {
+            Debug.LogError("Distraction event is null");
+            PLAYER.AddPoints(10, 10, 10); 
+            return;
+        }
+        PLAYER.AddPoints(distractionEvent.GetMentalPoints(), distractionEvent.GetPhysicalPoints(), distractionEvent.GetSocialPoints());
+
         SceneManager.LoadScene("InGameScene");
     }
 }

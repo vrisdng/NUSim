@@ -12,9 +12,11 @@ public class SleepScript : MonoBehaviour
     [SerializeField] private Button cancelButton; 
 
     [SerializeField] private GameObject thisPanel; 
+    [SerializeField] private GameObject laptop; 
 
     private int clickCount = 0;
     private const int MaxClicks = 3;
+
     void Awake() 
     {
         thisPanel.SetActive(false); 
@@ -33,14 +35,18 @@ public class SleepScript : MonoBehaviour
 
         if (clickedButton == firstButton) {
             HandleButtonClick(player, countdown, 10, 10, 0, -15f);
+            laptop.SetActive(true);
         } else if (clickedButton == secondButton) {
             HandleButtonClick(player, countdown, 30, 30, 0, -30f);
+            laptop.SetActive(true);
         } else if (clickedButton == thirdButton) {
             HandleButtonClick(player, countdown, 60, 60, 0, -60f);
+            laptop.SetActive(true);
         } else if (clickedButton == cancelButton) {
             Debug.Log("cancel");
             countdown.UpdateRemainingTime(0f);
             thisPanel.SetActive(false);
+            laptop.SetActive(true);
         }
 
         clickCount++;

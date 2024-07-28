@@ -26,7 +26,7 @@ public class PointsController : MonoBehaviour
             player.DecrementMentalPoints(decrementRate);
             player.DecrementPhysicalPoints(decrementRate);
             player.DecrementSocialPoints(decrementRate);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
             FindObjectOfType<PlayerInfoDisplay>().DisplayPlayerInfo();
         }
     }
