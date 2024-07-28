@@ -28,6 +28,8 @@ public class ball : MonoBehaviour
             playerScore += 1;
             scoreText.text = playerScore.ToString();
         } else if (collision.gameObject.CompareTag("Death")) {
+            MinigameManager minigame = new MinigameManager();
+            minigame.AttachScore(playerScore);
             Destroy(this);
             gameOverScene.SetActive(true);
         }
