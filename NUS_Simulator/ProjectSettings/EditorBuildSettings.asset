@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/snake.unity
     guid: 064efc2e4b78d15489b333d7bc2893e6
   - enabled: 1
+    path: Assets/Scenes/brick breaker.unity
+    guid: 6a5097438bc4897439673878ff87e2c1
+  - enabled: 1
     path: Assets/Scenes/ExamScene.unity
     guid: cc2e904910839425d875386c68230d06
   - enabled: 1

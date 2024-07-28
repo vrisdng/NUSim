@@ -2,31 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor;
 
 public class ModuleManager : MonoBehaviour
 {
     public Button moduleButton;
-    public Button nextButton; 
+    public Button nextButton;
     public List<Module> availableModules = new List<Module>();
     public Transform[] moduleSlots;
-
     public Module[] selectedModules = new Module[5];
-    public NUSModsAPI nusModsAPI;
 
     [SerializeField] public TextMeshProUGUI moduleName;
     [SerializeField] public TextMeshProUGUI moduleTitle;
     [SerializeField] public TextMeshProUGUI moduleType;
     [SerializeField] public TextMeshProUGUI moduleDifficulty;
-    public GameObject moduleInfoPanel; 
+    public GameObject moduleInfoPanel;
     public Button takeModuleButton;
-    public Button goBackButton; 
+    public Button goBackButton;
     private int clickedCount = 0;
     private Student PLAYER = Student.Instance;
 
     void Awake()
     {
-        LoadAvailableModules(PLAYER.GetFaculty()); 
+        LoadAvailableModules(PLAYER.GetFaculty());
         CreateModuleButtons();
         nextButton.interactable = false;
         moduleInfoPanel.SetActive(false);
@@ -35,15 +32,13 @@ public class ModuleManager : MonoBehaviour
     public void LoadAvailableModules(string moduleType)
     {
         availableModules.Clear();
-        string[] guids = AssetDatabase.FindAssets("t:Module", new[] { "Assets/ScriptableObjects/Modules" });
+        Module[] modules = Resources.LoadAll<Module>("Modules");
 
-        foreach (string guid in guids)
+        foreach (Module module in modules)
         {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            Module module = AssetDatabase.LoadAssetAtPath<Module>(path);
             if (module != null && module.moduleType == moduleType && !module.isCompleted && module.moduleDepartment != "Information Systems and Analytics" && module.moduleDepartment != "SoC Dean's Office")
             {
-                Debug.Log(module.moduleDepartment); 
+                Debug.Log(module.moduleDepartment);
                 availableModules.Add(module);
                 if (availableModules.Count >= 10)
                 {
@@ -78,12 +73,12 @@ public class ModuleManager : MonoBehaviour
         moduleName.text = module.moduleName;
         moduleTitle.text = "Module's Name:  " + module.moduleTitle;
         moduleType.text = "Module's Type:  " + module.moduleType;
-        moduleDifficulty.text = "Module's Difficulty:  " + (module.moduleDifficulty / 10).ToString() ;
+        moduleDifficulty.text = "Module's Difficulty:  " + (module.moduleDifficulty / 10).ToString();
     }
 
     public void OnModuleButtonClick(Module module, Button button)
     {
-        SetTexts(module); 
+        SetTexts(module);
         moduleInfoPanel.SetActive(true);
 
         takeModuleButton.onClick.RemoveAllListeners();
@@ -101,12 +96,12 @@ public class ModuleManager : MonoBehaviour
             return;
         }
 
-        button.interactable = false; 
+        button.interactable = false;
         selectedModules[clickedCount] = module;
         clickedCount++;
         Debug.Log($"Module selected: {module.moduleName}");
 
-        moduleInfoPanel.SetActive(false); 
+        moduleInfoPanel.SetActive(false);
 
         if (clickedCount == 5)
         {
@@ -138,6 +133,4 @@ public class ModuleManager : MonoBehaviour
             }
         }
     }
-
-    
 }

@@ -3,9 +3,11 @@ using UnityEngine.Networking;
 using System.Collections;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine.Rendering.Universal.Internal;
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
 
+#if UNITY_EDITOR
 public class NUSModsAPI : MonoBehaviour
 {
     private string apiUrl = "https://api.nusmods.com/v2/2023-2024/moduleInfo.json";
@@ -122,9 +124,10 @@ public class NUSModsAPI : MonoBehaviour
 
     public void CreateModuleScriptableObject(ModuleInfo moduleInfo)
     {
+       
         string path = $"{Application.dataPath}/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
         string relativePath = $"Assets/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
-        
+
         Module existingModule = AssetDatabase.LoadAssetAtPath<Module>(relativePath);
         if (existingModule == null)
         {
@@ -223,3 +226,5 @@ public class ModuleInfoArray
 {
     public ModuleInfo[] items;
 }
+
+#endif

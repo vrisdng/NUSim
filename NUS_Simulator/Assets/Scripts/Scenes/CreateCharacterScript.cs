@@ -12,7 +12,6 @@ public class CreateCharacterScript : MonoBehaviour
     public TMP_InputField inputField;
     private string playerName;
     private string facultyChosen;
-    private ModuleManager moduleManager; 
 
     private void Awake()
     {

@@ -19,7 +19,6 @@ public class ModuleManagerTests : MonoBehaviour
 
         moduleManager.moduleButton = new GameObject().AddComponent<Button>();
         moduleManager.nextButton = new GameObject().AddComponent<Button>();
-        moduleManager.nusModsAPI = new GameObject().AddComponent<NUSModsAPI>();
         moduleManager.moduleName = new GameObject().AddComponent<TextMeshProUGUI>();
         moduleManager.moduleTitle = new GameObject().AddComponent<TextMeshProUGUI>();
         moduleManager.moduleType = new GameObject().AddComponent<TextMeshProUGUI>();

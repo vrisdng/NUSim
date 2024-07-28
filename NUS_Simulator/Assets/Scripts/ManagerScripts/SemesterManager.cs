@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
 public class SemesterManager : MonoBehaviour
