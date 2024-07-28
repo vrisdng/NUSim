@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: CS1010
   m_EditorClassIdentifier: 
   moduleName: CS1010
-  moduleDifficulty: 1
-  moduleType: CS
+  moduleTitle: Programming Methodology
+  moduleDifficulty: 10
+  moduleType: Computing
+  moduleDepartment: Computer Science
+  moduleCredit: 4
   moduleButton: {fileID: 0}
   moduleProgress: 0
   isStudying: 0

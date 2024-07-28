@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: CS2030S
   m_EditorClassIdentifier: 
   moduleName: CS2030S
-  moduleDifficulty: 2
-  moduleType: CS
+  moduleTitle: Programming Methodology II
+  moduleDifficulty: 10
+  moduleType: Computing
+  moduleDepartment: Computer Science
+  moduleCredit: 4
+  moduleButton: {fileID: 0}
   moduleProgress: 0
   isStudying: 0
   isCompleted: 0

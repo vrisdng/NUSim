@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: CS2100
   m_EditorClassIdentifier: 
   moduleName: CS2100
-  moduleDifficulty: 2
-  moduleType: CS
+  moduleTitle: Computer Organisation
+  moduleDifficulty: 10
+  moduleType: Computing
+  moduleDepartment: Computer Science
+  moduleCredit: 4
   moduleButton: {fileID: 0}
   moduleProgress: 0
   isStudying: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fd69f705b24d4236baa1dec1d854548, type: 3}
+  m_Name: BI3001
+  m_EditorClassIdentifier: 
+  moduleName: BI3001
+  moduleTitle: Business Internship I
+  moduleDifficulty: 40
+  moduleType: NUS Business School
+  moduleDepartment: BIZ Dean's Office
+  moduleCredit: 4
+  moduleButton: {fileID: 0}
+  moduleProgress: 0
+  isStudying: 0
+  isCompleted: 0
