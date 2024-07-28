@@ -496,6 +496,9 @@ MonoBehaviour:
   segmentPrefab: {fileID: 8723097431202128649, guid: bf8e634b8a5cb7c46b7849e322318597, type: 3}
   gameOverScene: {fileID: 1772626717}
   food: {fileID: 1905562570}
+  moveTimer: 0.05
+  moveTimerMax: 0.05
+  isEaten: 0
 --- !u!1 &497649478
 GameObject:
   m_ObjectHideFlags: 0

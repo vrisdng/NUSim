@@ -10,6 +10,9 @@ public class snake : MonoBehaviour
     public Transform segmentPrefab;
     public GameObject gameOverScene;
     public GameObject food;
+    public float moveTimer = 1f;
+    public float moveTimerMax = 1f;
+    public bool isEaten = false;
 
     void Start() {
         segments = new List<Transform>();
@@ -26,16 +29,31 @@ public class snake : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.D)) {
             direction = Vector2.right;
         }
+
+        moveTimer += Time.deltaTime;
+        if (moveTimer >= moveTimerMax) {
+            if (isEaten) {
+                grow();
+                isEaten = false;
+            }
+                for (int i = segments.Count - 1; i > 0; i--) {
+                    segments[i].position =  segments[i - 1].position;
+                }
+                this.transform.position = new Vector3 (Mathf.Round(this.transform.position.x) + direction.x,
+                                                        Mathf.Round(this.transform.position.y) + direction.y,
+                                                        0.0f);
+                moveTimer -= moveTimerMax;
+        }
     }
 
-    void FixedUpdate() {
+    /*void FixedUpdate() {
         for (int i = segments.Count - 1; i > 0; i--) {
             segments[i].position =  segments[i - 1].position;
         }
         this.transform.position = new Vector3 (Mathf.Round(this.transform.position.x) + direction.x,
                                                 Mathf.Round(this.transform.position.y) + direction.y,
                                                 0.0f);
-    }
+    }*/
 
     private void grow() {
         Transform segment = Instantiate(this.segmentPrefab);
@@ -51,7 +69,8 @@ public class snake : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Food") {
-            grow();
+            isEaten = true;         
+            
         } else if (other.tag == "Obstacle") {
             Destroy(this);
             gameOverScene.SetActive(true);
