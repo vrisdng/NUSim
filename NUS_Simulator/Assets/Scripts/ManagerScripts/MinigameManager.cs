@@ -56,7 +56,7 @@ public class MinigameManager : MonoBehaviour
 
     public string GetRandomGame()
     {
-        string[] games = new string[] { "flappy bird", "snake", "brick breaker"}; 
+        string[] games = new string[] { "flappy bird", "snake"}; 
         return games[Random.Range(0, games.Length)];
     }
 
