@@ -11,6 +11,7 @@ public class food : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerScore = 0; 
         randomized();
     }
 
