@@ -20,7 +20,7 @@ public class MainScreenDisplay : MonoBehaviour
         Debug.Log(PLAYER.GetName()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
         PointsController.Initialize(PLAYER);
-        PointsController.StartDecrementPoints(0.0f);
+        PointsController.StartDecrementPoints(1f);
         
         mailIcon.SetActive(false);
     }

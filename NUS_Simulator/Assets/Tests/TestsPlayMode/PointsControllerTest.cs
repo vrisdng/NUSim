@@ -14,7 +14,7 @@ public class PointsControllerTest : MonoBehaviour
     [SetUp]
     public void SetUp()
     {
-        SceneManager.LoadScene("DistractionScene"); 
+        SceneManager.LoadScene("WorkingScene"); 
         playerObject = new GameObject();
         player = Student.Instance;
         pointsController = playerObject.AddComponent<PointsController>();
