@@ -111,14 +111,11 @@ public class RandomDistraction : MonoBehaviour
 
     public void HandleYesButton()
     {
-        /*
-        Debug.Log("Yes button clicked");
-        Student player = Student.Instance;
-        player.AddPoints(distractions[selectedDistractionIndex]);
-        Debug.Log("Player's MP: " + player.GetMentalPoints()); 
-        SceneManager.LoadSceneAsync("InGameScene"); */
         countdown.UpdateRemainingTime(-timeDeductible);
-        SceneManager.LoadSceneAsync("flappy bird"); 
+        MinigameManager minigame = new MinigameManager();
+        string game = minigame.GetRandomGame();
+        minigame.AttachDistraction(distractions[selectedDistractionIndex]);
+        SceneManager.LoadScene(game);
         Time.timeScale = 1; 
     }
 

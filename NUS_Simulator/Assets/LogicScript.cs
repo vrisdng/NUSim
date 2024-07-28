@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LogicScript : MonoBehaviour
 {
     private Student PLAYER = Student.Instance;
-    public int playerScore = 0;
+    public static int playerScore = 0;
     public Text scoreText;
     public GameObject gameOverScene;
 
@@ -17,7 +17,8 @@ public class LogicScript : MonoBehaviour
     }
 
     public void gameOver() {
-        PLAYER.AddPoints(playerScore, playerScore, playerScore); 
+        MinigameManager minigameManager = FindObjectOfType<MinigameManager>();
+        minigameManager.AttachScore(playerScore);
         gameOverScene.SetActive(true);
     }
     

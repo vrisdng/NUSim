@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal.Internal;
 public class MainScreenDisplay : MonoBehaviour
 {
-    public static Student PLAYER; 
+    public static Student PLAYER = Student.Instance; 
 
     public GameObject mailIcon; 
 
@@ -17,11 +17,11 @@ public class MainScreenDisplay : MonoBehaviour
 
     void Start()
     {
-        PLAYER = Student.Instance; 
         Debug.Log(PLAYER.GetName()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
         PointsController.Initialize(PLAYER);
-
+        PointsController.StartDecrementPoints();
+        
         mailIcon.SetActive(false);
     }
 

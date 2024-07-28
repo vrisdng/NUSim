@@ -12,6 +12,7 @@ public class CreateCharacterScript : MonoBehaviour
     public TMP_InputField inputField;
     private string playerName;
     private string facultyChosen;
+    private ModuleManager moduleManager; 
 
     private void Awake()
     {
@@ -40,35 +41,33 @@ public class CreateCharacterScript : MonoBehaviour
         facultyChosen = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name;
         switch(facultyChosen) {
             case "SOC":
-                PLAYER.SetFaculty("SOC");
+                PLAYER.SetFaculty("Computing");
                 Debug.Log(PLAYER.GetFaculty());
-                 if (GameModeManager.Instance.GetGameMode() == GameMode.Linear)
-                 {
-                    SceneManager.LoadScene("SelectSemester");
-                 } else
-                 {
-                    SceneManager.LoadScene("Select Modules");
-                 }
                 break;
             case "FOS":
-                PLAYER.SetFaculty("FOS");
+                PLAYER.SetFaculty("Science");
                 Debug.Log(PLAYER.GetFaculty());
                 break;
             case "FASS":
-                PLAYER.SetFaculty("FASS");
+                PLAYER.SetFaculty("Arts and Social Science");
                 Debug.Log(PLAYER.GetFaculty());
                 break;
             case "CDE":
-                PLAYER.SetFaculty("CDE");
+                PLAYER.SetFaculty("College of Design and Engineering");
                 Debug.Log(PLAYER.GetFaculty());
                 break;
             case "BIZ":
-                PLAYER.SetFaculty("BIZ");
+                PLAYER.SetFaculty("NUS Business School");
                 Debug.Log(PLAYER.GetFaculty());
                 break;
             default: 
-                Debug.Log(PLAYER.GetFaculty());
                 break;
+        }
+        
+        if (GameModeManager.Instance.GetGameMode() == GameMode.Linear) {
+            SceneManager.LoadScene("SelectSemester");
+        } else {
+            SceneManager.LoadScene("Select Modules");
         }
     }
 

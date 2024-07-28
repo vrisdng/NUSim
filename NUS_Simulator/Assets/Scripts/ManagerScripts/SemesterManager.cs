@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 
 public class SemesterManager : MonoBehaviour
@@ -65,4 +66,6 @@ public class SemesterManager : MonoBehaviour
     {
         return semesters;
     }
+
+    
 }

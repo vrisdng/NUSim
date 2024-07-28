@@ -93,13 +93,6 @@ public class Student {
         this.socialPoints.Add(spoints);
     }
 
-    public void AddPoints(DistractionEvent theEvent)
-    {
-        this.mentalPoints.Add(theEvent.GetMentalPoints());
-        this.physicalPoints.Add(theEvent.GetPhysicalPoints());
-        this.socialPoints.Add(theEvent.GetSocialPoints());
-    }
-
     public void AddPointsFromSleeping(float mpoints, float ppoints, float spoints)
     {
         this.mentalPoints.Add(mpoints);
@@ -153,6 +146,21 @@ public class Student {
         {
             this.socialPoints.Decrement(points);
         }
+    }
+
+    public void SetMentalPoints(float points)
+    {
+        this.mentalPoints.Value = points;
+    }
+
+    public void SetPhysicalPoints(float points)
+    {
+        this.physicalPoints.Value = points;
+    }
+
+    public void SetSocialPoints(float points)
+    {
+        this.socialPoints.Value = points;
     }
 
     public float GetMentalPoints() {

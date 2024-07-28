@@ -13,7 +13,7 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI progressText;
     [SerializeField] private TextMeshProUGUI moduleSideText;
     private Module module; 
-    private bool isUpdating;
+    private bool isUpdating; 
 
     void Start()
     {
@@ -25,8 +25,19 @@ public class ProgressBar : MonoBehaviour
     {
         if (isUpdating)
         {
+            float progress = module.GetProgress();
             UpdateModuleProgress();
         }
+    }
+
+    public float GetModuleProgress()
+    {
+        return this.module.GetProgress();
+    }
+
+    public void SetModuleProgress(float progress)
+    {
+        this.module.SetProgress(progress);
     }
 
     public void SetModule(Module module)
@@ -50,12 +61,11 @@ public class ProgressBar : MonoBehaviour
         if (module != null && !module.IsCompleted())
         {
             float productivity = Student.Instance.GetProductivityOfModule(module.moduleType);
-            module.AddToProgress(Time.deltaTime / (module.moduleDifficulty - 0.4f) * productivity);
+            module.AddToProgress(Time.deltaTime / (module.moduleDifficulty / 10) * productivity);
             progressBar.fillAmount = module.GetProgress() / 100f;
             progressText.text = $"{progressBar.fillAmount * 100:F0}%";
         }
     }
-
     public void StartProgress()
     {
         isUpdating = true;
