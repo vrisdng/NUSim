@@ -11,7 +11,7 @@ public class DistractionScript : MonoBehaviour
     {
         playerInfoDisplay.DisplayPlayerInfo();
         pointsController.Initialize(STUDENT); 
-        pointsController.StartDecrementPoints();
+        pointsController.StartDecrementPoints(1f);
     }
     void Update()
     {

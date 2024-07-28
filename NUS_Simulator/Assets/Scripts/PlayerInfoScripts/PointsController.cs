@@ -11,22 +11,22 @@ public class PointsController : MonoBehaviour
         player = student;
     }
 
-    public void StartDecrementPoints() 
+    public void StartDecrementPoints(int decrementRate) 
     {
-        StartCoroutine(DecrementPoints());
+        StartCoroutine(DecrementPoints(decrementRate));
     }
 
-    public IEnumerator DecrementPoints() 
+    public IEnumerator DecrementPoints(int decrementRate) 
     {
         while(true) {
             Debug.Log("Points: " + player.GetMentalPoints() + " " + player.GetPhysicalPoints() + " " + player.GetSocialPoints());
             if (player.GetMentalPoints() <= 0 || player.GetPhysicalPoints() <= 0 || player.GetSocialPoints() <= 0) {
                 SceneManager.LoadScene("GameOverScene"); 
             }
-            player.DecrementMentalPoints(0f);
-            player.DecrementPhysicalPoints(0f);
-            player.DecrementSocialPoints(0f);
-            yield return new WaitForSeconds(0f);
+            player.DecrementMentalPoints(decrementRate);
+            player.DecrementPhysicalPoints(decrementRate);
+            player.DecrementSocialPoints(decrementRate);
+            yield return new WaitForSeconds(0.5f);
             FindObjectOfType<PlayerInfoDisplay>().DisplayPlayerInfo();
         }
     }
