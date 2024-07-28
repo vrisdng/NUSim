@@ -93,13 +93,6 @@ public class Student {
         this.socialPoints.Add(spoints);
     }
 
-    public void AddPoints(DistractionEvent theEvent)
-    {
-        this.mentalPoints.Add(theEvent.GetMentalPoints());
-        this.physicalPoints.Add(theEvent.GetPhysicalPoints());
-        this.socialPoints.Add(theEvent.GetSocialPoints());
-    }
-
     public void AddPointsFromSleeping(float mpoints, float ppoints, float spoints)
     {
         this.mentalPoints.Add(mpoints);

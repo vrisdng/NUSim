@@ -16,9 +16,13 @@ TagManager:
   - Bible
   - Milk
   - MP3
+  - Snake
+  - Food
+  - Obstacle
   - FlappyBirdLogic
-  - Social
-  - SocialPanel
+  - Ball
+  - Death
+  - Brick
   layers:
   - Default
   - TransparentFX

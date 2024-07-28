@@ -21,6 +21,12 @@ public class StudySceneScript : MonoBehaviour
     public PlayerInfoDisplay playerInfoDisplay;
     public PointsController PointsController;
 
+    [SerializeField] private GameObject minigamePanel; 
+    private bool openMinigamePanel = false; 
+    private HashSet<float> thresholdsReached = new HashSet<float>();
+
+    public static StudySceneScript Instance;
+
     void Start()
     {
         playerInfoDisplay.DisplayPlayerInfo();
@@ -28,9 +34,15 @@ public class StudySceneScript : MonoBehaviour
         PointsController.StartDecrementPoints();
         progressBarPanel.SetActive(false);
         warningText.gameObject.SetActive(false);
+        minigamePanel.SetActive(false);
         UpdateModuleButtons();
         InitializeModulePanelsAndProgressBars();
         StudyManager.Instance.SetProgressBars(progressBars);
+    }
+
+    void Awake()
+    {
+        Instance = this; 
     }
 
     void Update()
@@ -38,6 +50,7 @@ public class StudySceneScript : MonoBehaviour
         if (Student.Instance.IsAnyPointZero()) {
             SceneManager.LoadScene("GameOverScene");
         }
+        CheckProgressHitThreshold();
     }
 
     void UpdateModuleButtons()
@@ -83,10 +96,12 @@ public class StudySceneScript : MonoBehaviour
     }
     public void ClickOnModule()
     {
+        Debug.Log("Clicked on module");
         warningText.gameObject.SetActive(true);
 
         if (StudyManager.Instance.IsStudying())
         {
+            Debug.Log("Already studying");
             return;
         }
 
@@ -94,15 +109,18 @@ public class StudySceneScript : MonoBehaviour
         string clickedButtonName = clickedButton.name;
         if (!int.TryParse(clickedButtonName, out int buttonIndex))
         {
+            Debug.LogWarning("Failed to parse button index");
             return;
         }
 
         if (buttonIndex < 0 || buttonIndex >= modulePanels.Length)
         {
+            Debug.LogWarning("Invalid button index");
             return;
         }
 
         progressBarPanel.SetActive(false);
+        Debug.Log("Turned off progress bar panel");
 
         for (int i = 0; i < modulePanels.Length; i++)
         {
@@ -122,6 +140,85 @@ public class StudySceneScript : MonoBehaviour
         modulePanels[buttonIndex].SetActive(true);
         Debug.Log("Turned on module panel for module: " + buttonIndex);
         StudyManager.Instance.SwitchModule(buttonIndex);
+    }
+
+    public void CheckProgressHitThreshold()
+    {
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        if (activeModuleIndex == -1)
+        {
+            return;
+        }
+        float progress = progressBars[activeModuleIndex].GetModuleProgress();
+
+        float[] thresholds = new float[] { 10f, 50f, 80f };
+
+        foreach (float threshold in thresholds)
+        {
+            if (progress >= threshold && progress < threshold + 0.1f && !thresholdsReached.Contains(threshold))
+            {
+                progressBars[activeModuleIndex].StopProgress();
+                Debug.Log($"Progress hit the threshold: {progress}");
+                openMinigamePanel = true;
+                minigamePanel.SetActive(true);
+                thresholdsReached.Add(threshold);
+                break;
+            }
+        }
+    }
+    
+    public void HandleMiniGameResultIfPassed()
+    {
+        minigamePanel.SetActive(false);
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        if (activeModuleIndex == -1)
+        {
+            return;
+        }
+
+        progressBarPanel.SetActive(true);
+        modulePanels[activeModuleIndex].SetActive(true);
+
+        StudyManager.Instance.StopStudying();
+        float progress = progressBars[activeModuleIndex].GetModuleProgress();
+        progressBars[activeModuleIndex].SetModuleProgress(Mathf.Min(progress + 2f, 100));
+    }
+
+    public void HandleMiniGameResultIfNotPassed() 
+    {
+        if (minigamePanel != null)
+        {
+            minigamePanel.SetActive(false);
+        }
+        int activeModuleIndex = StudyManager.Instance.GetActiveModuleIndex();
+        
+        if (activeModuleIndex == -1)
+        {
+            return;
+        }
+
+        if (progressBarPanel != null)
+        {
+            progressBarPanel.SetActive(true);
+        }
+
+        if (modulePanels[activeModuleIndex] != null) 
+        {
+            modulePanels[activeModuleIndex].SetActive(true);
+        }
+       
+        float progress = progressBars[activeModuleIndex].GetModuleProgress();
+        progressBars[activeModuleIndex].SetModuleProgress(Mathf.Max(progress - 5f, 0));
+        StudyManager.Instance.StopStudying();
+    }
+
+    public void OnStartGame()
+    {
+        Debug.Log("Starting game");
+        MinigameManager minigame = new MinigameManager();
+        string game = minigame.GetRandomGame();
+        Debug.Log($"Switching to game: {game}"); // Add debug log
+        SceneManager.LoadScene(game);
     }
 
     public void InitializeModulePanelsAndProgressBars()
