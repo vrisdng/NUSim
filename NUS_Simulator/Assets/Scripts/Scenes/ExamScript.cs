@@ -20,6 +20,14 @@ public class ExamScript : MonoBehaviour
 
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
-        SceneManager.LoadScene("RewardScene"); 
+        SemesterManager.Instance.CompleteCurrentSemester();
+        if (SemesterManager.Instance.GetCurrentSemester().GetName() == "Year 4 Semester 2")
+        {
+            SceneManager.LoadScene("EndingScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("RewardScene");
+        }
     }
 }
