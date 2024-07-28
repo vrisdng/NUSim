@@ -1,5 +1,3 @@
-using System.Transactions;
-using Codice.Client.Common.GameUI;
 
 enum RewardType
 {
