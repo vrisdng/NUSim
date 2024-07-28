@@ -11,12 +11,12 @@ public class PointsController : MonoBehaviour
         player = student;
     }
 
-    public void StartDecrementPoints(int decrementRate) 
+    public void StartDecrementPoints(float decrementRate) 
     {
         StartCoroutine(DecrementPoints(decrementRate));
     }
 
-    public IEnumerator DecrementPoints(int decrementRate) 
+    public IEnumerator DecrementPoints(float decrementRate) 
     {
         while(true) {
             Debug.Log("Points: " + player.GetMentalPoints() + " " + player.GetPhysicalPoints() + " " + player.GetSocialPoints());
