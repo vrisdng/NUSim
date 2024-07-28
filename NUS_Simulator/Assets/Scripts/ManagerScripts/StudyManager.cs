@@ -70,7 +70,6 @@ public class StudyManager : MonoBehaviour
     {
         return progressBars;
     }
-
     public void StopStudying()
     {
         if (activeModuleIndex == -1) return;
