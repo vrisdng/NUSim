@@ -18,8 +18,10 @@ public class InputHandler : MonoBehaviour
         }
         
         CheckHitObject();
+        Debug.Log(objSelected);
         if (objSelected == null)
         {
+            
             return;
         }
 
@@ -34,12 +36,16 @@ public class InputHandler : MonoBehaviour
         }
         else if (objSelected.tag == "SleepIcon")
         {
+            socialPanel.SetActive(false);
+            CloseSocialPanel();
             laptop.SetActive(false);
             sleepPanel.SetActive(true); 
             isSleepPanelActive = true; 
         }
         else if (objSelected.tag == "Social")
         {
+            sleepPanel.SetActive(false);
+            CloseSleepPanel();
             laptop.SetActive(false);
             socialPanel.SetActive(true);
             isSocialPanelActive = true; 

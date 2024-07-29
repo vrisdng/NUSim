@@ -36,13 +36,13 @@ public class snake : MonoBehaviour
                 grow();
                 isEaten = false;
             }
-                for (int i = segments.Count - 1; i > 0; i--) {
-                    segments[i].position =  segments[i - 1].position;
-                }
-                this.transform.position = new Vector3 (Mathf.Round(this.transform.position.x) + direction.x,
-                                                        Mathf.Round(this.transform.position.y) + direction.y,
-                                                        0.0f);
-                moveTimer -= moveTimerMax;
+            for (int i = segments.Count - 1; i > 0; i--) {
+                segments[i].position =  segments[i - 1].position;
+            }
+            this.transform.position = new Vector3 (Mathf.Round(this.transform.position.x) + direction.x,
+                                                    Mathf.Round(this.transform.position.y) + direction.y,
+                                                    0.0f);
+            moveTimer -= moveTimerMax;
         }
     }
 
@@ -73,11 +73,8 @@ public class snake : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Food") {
             isEaten = true;         
-            
         } else if (other.tag == "Obstacle") {
-            Destroy(this);
-            gameOverScene.SetActive(true);
-
+            gameOver();
         }
     }
 }

@@ -18,6 +18,7 @@ public class MinigameManager : MonoBehaviour
     public void AttachScore(int score)
     {
         playerScore = score;
+        Debug.Log(playerScore);
     }
 
     public void ProcessRewards()
@@ -72,7 +73,8 @@ public class MinigameManager : MonoBehaviour
         if (distractionEvent == null)
         {
             Debug.LogError("Distraction event is null");
-            PLAYER.AddPoints(10, 10, 10); 
+            Debug.Log(playerScore/2);
+            PLAYER.AddPoints(playerScore/2, playerScore/2, playerScore/2); 
             SceneManager.LoadScene("InGameScene");
         }
         PLAYER.AddPoints(distractionEvent.GetMentalPoints(), distractionEvent.GetPhysicalPoints(), distractionEvent.GetSocialPoints());
