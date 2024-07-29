@@ -8,7 +8,7 @@ public class PointsController : MonoBehaviour
 
     public void Initialize(Student student)
     {
-        player = student;
+        player = Student.Instance; 
     }
 
     public void StartDecrementPoints(float decrementRate) 

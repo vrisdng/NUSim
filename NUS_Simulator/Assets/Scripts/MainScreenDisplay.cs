@@ -15,12 +15,13 @@ public class MainScreenDisplay : MonoBehaviour
     public PlayerInfoDisplay PlayerInfoDisplay;
     public PointsController PointsController;
 
-    void Start()
+    void Awake()
     {
         Debug.Log(PLAYER.GetName()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
         PointsController.Initialize(PLAYER);
         PointsController.StartDecrementPoints(1f);
+        Debug.Log("This points controller is running");
         
         mailIcon.SetActive(false);
     }
