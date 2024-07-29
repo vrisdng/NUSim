@@ -73,10 +73,9 @@ public class MinigameManager : MonoBehaviour
         {
             Debug.LogError("Distraction event is null");
             PLAYER.AddPoints(10, 10, 10); 
-            return;
+            SceneManager.LoadScene("InGameScene");
         }
         PLAYER.AddPoints(distractionEvent.GetMentalPoints(), distractionEvent.GetPhysicalPoints(), distractionEvent.GetSocialPoints());
-
         SceneManager.LoadScene("InGameScene");
     }
 }
