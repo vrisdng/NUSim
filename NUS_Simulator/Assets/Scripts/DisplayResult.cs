@@ -41,7 +41,7 @@ public class DisplayResult : MonoBehaviour
         var modules = SelectedModulesManager.Instance.GetSelectedModules();
         var grades = GenerateGrades(modules);
         var averageGrade = Grade.CalculateAverageGrade(grades);
-        PLAYER.SetGPA(averageGrade);
+        PLAYER.SetGPA(averageGrade); 
 
         DisplayGrades(grades, averageGrade);
         DisplayPoints();
@@ -106,7 +106,7 @@ public class DisplayResult : MonoBehaviour
             return;
         }
 
-        if (HasAnyPoints(50))
+        if (HasAnyPointsMoreThan(49))
         {
             SetFinalReport("You have failed to become Kiasu!", false, true, "However, thanks to social merits, you have unlocked an item to aid you in the next round!");
             return;
@@ -117,14 +117,20 @@ public class DisplayResult : MonoBehaviour
 
     private void DisplayLinearModeReport(float averageGrade)
     {
-        if (averageGrade >= 3.0f && HasAnyPoints(0))
+        Debug.Log(averageGrade);
+        if (averageGrade >= 2.5 && HasAnyPointsMoreThan(0))
         {
             SetFinalReport("Congratulations! Your grades have passed the semester!", false, true, "You have unlocked the next semester and earn rewards!");
-            SELECTED_MODULES.CompleteModulesOfCurrentSemester();
+            ModuleManager moduleManager = new ModuleManager();
+            moduleManager.CompleteSelectedModules(); 
+            moduleManager.StartNewSemester();
             return;
         }
 
-        SetFinalReport("You have failed the semester.", true, false, "You have not unlocked the next semester. Better luck next time!");
+        else {
+            
+            SetFinalReport("You have failed the semester.", true, false, "You have not unlocked the next semester. Better luck next time!");
+        }
     }
 
     private void SetFinalReport(string finalText, bool showStartOver, bool showRewards, string congratsText = "")
@@ -138,9 +144,9 @@ public class DisplayResult : MonoBehaviour
         }
     }
 
-    private bool HasAnyPoints(int points)
+    private bool HasAnyPointsMoreThan(int points)
     {
         var student = Student.Instance;
-        return student.GetMentalPoints() == points || student.GetPhysicalPoints() == points || student.GetSocialPoints() == points;
+        return student.GetMentalPoints() > points || student.GetPhysicalPoints() > points || student.GetSocialPoints() > points;
     }
 }

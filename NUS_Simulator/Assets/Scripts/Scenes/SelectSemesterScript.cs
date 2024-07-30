@@ -22,6 +22,7 @@ public class SelectSemesterScript : MonoBehaviour
         {
             if (i == SemesterManager.Instance.GetCurrentSemesterIndex())
             {
+                Debug.Log("Index of curr semester" + i); 
                 semesterButtons[i].interactable = true;
             }
             else 
@@ -40,7 +41,6 @@ public class SelectSemesterScript : MonoBehaviour
 
         if (semesterIndex != -1)
         {
-            SemesterManager.Instance.CompleteCurrentSemester();
             SceneManager.LoadScene("Select Modules");
         }
     }

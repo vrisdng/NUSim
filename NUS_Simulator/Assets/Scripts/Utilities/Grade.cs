@@ -50,8 +50,8 @@ public static class Grade
         {
             return new Dictionary<string, float>
             {
-                { "D", 0.20f },
-                { "F", 0.80f }
+                { "D", 0.10f },
+                { "F", 0.90f }
             };
         }
         else if (progress >= 20 && progress < 45)
@@ -67,16 +67,16 @@ public static class Grade
             return new Dictionary<string, float>
             {
                 { "A", 0.10f },
-                { "B", 0.70f },
-                { "C", 0.20f }
+                { "B", 0.90f },
+                { "C", 0.10f }
             };
         }
         else if (progress >= 75)
         {
             return new Dictionary<string, float>
             {
-                { "A", 0.80f },
-                { "B", 0.20f }
+                { "A", 0.95f },
+                { "B", 0.05f }
             };
         }
 

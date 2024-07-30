@@ -51,7 +51,7 @@ public class CoffeeMachine : Reward
     public override void RewardEffects()
     {
         Student PLAYER = Student.Instance;
-        PLAYER.AdjustAllModulesProductivity(1.0f);
+        PLAYER.AdjustAllModulesProductivity(0.2f);
     }
 }
 
@@ -90,7 +90,7 @@ public class Bible : Reward
     public override void RewardEffects()
     {
         Student PLAYER = Student.Instance;
-        PLAYER.AdjustAllModulesProductivity(1.5f);
+        PLAYER.AdjustAllModulesProductivity(0.5f);
     }
 }
 
@@ -105,6 +105,72 @@ public class Tiramisu : Reward
         Student PLAYER = Student.Instance;
         PLAYER.AddPoints(20, 0, 0);
         PLAYER.AdjustAllModulesProductivity(0.5f);
+    }
+}
+
+public class Pills : Reward
+{
+    public Pills()
+    {
+        this.name = "Pills";
+    }
+    public override void RewardEffects()
+    {
+        Student PLAYER = Student.Instance;
+        PLAYER.AddPoints(0, 15, 0);
+        PLAYER.AdjustAllModulesProductivity(0.5f);
+    }
+}
+
+public class Calculator : Reward
+{
+    public Calculator()
+    {
+        this.name = "Calculator";
+    }
+    public override void RewardEffects()
+    {
+        Student PLAYER = Student.Instance;
+        PLAYER.AdjustAllModulesProductivity(0.2f);
+    }
+}
+
+public class Dumbbell : Reward
+{
+    public Dumbbell()
+    {
+        this.name = "Dumbbell";
+    }
+    public override void RewardEffects()
+    {
+        Student PLAYER = Student.Instance;
+        PLAYER.AddPoints(0, 0, 30);
+    }
+}
+
+public class Notes : Reward
+{
+    public Notes()
+    {
+        this.name = "Notes";
+    }
+    public override void RewardEffects()
+    {
+        Student PLAYER = Student.Instance;
+        PLAYER.AddPoints(0, 0, 30);
+    }
+}
+
+public class PYP : Reward
+{
+    public PYP()
+    {
+        this.name = "PYP";
+    }
+    public override void RewardEffects()
+    {
+        Student PLAYER = Student.Instance;
+        PLAYER.AdjustAllModulesProductivity(0.2f);
     }
 }
 

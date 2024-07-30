@@ -125,8 +125,7 @@ public class NUSModsAPI : MonoBehaviour
     public void CreateModuleScriptableObject(ModuleInfo moduleInfo)
     {
        
-        string path = $"{Application.dataPath}/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
-        string relativePath = $"Assets/ScriptableObjects/Modules/{moduleInfo.moduleCode}.asset";
+        string relativePath = $"Assets/Resources/Modules/{moduleInfo.moduleCode}.asset";
 
         Module existingModule = AssetDatabase.LoadAssetAtPath<Module>(relativePath);
         if (existingModule == null)

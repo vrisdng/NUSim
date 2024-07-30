@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Ionic.Crc;
 
 public class RewardScript : MonoBehaviour 
 {
@@ -24,7 +25,12 @@ public class RewardScript : MonoBehaviour
         new MP3(),
         new Milk(),
         new Bible(),
-        new Tiramisu()
+        new Tiramisu(),
+        new Pills(),
+        new Calculator(), 
+        new Dumbbell(),
+        new Notes(),
+        new PYP(),
     };
 
     void Start()

@@ -9,7 +9,7 @@ public class ModuleManager : MonoBehaviour
     public Button nextButton;
     public List<Module> availableModules = new List<Module>();
     public Transform[] moduleSlots;
-    public Module[] selectedModules = new Module[5];
+    public Module[] selectedModules; 
 
     [SerializeField] public TextMeshProUGUI moduleName;
     [SerializeField] public TextMeshProUGUI moduleTitle;
@@ -21,22 +21,27 @@ public class ModuleManager : MonoBehaviour
     private int clickedCount = 0;
     private Student PLAYER = Student.Instance;
 
-    void Awake()
+    void Start()
     {
-        LoadAvailableModules(PLAYER.GetFaculty());
+        string faculty = CreateCharacterScript.facultyChosen; 
+        Debug.Log("Player's faculty: " + faculty);
+        LoadAvailableModules(faculty); 
+        Debug.Log("Player's faculty: " + PLAYER.GetFaculty());
         CreateModuleButtons();
+        selectedModules = new Module[5];
         nextButton.interactable = false;
         moduleInfoPanel.SetActive(false);
     }
 
     public void LoadAvailableModules(string moduleType)
     {
+        Debug.Log("Loading modules...");
         availableModules.Clear();
         Module[] modules = Resources.LoadAll<Module>("Modules");
 
         foreach (Module module in modules)
         {
-            if (module != null && module.moduleType == moduleType && !module.isCompleted && module.moduleDepartment != "Information Systems and Analytics" && module.moduleDepartment != "SoC Dean's Office")
+            if (module != null && module.moduleType == moduleType && module.isCompleted == false && module.moduleDepartment != "Information Systems and Analytics" && module.moduleDepartment != "SoC Dean's Office")
             {
                 Debug.Log(module.moduleDepartment);
                 availableModules.Add(module);
@@ -46,6 +51,7 @@ public class ModuleManager : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Modules loaded: " + availableModules.Count);
     }
 
     public void CreateModuleButtons()
@@ -119,8 +125,7 @@ public class ModuleManager : MonoBehaviour
     public void StartNewSemester()
     {
         clickedCount = 0;
-        SelectedModulesManager.Instance.ResetSelectedModules();
-        ResetModuleButtons();
+        //ResetModuleButtons();
     }
 
     public void ResetModuleButtons()
@@ -130,6 +135,17 @@ public class ModuleManager : MonoBehaviour
             foreach (Button button in slot.GetComponentsInChildren<Button>())
             {
                 button.interactable = true;
+            }
+        }
+    }
+
+    public void CompleteSelectedModules()
+    {
+        foreach (Module module in selectedModules)
+        {
+            if (module != null)
+            {
+                module.SetCompleted(true);
             }
         }
     }

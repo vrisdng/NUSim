@@ -52,9 +52,11 @@ public class Student {
         productivity = new Dictionary<string, float>
         {
             { "default", 1.0f },
-            { "CS", 1.0f },
-            { "MA", 1.0f },
-            { "UE", 1.0f },
+            { "College of Design and Engineering", 1.0f },
+            { "NUS Business School", 1.0f},
+            { "Arts and Social Science", 1.0f},
+            { "Science", 1.0f},
+            { "Computing", 1.0f},
         };
     }
 

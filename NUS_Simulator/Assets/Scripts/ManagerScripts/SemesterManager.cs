@@ -7,7 +7,7 @@ public class SemesterManager : MonoBehaviour
     private static SelectedModulesManager selectedModulesManager = SelectedModulesManager.Instance;
 
     public Semester[] semesters;
-    private int currentSemesterIndex;
+    private int currentSemesterIndex = 0;
 
     private void Awake()
     {
@@ -36,7 +36,6 @@ public class SemesterManager : MonoBehaviour
             new Semester("Year 4 Semester 1"), 
             new Semester("Year 4 Semester 2")
         };
-        currentSemesterIndex = 0;
     }
 
     public void CompleteCurrentSemester()
@@ -44,10 +43,7 @@ public class SemesterManager : MonoBehaviour
         if (currentSemesterIndex < semesters.Length)
         {
             semesters[currentSemesterIndex].SetCompleted(true);
-            if (currentSemesterIndex + 1 < semesters.Length)
-            {
-                currentSemesterIndex++;
-            }
+            currentSemesterIndex += 1;
         }
     }
 
