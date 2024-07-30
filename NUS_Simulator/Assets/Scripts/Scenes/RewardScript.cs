@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using Ionic.Crc;
 
 public class RewardScript : MonoBehaviour 
 {
