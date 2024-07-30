@@ -4,8 +4,8 @@
 - Level of achievement: Apollo 11
 
 Poster: 
-![NUSim](https://github.com/vrisdng/NUSim/assets/109259742/4f2e0828-c3ca-43f2-8a9f-30865636b4fc)
 
+![NUSim (1).pdf](https://github.com/user-attachments/files/16429110/NUSim.1.pdf)
 
 # Playable Demo
 
