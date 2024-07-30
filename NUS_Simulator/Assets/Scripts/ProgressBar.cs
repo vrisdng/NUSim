@@ -62,6 +62,7 @@ public class ProgressBar : MonoBehaviour
         {
             float productivity = Student.Instance.GetProductivityOfModule(module.moduleType);
             module.AddToProgress(Time.deltaTime / (module.moduleDifficulty / 10) * productivity * 2.5f);
+            
             progressBar.fillAmount = module.GetProgress() / 100f;
             progressText.text = $"{progressBar.fillAmount * 100:F0}%";
         }

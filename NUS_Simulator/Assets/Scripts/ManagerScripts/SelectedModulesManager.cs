@@ -51,10 +51,12 @@ public class SelectedModulesManager : MonoBehaviour
     {
         foreach (Module module in SelectedModules)
         {
-            if (module != null && module.GetProgress() >= 20f)
+            if (module == null)
             {
-                module.SetCompleted(true);
+                continue;
             }
+            Debug.Log(module.moduleName);
+            module.SetCompleted(true);
         }
     }
 }

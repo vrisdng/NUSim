@@ -41,6 +41,7 @@ public class DisplayResult : MonoBehaviour
         var modules = SelectedModulesManager.Instance.GetSelectedModules();
         var grades = GenerateGrades(modules);
         var averageGrade = Grade.CalculateAverageGrade(grades);
+        //var averageGrade = 5.0f;
         PLAYER.SetGPA(averageGrade); 
 
         DisplayGrades(grades, averageGrade);
@@ -121,9 +122,7 @@ public class DisplayResult : MonoBehaviour
         if (averageGrade >= 2.5 && HasAnyPointsMoreThan(0))
         {
             SetFinalReport("Congratulations! Your grades have passed the semester!", false, true, "You have unlocked the next semester and earn rewards!");
-            ModuleManager moduleManager = new ModuleManager();
-            moduleManager.CompleteSelectedModules(); 
-            moduleManager.StartNewSemester();
+            SelectedModulesManager.Instance.CompleteModulesOfCurrentSemester(); 
             return;
         }
 
