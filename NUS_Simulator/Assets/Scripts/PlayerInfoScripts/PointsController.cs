@@ -4,12 +4,7 @@ using System.Collections;
 
 public class PointsController : MonoBehaviour
 {
-    private Student player;
-
-    public void Initialize(Student student)
-    {
-        player = Student.Instance; 
-    }
+    private Student player = Student.Instance;
 
     public void StartDecrementPoints(float decrementRate) 
     {
@@ -18,16 +13,18 @@ public class PointsController : MonoBehaviour
 
     public IEnumerator DecrementPoints(float decrementRate) 
     {
-        while(true) {
-            //Debug.Log("Points: " + player.GetMentalPoints() + " " + player.GetPhysicalPoints() + " " + player.GetSocialPoints());
-            if (player.GetMentalPoints() <= 0 || player.GetPhysicalPoints() <= 0 || player.GetSocialPoints() <= 0) {
-                SceneManager.LoadScene("GameOverScene"); 
-            }
+        while(player.GetMentalPoints() > 0 || player.GetPhysicalPoints() > 0 || player.GetSocialPoints() > 0)
+        {
             player.DecrementMentalPoints(decrementRate);
             player.DecrementPhysicalPoints(decrementRate);
             player.DecrementSocialPoints(decrementRate);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.2f);
             FindObjectOfType<PlayerInfoDisplay>().DisplayPlayerInfo();
         }
+
+        if (player.GetMentalPoints() <= 0 || player.GetPhysicalPoints() <= 0 || player.GetSocialPoints() <= 0) {
+                Debug.Log("Player has lost the game");
+                SceneManager.LoadScene("GameOverScene"); 
+            }
     }
 }

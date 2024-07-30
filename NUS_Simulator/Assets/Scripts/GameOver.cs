@@ -7,11 +7,6 @@ public class GameOver : MonoBehaviour
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
         Student.Instance.InitializeProductivity(); 
-        if (StudyManager.Instance != null) {
-            StudyManager.Instance.StopAllStudying(); 
-        } else {
-            Debug.Log("StudyManager is null");
-        }
         if (SelectedModulesManager.Instance != null) {
             SelectedModulesManager.Instance.ResetAllProgress(); 
         } else {
@@ -24,11 +19,6 @@ public class GameOver : MonoBehaviour
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
         Student.Instance.InitializeProductivity(); 
-        if (StudyManager.Instance != null) {
-            StudyManager.Instance.StopAllStudying(); 
-        } else {
-            Debug.Log("StudyManager is null");
-        }
         if (SelectedModulesManager.Instance != null) {
             SelectedModulesManager.Instance.ResetAllProgress(); 
         } else {

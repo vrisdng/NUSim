@@ -8,7 +8,7 @@ using System.Collections;
 public class PointsControllerTest : MonoBehaviour
 {
     private GameObject playerObject;
-    private Student player;
+    private Student player = Student.Instance;
     private PointsController pointsController;
 
     [SetUp]
@@ -21,8 +21,6 @@ public class PointsControllerTest : MonoBehaviour
         player.SetMentalPoints(10);
         player.SetPhysicalPoints(10);
         player.SetSocialPoints(10);
-
-        pointsController.Initialize(player);
     }
 
     [TearDown]

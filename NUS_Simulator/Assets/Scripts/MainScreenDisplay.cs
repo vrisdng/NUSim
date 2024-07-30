@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal.Internal;
+using UnityEngine.AI;
 public class MainScreenDisplay : MonoBehaviour
 {
     public static Student PLAYER = Student.Instance; 
@@ -19,16 +20,18 @@ public class MainScreenDisplay : MonoBehaviour
     {
         Debug.Log(PLAYER.GetName()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
-        PointsController.Initialize(PLAYER);
+        Debug.Log("Player's points: " + Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
         PointsController.StartDecrementPoints(1f);
+        
         Debug.Log("This points controller is running");
         
         mailIcon.SetActive(false);
     }
 
-    void Update()
+    void GameOver()
     {
-        if (PLAYER.IsAnyPointZero()) {
+        if (PLAYER.IsAnyPointZero())
+        {
             SceneManager.LoadScene("GameOverScene");
         }
     }
