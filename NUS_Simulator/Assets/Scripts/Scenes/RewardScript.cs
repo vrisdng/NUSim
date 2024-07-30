@@ -60,6 +60,7 @@ public class RewardScript : MonoBehaviour
         int randomIndex = Random.Range(0, itemsPanels.Length);
         print(randomIndex);
         itemsPanels[randomIndex].SetActive(true);
+        Student.Instance.Reset();
     }
     public void OnClickAReward() 
     {
@@ -72,5 +73,7 @@ public class RewardScript : MonoBehaviour
         reward.RewardEffects();
 
         new Transition().TransitionLoopGameMode(GAMEMODE.GetGameMode()); 
+
+
     }
 }

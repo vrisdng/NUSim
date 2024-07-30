@@ -19,7 +19,6 @@ public class ExamScript : MonoBehaviour
         }
 
         Countdown.Instance.ResetCountdown();
-        Student.Instance.Reset();
         SemesterManager.Instance.CompleteCurrentSemester();
         if (SemesterManager.Instance.GetCurrentSemester().GetName() == "Year 4 Semester 2")
         {
