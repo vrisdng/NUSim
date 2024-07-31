@@ -29,16 +29,14 @@ public class gameLogic : MonoBehaviour
     }
 
     public void gameOver() {
-        MinigameManager minigame = new MinigameManager();
-        minigame.AttachScore(playerScore);
+        PLAYER.AddPoints(playerScore/2, playerScore/2, playerScore/2);
         Destroy(ball);
         Destroy(paddle);
         gameOverScene.SetActive(true);
     }
 
     public void gameSuccess() {
-        MinigameManager minigame = new MinigameManager();
-        minigame.AttachScore(playerScore);
+        PLAYER.AddPoints(playerScore/2, playerScore/2, playerScore/2);
         Destroy(ball);
         Destroy(paddle);
         gameSuccessScene.SetActive(true);
