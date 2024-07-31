@@ -23,6 +23,8 @@ public class paddle : MonoBehaviour
         } else {
             direction = Vector2.zero;
         }
+
+        
     }
 
     void FixedUpdate() {
@@ -33,6 +35,7 @@ public class paddle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Ball")){
+            
             Rigidbody2D ball = collision.rigidbody;
             Collider2D paddle = collision.otherCollider;
 
@@ -42,7 +45,10 @@ public class paddle : MonoBehaviour
             float bounceAngle = (contactDistance.x / paddle.bounds.size.x) * maxBounceAngle;
             ballDirection = Quaternion.AngleAxis(bounceAngle, Vector3.forward) * ballDirection;
 
-            ball.velocity = ballDirection * ball.velocity.magnitude;
+            ball.velocity = ballDirection.normalized * ball.velocity.magnitude;
+
+            
+
         }
         
     }
