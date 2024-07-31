@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.SceneManagement;
 
 public class ExamScript : MonoBehaviour
@@ -10,6 +11,7 @@ public class ExamScript : MonoBehaviour
     private Student PLAYER = Student.Instance;
     public void OnClickGetReward() 
     {
+        Debug.Log(PLAYER.GetGameMode());
 
         Module[] modules = selectedModulesManager.GetSelectedModules();
 
@@ -19,12 +21,18 @@ public class ExamScript : MonoBehaviour
         }
 
         Countdown.Instance.ResetCountdown();
-        SemesterManager.Instance.CompleteCurrentSemester();
-        if (SemesterManager.Instance.GetCurrentSemester().GetName() == "Year 4 Semester 2")
-        {
-            SceneManager.LoadScene("EndingScene");
+        if (PLAYER.GetGameMode() == GameMode.Linear) {
+            SemesterManager.Instance.CompleteCurrentSemester();
+            if (SemesterManager.Instance.GetCurrentSemester().GetName() == "Year 4 Semester 2")
+            {
+                SceneManager.LoadScene("EndingScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("RewardScene");
+            }
         }
-        else
+        else if (PLAYER.GetGameMode() == GameMode.Kiasu)
         {
             SceneManager.LoadScene("RewardScene");
         }

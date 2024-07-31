@@ -27,6 +27,7 @@ public class DisplayResult : MonoBehaviour
         Debug.Log("?");
         startOverButton.SetActive(false);
         getRewardsButton.SetActive(false);
+        Debug.Log(PLAYER.GetGameMode());
     }
 
     public void OnClick()
@@ -87,13 +88,13 @@ public class DisplayResult : MonoBehaviour
 
     private void DisplayFinalReport(float averageGrade)
     {
-        if (GAMEMODE.GetGameMode() == GameMode.Kiasu)
+        if (PLAYER.GetGameMode() == GameMode.Kiasu)
         {
             DisplayKiasuModeReport(averageGrade);
             return;
         }
 
-        if (GAMEMODE.GetGameMode() == GameMode.Linear)
+        if (PLAYER.GetGameMode() == GameMode.Linear)
         {
             DisplayLinearModeReport(averageGrade);
         }
@@ -101,13 +102,14 @@ public class DisplayResult : MonoBehaviour
 
     private void DisplayKiasuModeReport(float averageGrade)
     {
-        if (averageGrade >= 5.0f)
+        PLAYER.SetGameMode(GameMode.Kiasu);
+        if (averageGrade >= 4.8f && HasAnyPointsMoreThan(49))
         {
             SetFinalReport("Congratulations! You have become the Ultimate Kiasu!", true, false);
             return;
         }
 
-        if (HasAnyPointsMoreThan(49))
+        else if (averageGrade < 4.8f && HasAnyPointsMoreThan(49))
         {
             SetFinalReport("You have failed to become Kiasu!", false, true, "However, thanks to social merits, you have unlocked an item to aid you in the next round!");
             return;
@@ -118,6 +120,7 @@ public class DisplayResult : MonoBehaviour
 
     private void DisplayLinearModeReport(float averageGrade)
     {
+        PLAYER.SetGameMode(GameMode.Linear);
         Debug.Log(averageGrade);
         if (averageGrade >= 2.5 && HasAnyPointsMoreThan(0))
         {

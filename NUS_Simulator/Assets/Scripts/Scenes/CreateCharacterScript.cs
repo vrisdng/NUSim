@@ -68,7 +68,7 @@ public class CreateCharacterScript : MonoBehaviour
                 break;
         }
         
-        if (GameModeManager.Instance.GetGameMode() == GameMode.Linear) {
+        if (Student.Instance.GetGameMode() == GameMode.Linear) {
             SceneManager.LoadScene("SelectSemester");
         } else {
             SceneManager.LoadScene("Select Modules");
@@ -77,11 +77,11 @@ public class CreateCharacterScript : MonoBehaviour
 
     public void OnCourseNextButton()
     {
-        if (GameModeManager.Instance.GetGameMode() == GameMode.Linear)
+        if (Student.Instance.GetGameMode() == GameMode.Linear)
         {
             SceneManager.LoadScene("SelectSemester");
         }
-        else if (GameModeManager.Instance.GetGameMode() == GameMode.Kiasu)
+        else if (Student.Instance.GetGameMode() == GameMode.Kiasu)
         {
             SceneManager.LoadScene("Select Modules");
         }

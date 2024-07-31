@@ -19,6 +19,7 @@ public class MainScreenDisplay : MonoBehaviour
     void Awake()
     {
         Debug.Log(PLAYER.GetName()); 
+        Debug.Log(PLAYER.GetGameMode()); 
         PlayerInfoDisplay.DisplayPlayerInfo(); 
         Debug.Log("Player's points: " + Student.Instance.GetMentalPoints() + Student.Instance.GetPhysicalPoints() + Student.Instance.GetSocialPoints());
         PointsController.StartDecrementPoints(1f);

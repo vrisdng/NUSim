@@ -41,7 +41,7 @@ public class ModuleManager : MonoBehaviour
 
         foreach (Module module in modules)
         {
-            if (module != null && module.moduleType == moduleType && module.isCompleted == false && module.moduleDepartment != "Information Systems and Analytics" && module.moduleDepartment != "SoC Dean's Office")
+            if (module != null && module.moduleType == moduleType && module.isCompleted == false && module.moduleDepartment != "Information Systems and Analytics" && module.moduleDepartment != "SoC Dean's Office" && module.moduleName != "CS2003")
             {
                 Debug.Log(module.moduleDepartment);
                 availableModules.Add(module);

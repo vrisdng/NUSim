@@ -72,8 +72,8 @@ public class RewardScript : MonoBehaviour
         Reward reward = rewards.Find(reward => reward.GetName() == objSelected.name);
         reward.RewardEffects();
 
-        new Transition().TransitionLoopGameMode(GAMEMODE.GetGameMode()); 
-
+        Debug.Log(PLAYER.GetGameMode());
+        new Transition().TransitionLoopGameMode(PLAYER.GetGameMode()); 
 
     }
 }

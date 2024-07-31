@@ -7,15 +7,16 @@ public class SelectModeScript : MonoBehaviour
 {
 
     public GameModeManager gameModeManager = GameModeManager.Instance;
+    private Student student = Student.Instance;
     public void PlayLinear()
     {
-        gameModeManager.SetGameMode(GameMode.Linear);
+        student.SetGameMode(GameMode.Linear);
         SceneManager.LoadScene("CreateCharacterScene");
     }
 
     public void PlayKiasu()
     {
-        gameModeManager.SetGameMode(GameMode.Kiasu);
+        student.SetGameMode(GameMode.Kiasu);
         SceneManager.LoadScene("CreateCharacterScene");
     }
 }

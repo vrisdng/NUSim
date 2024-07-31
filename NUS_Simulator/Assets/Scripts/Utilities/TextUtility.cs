@@ -19,7 +19,7 @@ public static class TextUtility
         AddAchievement(ref text, physicalPoints >= 100, "Fitness Freak");
         AddAchievement(ref text, socialPoints >= 100, "Social Butterfly");
 
-        if (string.IsNullOrEmpty(text))
+        if (text == "") 
         {
             Utils.SetText(achievementText, "No Achievements Unlocked \n"); 
         }

@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public void OnClick() {
+        Debug.Log(Student.Instance.GetGameMode()); 
+        if (Student.Instance.GetGameMode() == GameMode.Kiasu) {
+            Student.Instance.SetGameMode(GameMode.Kiasu); 
+        }
         Countdown.Instance.ResetCountdown();
         Student.Instance.Reset();
         Student.Instance.InitializeProductivity(); 

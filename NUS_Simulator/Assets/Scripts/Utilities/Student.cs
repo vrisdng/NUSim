@@ -21,6 +21,8 @@ public class Student {
 
     private Module[] modules = new Module[45]; 
 
+    private GameMode gameMode; 
+
     public Student(string name, float mentalPoints, float physicalPoints, float socialPoints)
     {
         this.name = name;
@@ -45,6 +47,25 @@ public class Student {
             }
             return instance; 
         }
+    }
+
+
+    public void Reset() {
+        GameMode currentMode = this.gameMode;
+        Debug.Log("Current mode: " + currentMode);
+        instance = new Student(this.name, 100, 100, 100);
+        instance.SetGameMode(currentMode);
+    }
+
+
+    public void SetGameMode(GameMode gameMode)
+    {
+        this.gameMode = gameMode;
+    }
+
+    public GameMode GetGameMode()
+    {
+        return this.gameMode;
     }
 
     public void InitializeProductivity()
@@ -206,8 +227,5 @@ public class Student {
         }
     }
 
-    public void Reset() {
-        instance = new Student(this.name, 100, 100, 100);
-    }
 }
 
