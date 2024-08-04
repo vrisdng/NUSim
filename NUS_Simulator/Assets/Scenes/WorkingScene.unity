@@ -2534,6 +2534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e132caf49a3ae423fa3620b906c17f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInfoDisplay: {fileID: 1215528933}
 --- !u!4 &973414891
 Transform:
   m_ObjectHideFlags: 0
@@ -4585,6 +4586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sleepPanel: {fileID: 0}
   socialPanel: {fileID: 0}
+  laptop: {fileID: 0}
 --- !u!61 &1889009509
 BoxCollider2D:
   m_ObjectHideFlags: 0
