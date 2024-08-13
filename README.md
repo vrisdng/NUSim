@@ -5,7 +5,8 @@
 
 Poster: 
 
-![NUSim (1).pdf](https://github.com/user-attachments/files/16429110/NUSim.1.pdf)
+![NUSim (1)](https://github.com/user-attachments/assets/3fdc1259-a289-4b28-b2e2-f4c17a2d3af7)
+
 
 # Playable Demo
 
